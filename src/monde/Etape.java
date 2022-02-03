@@ -3,6 +3,7 @@ package monde;
 import java.util.Iterator;
 
 public abstract class Etape implements Iterable {
+
     private String nom;
     protected GestionnaireSuccesseurs Gstsuccesseurs;
 
@@ -24,4 +25,34 @@ public abstract class Etape implements Iterable {
     public Iterator<Etape> iterator(){
         return null;
     }
+
+
+    public String toString() {
+        return nom ; // A voir lorsque l'on aura avancer dans les classes inférieure
+    }
+
+
+    // Getteurs
+
+    public GestionnaireSuccesseurs getGstsuccesseurs() {
+        return Gstsuccesseurs;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    // Setteurs
+
+    public void setGstsuccesseurs(GestionnaireSuccesseurs gstsuccesseurs) {
+        Gstsuccesseurs = gstsuccesseurs;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    // Fonctions de controles
+
+
 }

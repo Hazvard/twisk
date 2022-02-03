@@ -6,6 +6,7 @@ public class Guichet extends Etape{
 
     Guichet(String nom){
         super(nom);
+        nbjetons = 1 ;
     }
 
     Guichet(String nom, int nb){
@@ -16,5 +17,19 @@ public class Guichet extends Etape{
     @Override
     public boolean estUnGuichet() {
         return true;
+    }
+
+    @Override
+    public String getNom() {
+        return super.getNom();
+    }
+
+    @Override
+    public GestionnaireSuccesseurs getGstsuccesseurs() {
+        return super.getGstsuccesseurs();
+    }
+
+    public int getNbjetons() {
+        return nbjetons;
     }
 }
