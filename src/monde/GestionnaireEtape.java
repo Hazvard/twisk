@@ -1,20 +1,19 @@
 package monde;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
-public class GestionnaireEtapte implements Iterable{
+public class GestionnaireEtape implements Iterable{
 
     protected ArrayList<Etape> listeEtape ;
 
-    public GestionnaireEtapte(){
-        //Constru vide pour le moment
+    public GestionnaireEtape(){
+        listeEtape = new ArrayList<>();
     }
 
-    public void ajouter(Etape ... e){
-        for (Etape etape:e) {
-            listeEtape.add(etape);
-        }
+    public void ajouter(Etape ... etapes) {
+        listeEtape.addAll(Arrays.asList(etapes));
     }
 
     int nbEtapes(){
