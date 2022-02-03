@@ -1,4 +1,9 @@
 package monde;
 
-public class SasEntree {
+public class SasEntree extends Activite{
+
+    public SasEntree() {
+        super("Entrée");
+    }
+
 }
