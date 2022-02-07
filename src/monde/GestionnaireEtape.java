@@ -16,7 +16,7 @@ public class GestionnaireEtape implements Iterable{
         listeEtape.addAll(Arrays.asList(etapes));
     }
 
-    int nbEtapes(){
+    public int nbEtapes(){
         return listeEtape.size();
     }
 

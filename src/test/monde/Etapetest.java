@@ -1,4 +1,6 @@
 package test.monde;
+import monde.*;
+import org.junit.jupiter.api.BeforeEach;
 
 import monde.Activite;
 import monde.ActiviteRestreinte;

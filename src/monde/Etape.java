@@ -11,8 +11,8 @@ public abstract class Etape implements Iterable {
         this.nom = nom;
     }
 
-    public void ajouterSuccesseur(Etape... e) {
-
+    public void ajouterSuccesseur(Etape ... e) {
+        getGstsuccesseurs().ajouter(e);
     }
 
     public boolean estUneActivite(){
