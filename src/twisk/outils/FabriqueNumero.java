@@ -1,4 +1,4 @@
-package Twisk.outils;
+package twisk.outils;
 //Comme FabriqueCarte
 public class FabriqueNumero {
     private int cptEtape;

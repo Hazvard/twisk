@@ -1,4 +1,4 @@
-package Twisk.monde;
+package twisk.monde;
 
 public class SasSortie extends Activite {
 
