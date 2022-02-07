@@ -10,16 +10,16 @@ public class Monde implements Iterable<Etape>{
 
     public Monde(){
         lesEtapes = new GestionnaireEtape();
-
+        entree = new SasEntree();
+        sortie = new SasSortie();
     }
 
     @Override
     public String toString() {
-        return "Monde{" +
-                "gstEtape=" + lesEtapes +
-                ", entree=" + entree +
-                ", sortie=" + sortie +
-                '}';
+        return "Monde : \n" +
+                "gstEtape=" + lesEtapes.toString() + " ;\n" +
+                "entree = " + entree.toString() + " ;\n" +
+                "sortie = " + sortie.toString() + " ;\n";
     }
 
     public void ajouter(Etape ... etapes){

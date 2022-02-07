@@ -8,7 +8,7 @@ public class SasSortie extends Activite {
 
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString() + getNom();
     }
 
 }
