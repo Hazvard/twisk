@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class GestionnaireSuccesseurs implements Iterable<Etape>{
+
     private ArrayList<Etape> listeEtape ;
 
 

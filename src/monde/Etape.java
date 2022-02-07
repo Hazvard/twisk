@@ -12,6 +12,7 @@ public abstract class Etape implements Iterable {
     }
 
     public void ajouterSuccesseur(Etape... e) {
+
     }
 
     public boolean estUneActivite(){
