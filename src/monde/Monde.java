@@ -32,8 +32,9 @@ public class Monde implements Iterable<Etape>{
 
     int nbEtapes() {
         int n = 0;
-        for (Etape e:lesEtapes
-             ) {
+        Iterator<Etape> iterGstEtapes =  lesEtapes.iterator() ;
+        for (Iterator<Etape> it = iterGstEtapes; it.hasNext(); ) {
+            Etape e = it.next();
             if (!e.estUnGuichet()) {
                 n++;
             }
@@ -44,8 +45,10 @@ public class Monde implements Iterable<Etape>{
 
     int nbGuichets(){
         int n = 0;
-        for(Etape e: lesEtapes){
-            if(e.estUnGuichet()){
+        Iterator<Etape> iterGstEtapes =  lesEtapes.iterator() ;
+        for (Iterator<Etape> it = iterGstEtapes; it.hasNext(); ) {
+            Etape e = it.next();
+            if (e.estUnGuichet()) {
                 n++;
             }
         }
