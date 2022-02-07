@@ -23,11 +23,13 @@ public class Monde implements Iterable<Etape>{
     }
 
     void aCommeEntree(Etape ... etapes){
-        //appel de estUneEntre
+        entree.ajouterSuccesseur(etapes);
     }
 
     void aCommeSortie(Etape ... etapes){
-        //appel de estUneSortie
+        for( Etape etape : etapes){
+            etape.ajouterSuccesseur(sortie);
+        }
     }
 
     int nbEtapes() {
