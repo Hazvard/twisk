@@ -1,6 +1,4 @@
-package monde;
-
-import java.rmi.activation.ActivationID;
+package Twisk.monde;
 
 public class Activite extends Etape {
 

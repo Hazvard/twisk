@@ -1,19 +1,14 @@
 package test.monde;
-import monde.*;
-import org.junit.jupiter.api.BeforeEach;
 
-import monde.Activite;
-import monde.ActiviteRestreinte;
-import monde.Etape;
-import monde.SasSortie;
+import Twisk.monde.Etape;
 
 public class Etapetest {
 
-    static private Etape etape ;
+    static private Etape sasSortie ;
+    static private Etape sasEntree ;
+    static private Etape activiteRestreinte ;
+    static private Etape activite ;
+    static private Etape guichet ;
 
-    public static void main(String[] args) {
-        etape = new SasSortie();
-        System.out.println(etape.toString());
-    }
 
 }

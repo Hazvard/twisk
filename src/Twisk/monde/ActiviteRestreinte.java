@@ -1,4 +1,4 @@
-package monde;
+package Twisk.monde;
 
 public class ActiviteRestreinte extends Activite{
 
