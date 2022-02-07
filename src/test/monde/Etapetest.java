@@ -4,6 +4,8 @@ import Twisk.monde.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -47,5 +49,15 @@ public class Etapetest {
         assertFalse(activiteRestreinte.estUnGuichet());
         assertFalse(activite.estUnGuichet());
         assertTrue(guichet.estUnGuichet());
+    }
+
+    @Test
+    void hasNext() {
+        Iterator<Etape> iter = activite.iterator() ;
+        assertFalse(iter.hasNext());
+
+        activite.ajouterSuccesseur(sasSortie);
+        iter = activite.iterator() ;
+        assertTrue(iter.hasNext());
     }
 }

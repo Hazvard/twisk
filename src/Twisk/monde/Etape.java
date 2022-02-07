@@ -29,7 +29,7 @@ public abstract class Etape implements Iterable {
     }
 
     public Iterator<Etape> iterator(){
-        return this.iterator();
+        return gstsuccesseurs.iterator();
     }
 
 
