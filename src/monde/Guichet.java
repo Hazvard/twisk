@@ -32,4 +32,9 @@ public class Guichet extends Etape{
     public int getNbjetons() {
         return nbjetons;
     }
+
+    @Override
+    public String toString() {
+        return "Guichet : " + super.toString();
+    }
 }

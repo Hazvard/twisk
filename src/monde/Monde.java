@@ -12,7 +12,7 @@ public class Monde implements Iterable<Etape>{
         lesEtapes = new GestionnaireEtape();
 
     }
-//https://learntutorials.net/fr/java/topic/172/iterateur-et-iterable
+
     @Override
     public String toString() {
         return "Monde{" +

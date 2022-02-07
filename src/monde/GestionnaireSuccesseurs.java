@@ -36,4 +36,11 @@ public class GestionnaireSuccesseurs implements Iterable<Etape>{
     public void setListeEtape(ArrayList<Etape> listeEtape) {
         this.listeEtape = listeEtape;
     }
+
+    @Override
+    public String toString() {
+        return "GestionnaireSuccesseurs{" +
+                "listeEtape=" + listeEtape +
+                '}';
+    }
 }

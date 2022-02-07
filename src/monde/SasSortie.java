@@ -6,4 +6,9 @@ public class SasSortie extends Etape {
         super("Sortie");
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
 }
