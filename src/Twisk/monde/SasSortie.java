@@ -1,6 +1,6 @@
 package Twisk.monde;
 
-public class SasSortie extends Etape {
+public class SasSortie extends Activite {
 
     public SasSortie() {
         super("Sortie");

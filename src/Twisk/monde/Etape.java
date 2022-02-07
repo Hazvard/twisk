@@ -5,14 +5,19 @@ import java.util.Iterator;
 public abstract class Etape implements Iterable {
 
     private String nom;
-    protected GestionnaireSuccesseurs Gstsuccesseurs;
+    protected GestionnaireSuccesseurs gstsuccesseurs;
 
     public Etape(String nom) {
         this.nom = nom;
+        this.gstsuccesseurs = new GestionnaireSuccesseurs();
     }
 
     public void ajouterSuccesseur(Etape ... e) {
-        getGstsuccesseurs().ajouter(e);
+        gstsuccesseurs.ajouter(e);
+    }
+
+    public int nbSuccesseurs(){
+        return gstsuccesseurs.nbEtapes();
     }
 
     public boolean estUneActivite(){
@@ -36,7 +41,7 @@ public abstract class Etape implements Iterable {
     // Getteurs
 
     public GestionnaireSuccesseurs getGstsuccesseurs() {
-        return Gstsuccesseurs;
+        return gstsuccesseurs;
     }
 
     public String getNom() {
@@ -46,7 +51,7 @@ public abstract class Etape implements Iterable {
     // Setteurs
 
     public void setGstsuccesseurs(GestionnaireSuccesseurs gstsuccesseurs) {
-        Gstsuccesseurs = gstsuccesseurs;
+        gstsuccesseurs = gstsuccesseurs;
     }
 
     public void setNom(String nom) {
