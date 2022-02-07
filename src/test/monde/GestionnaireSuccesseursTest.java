@@ -31,9 +31,14 @@ public class GestionnaireSuccesseursTest {
         Iterator<Etape> iter = gstSuccesseurs.iterator() ;
         assertFalse(iter.hasNext());
 
-        gstSuccesseurs.ajouter(new SasEntree());
+        gstSuccesseurs.ajouter(new SasEntree(), new Guichet("0"), new ActiviteRestreinte("1"), new Activite("2"));
         iter = gstSuccesseurs.iterator() ;
-        assertTrue(iter.hasNext());
+        while (iter.hasNext()){
+            assertTrue(iter.hasNext());
+            iter.next();
+        }
+        assertFalse(iter.hasNext());
+
     }
 
 }

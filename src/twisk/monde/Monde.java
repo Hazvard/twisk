@@ -24,38 +24,34 @@ public class Monde implements Iterable<Etape>{
 
     public void ajouter(Etape ... etapes){
         lesEtapes.ajouter(etapes);
+        lesEtapes.ajouter(entree);
     }
 
     public void aCommeEntree(Etape ... etapes){
         entree.ajouterSuccesseur(etapes);
+        ajouter(etapes);
     }
 
     public void aCommeSortie(Etape ... etapes){
         for( Etape etape : etapes){
             etape.ajouterSuccesseur(sortie);
         }
+        ajouter(etapes);
     }
 
     public int nbEtapes() {
-        int n = 0;
-        Iterator<Etape> iterGstEtapes =  lesEtapes.iterator() ;
-        for (Iterator<Etape> it = iterGstEtapes; it.hasNext(); ) {
-            Etape e = it.next();
-            if (!e.estUnGuichet()) {
-                n++;
-            }
-        }
-        return n;
+        return  lesEtapes.nbEtapes();
     }
 
 
-    public int nbGuichets(){
+    public int nbGuichets(){//Marche pas ________________________________________________________________________________________________
         int n = 0;
-        Iterator<Etape> iterGstEtapes =  lesEtapes.iterator() ;
-        for (Iterator<Etape> it = iterGstEtapes; it.hasNext(); ) {
-            Etape e = it.next();
-            if (e.estUnGuichet()) {
-                n++;
+        if (lesEtapes.nbEtapes() > 0){
+            Iterator<Etape> iterator = iterator() ;
+            while(iterator.hasNext()) {
+                Etape etape = iterator.next();
+                if(etape.estUnGuichet())
+                    n++  ;
             }
         }
         return n;

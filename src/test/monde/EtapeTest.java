@@ -56,8 +56,12 @@ public class EtapeTest {
         Iterator<Etape> iter = activite.iterator() ;
         assertFalse(iter.hasNext());
 
-        activite.ajouterSuccesseur(sasSortie);
+        activite.ajouterSuccesseur(sasSortie, sasEntree, activiteRestreinte, guichet, activite);
         iter = activite.iterator() ;
-        assertTrue(iter.hasNext());
+        while (iter.hasNext()){
+            assertTrue(iter.hasNext());
+            iter.next();
+        }
+        assertFalse(iter.hasNext());
     }
 }

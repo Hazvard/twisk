@@ -31,9 +31,13 @@ public class GestionnaireEtapesTest {
         Iterator<Etape> iter = gstEtape.iterator() ;
         assertFalse(iter.hasNext());
 
-        gstEtape.ajouter(new SasEntree());
+        gstEtape.ajouter(new SasEntree(), new Guichet("0"), new ActiviteRestreinte("1"), new Activite("2"));
         iter = gstEtape.iterator() ;
-        assertTrue(iter.hasNext());
+        while (iter.hasNext()){
+            assertTrue(iter.hasNext());
+            iter.next();
+        }
+        assertFalse(iter.hasNext());
     }
 
 }
