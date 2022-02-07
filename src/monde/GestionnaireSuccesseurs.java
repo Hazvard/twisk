@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class GestionnaireSuccesseurs {
+public class GestionnaireSuccesseurs implements Iterable<Etape>{
     private ArrayList<Etape> listeEtape ;
 
 
@@ -22,7 +22,7 @@ public class GestionnaireSuccesseurs {
     }
 
     public Iterator<Etape> iterator(){
-        return  null ;
+        return  this.iterator() ;
     }
 
     // getteurs

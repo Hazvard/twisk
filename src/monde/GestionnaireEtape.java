@@ -9,7 +9,7 @@ public class GestionnaireEtape implements Iterable{
     protected ArrayList<Etape> listeEtape ;
 
     public GestionnaireEtape(){
-        listeEtape = new ArrayList<>();
+        listeEtape = new ArrayList<Etape>();
     }
 
     public void ajouter(Etape ... etapes) {
@@ -23,6 +23,6 @@ public class GestionnaireEtape implements Iterable{
 
     @Override
     public Iterator<Etape> iterator() {
-        return null;
+        return listeEtape.iterator();
     }
 }

@@ -23,7 +23,7 @@ public abstract class Etape implements Iterable {
     }
 
     public Iterator<Etape> iterator(){
-        return null;
+        return this.iterator();
     }
 
 
