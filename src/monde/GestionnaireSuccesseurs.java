@@ -22,7 +22,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape>{
     }
 
     public Iterator<Etape> iterator(){
-        return  this.iterator() ;
+        return listeEtape.iterator();
     }
 
     // getteurs

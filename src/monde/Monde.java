@@ -22,17 +22,21 @@ public class Monde implements Iterable<Etape>{
                 '}';
     }
 
-    void aCommeEntree(Etape ... etapes){
+    public void ajouter(Etape ... etapes){
+        lesEtapes.ajouter(etapes);
+    }
+
+    public void aCommeEntree(Etape ... etapes){
         entree.ajouterSuccesseur(etapes);
     }
 
-    void aCommeSortie(Etape ... etapes){
+    public void aCommeSortie(Etape ... etapes){
         for( Etape etape : etapes){
             etape.ajouterSuccesseur(sortie);
         }
     }
 
-    int nbEtapes() {
+    public int nbEtapes() {
         int n = 0;
         Iterator<Etape> iterGstEtapes =  lesEtapes.iterator() ;
         for (Iterator<Etape> it = iterGstEtapes; it.hasNext(); ) {
@@ -45,7 +49,7 @@ public class Monde implements Iterable<Etape>{
     }
 
 
-    int nbGuichets(){
+    public int nbGuichets(){
         int n = 0;
         Iterator<Etape> iterGstEtapes =  lesEtapes.iterator() ;
         for (Iterator<Etape> it = iterGstEtapes; it.hasNext(); ) {

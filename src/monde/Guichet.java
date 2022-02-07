@@ -4,12 +4,12 @@ public class Guichet extends Etape{
 
     private int nbjetons;
 
-    Guichet(String nom){
+    public Guichet(String nom){
         super(nom);
         nbjetons = 1 ;
     }
 
-    Guichet(String nom, int nb){
+    public Guichet(String nom, int nb){
         super(nom);
         nbjetons = nb;
     }
