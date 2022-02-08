@@ -24,7 +24,6 @@ public class Monde implements Iterable<Etape>{
 
     public void ajouter(Etape ... etapes){
         lesEtapes.ajouter(etapes);
-        lesEtapes.ajouter(entree);
     }
 
     public void aCommeEntree(Etape ... etapes){

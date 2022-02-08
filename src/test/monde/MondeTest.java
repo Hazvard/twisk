@@ -32,14 +32,13 @@ public class MondeTest {
     @Test
     void TestACommeEntree(){
         monde.aCommeEntree(activite, guichet);
-        assertTrue(monde.nbEtapes() == 3);
-
+        assertTrue(monde.nbEtapes() == 2);
     }
 
     @Test
     void TestACommeSortie(){
         monde.aCommeSortie(activite, guichet);
-        assertTrue(monde.nbEtapes() == 3);
+        assertTrue(monde.nbEtapes() == 2);
     }
 
     @Test
