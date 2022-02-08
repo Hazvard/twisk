@@ -1,19 +1,27 @@
 package twisk.outils;
-//Comme FabriqueCarte
+
 public class FabriqueNumero {
+
     private int cptEtape;
 
     private FabriqueNumero(){
+        cptEtape = 0;
     }
 
-    static FabriqueNumero getInstance(){
-        return null;
+    private static FabriqueNumero instance = new FabriqueNumero();
+
+    public static FabriqueNumero getInstance(){
+        return instance;
     }
 
-    int getNumeroEtape(){
-        return 0;
+    public int getNumeroEtpe(){
+        return cptEtape;
     }
 
     void reset(){
+        
     }
+
+    
+
 }
