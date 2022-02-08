@@ -6,6 +6,10 @@ public class SasEntree extends Activite{
         super("Entrée");
     }
 
+    public SasEntree(int num) {
+        super("Entrée", num);
+    }
+
     @Override
     public String toString() {
         return super.toString();

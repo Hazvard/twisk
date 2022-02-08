@@ -6,10 +6,18 @@ public abstract class Etape implements Iterable {
 
     private String nom;
     protected GestionnaireSuccesseurs gstsuccesseurs;
+    private int numEtape ;
+
+    public Etape(String nom, int num) {
+        this.nom = nom;
+        this.gstsuccesseurs = new GestionnaireSuccesseurs();
+        this.numEtape = num ;
+    }
 
     public Etape(String nom) {
         this.nom = nom;
         this.gstsuccesseurs = new GestionnaireSuccesseurs();
+        this.numEtape = 0 ;
     }
 
     public void ajouterSuccesseur(Etape ... e) {

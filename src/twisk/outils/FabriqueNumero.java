@@ -1,12 +1,12 @@
 package twisk.outils;
 
+import java.util.concurrent.Semaphore;
+
 public class FabriqueNumero {
 
     private int cptEtape;
-
-    private FabriqueNumero(){
-        cptEtape = 0;
-    }
+    private int cptSemaphore;
+    private FabriqueNumero fabriqueNumero ;
 
     private static FabriqueNumero instance = new FabriqueNumero();
 
@@ -15,13 +15,16 @@ public class FabriqueNumero {
     }
 
     public int getNumeroEtpe(){
-        return cptEtape;
+        return cptEtape ++;
     }
 
-    void reset(){
-        
+    public int getCptSemaphore() {
+        cptSemaphore++;
+        return cptSemaphore;
     }
 
-    
-
+    public  void reset(){
+      cptEtape = 0;
+      cptSemaphore = 0;
+    }
 }

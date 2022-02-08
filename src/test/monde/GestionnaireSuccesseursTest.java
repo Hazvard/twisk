@@ -21,9 +21,9 @@ public class GestionnaireSuccesseursTest {
 
     @Test
     void ajouterTest(){
-        gstSuccesseurs.ajouter(new Guichet("0"), new ActiviteRestreinte("1"), new Activite("2"), new Etape("3") {
+        gstSuccesseurs.ajouter(new Guichet("0"), new ActiviteRestreinte("1"), new Activite("2") {
         });
-        assertTrue(gstSuccesseurs.nbEtapes() == 4);
+        assertTrue(gstSuccesseurs.nbEtapes() == 3);
     }
 
     @Test

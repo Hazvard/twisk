@@ -9,8 +9,18 @@ public class Activite extends Etape {
         super(nom);
     }
 
+    public Activite(String nom, int num) {
+        super(nom, num);
+    }
+
     public Activite(String nom, int t, int e){
         super(nom);
+        temps = t;
+        ecartTemps = e;
+    }
+
+    public Activite(String nom, int t, int e, int num){
+        super(nom, num);
         temps = t;
         ecartTemps = e;
     }
