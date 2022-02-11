@@ -4,6 +4,7 @@ import twisk.monde.*;
 public class Simulation{
 
     public Simulation(){
+        //Constructeur vide
     }
 
     public void simuler(Monde world){

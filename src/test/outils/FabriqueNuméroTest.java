@@ -7,13 +7,11 @@ import twisk.outils.FabriqueNumero;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FabriqueNuméroTest {
-
     static private FabriqueNumero fabriqueNumero ;
 
     @BeforeEach
     void setUp() {
         fabriqueNumero = FabriqueNumero.getInstance() ;
-
     }
 
     @Test
