@@ -18,6 +18,14 @@ public class ActiviteRestreinte extends Activite{
         super(nom, t, e, num);
     }
 
+    public String toC(){
+        StringBuilder c = new StringBuilder();
+        c.append("delai("+ this.getTemps() +", " + this.getEcartTemps() + ");\n)");
+        c.append("transfert(" + this.getNumEtape() + ", " + this.gstsuccesseurs.getSuccesseur().getNumEtape() + ");\n");
+        this.gstsuccesseurs.getSuccesseur().toC();
+        return c.toString();
+    }
+
     @Override
     public String toString() {
         return super.toString();
