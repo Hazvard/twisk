@@ -40,6 +40,8 @@ public abstract class Etape implements Iterable {
         return gstsuccesseurs.iterator();
     }
 
+    public String toC(){return null;}
+
 
     public String toString() {
         return nom ; // A voir lorsque l'on aura avancer dans les classes inférieure
@@ -59,6 +61,9 @@ public abstract class Etape implements Iterable {
     public int getNumEtape() {
         return numEtape;
     }
+
+    public int getTemps(){return 0;}
+    public int getEcartTemps() {return 0;}
 
 // Setteurs
 

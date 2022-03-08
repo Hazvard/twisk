@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EtapeTest {
 
@@ -64,4 +63,20 @@ public class EtapeTest {
         }
         assertFalse(iter.hasNext());
     }
+
+    @Test
+    void toC(){
+        activite = new Activite("Act001", 6, 3);
+
+
+        String act = activite.toC();
+        String gcht = guichet.toC();
+
+        assertEquals("delai(6, 3);\ntransfert(0, 1);\n", act);
+        //assertEquals("", gcht);
+    }
+
+
+
+
 }
