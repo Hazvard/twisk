@@ -56,7 +56,11 @@ public abstract class Etape implements Iterable {
         return nom;
     }
 
-    // Setteurs
+    public int getNumEtape() {
+        return numEtape;
+    }
+
+// Setteurs
 
     public void setGstsuccesseurs(GestionnaireSuccesseurs gstsuccesseurs) {
         gstsuccesseurs = gstsuccesseurs;

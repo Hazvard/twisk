@@ -25,6 +25,11 @@ public class Activite extends Etape {
         ecartTemps = e;
     }
 
+    public String toC(){
+        return "transfert("+this.getNumEtape()+", " + this.getNumEtape() + 1 + ");\n"
+                +"delai("+this.temps + ", " + this.ecartTemps + ");";
+    }
+
     @Override
     public boolean estUneActivite() {
         return true;

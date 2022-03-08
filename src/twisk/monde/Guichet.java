@@ -27,6 +27,10 @@ public class Guichet extends Etape{
         this.numSemaphore = numSemaphore ;
     }
 
+    public String toC(){
+        return "transfert...";
+    }
+
     @Override
     public boolean estUnGuichet() {
         return true;

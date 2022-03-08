@@ -42,8 +42,11 @@ public class Monde implements Iterable<Etape>{
         return  lesEtapes.nbEtapes();
     }
 
+//    public String toC(){
+//        return "codeC";
+//    }
 
-    public int nbGuichets(){//Marche pas ________________________________________________________________________________________________
+    public int nbGuichets(){//Marche pas ________
         int n = 0;
         if (lesEtapes.nbEtapes() > 0){
             Iterator<Etape> iterator = iterator() ;
