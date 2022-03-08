@@ -19,4 +19,6 @@ public class SasSortie extends Activite {
         return super.toString() + getNom();
     }
 
+    @Override
+    public boolean estUneSortie(){return true;}
 }
