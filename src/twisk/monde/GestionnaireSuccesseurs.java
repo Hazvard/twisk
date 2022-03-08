@@ -32,6 +32,9 @@ public class GestionnaireSuccesseurs implements Iterable<Etape>{
         return listeEtape;
     }
 
+    public Etape getSuccesseur(){
+        return listeEtape.iterator().next();
+    }
 
     // Setteurs
     public void setListeEtape(ArrayList<Etape> listeEtape) {

@@ -11,8 +11,15 @@ public class SasEntree extends Activite{
     }
 
     public String toC(){
-        return "entrer("+getNumEtape() +");\n" +
-                "transfert("+getNumEtape()+", "+(getNumEtape()+1)+");\n";
+        StringBuilder c = new StringBuilder();
+        c.append("entrer("+getNumEtape() +");\n");
+        c.append("transfert("+getNumEtape()+", "+(getNumEtape()+1)+");\n");
+        this.gstsuccesseurs.getSuccesseur().toC();
+        return c.toString();
+
+
+        //return "entrer("+getNumEtape() +");\n" +
+        //        "transfert("+getNumEtape()+", "+(getNumEtape()+1)+");\n";
     }
 
     @Override

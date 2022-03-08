@@ -26,8 +26,12 @@ public class Activite extends Etape {
     }
 
     public String toC(){
-        int suivant = this.getNumEtape() + 1;
-        return "delai("+this.temps +", " + this.ecartTemps + ");\ntransfert("+this.getNumEtape()+", " + suivant + ");\n";
+        StringBuilder c = new StringBuilder();
+        c.append("delai("+this.temps +", " + this.ecartTemps + ");\n)");
+        c.append("transfert(" + this.getNumEtape() + ", " + this.gstsuccesseurs.getSuccesseur().getNumEtape() + ");\n");
+        this.gstsuccesseurs.getSuccesseur().toC();
+        return c.toString();
+        // return "delai("+this.temps +", " + this.ecartTemps + ");\ntransfert("+this.getNumEtape()+", " + suivant + ");\n";
     }
 
     public int getTemps() {
@@ -37,6 +41,8 @@ public class Activite extends Etape {
     public int getEcartTemps() {
         return ecartTemps;
     }
+
+    public boolean estUneSortie(){return false;}
 
     @Override
     public boolean estUneActivite() {
