@@ -11,8 +11,8 @@ public class SasEntree extends Activite{
     }
 
     public String toC(){
-        return "void simulation(int ids){\n"
-                + "entrer(0);\n";
+        return "entrer("+getNumEtape() +");\n" +
+                "transfert("+getNumEtape()+", "+(getNumEtape()+1)+");\n";
     }
 
     @Override

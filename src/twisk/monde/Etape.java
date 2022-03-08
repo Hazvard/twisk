@@ -40,7 +40,7 @@ public abstract class Etape implements Iterable {
         return gstsuccesseurs.iterator();
     }
 
-    public String toC(){return null;}
+    public String toC(){return "";}
 
 
     public String toString() {

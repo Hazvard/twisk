@@ -66,14 +66,22 @@ public class EtapeTest {
 
     @Test
     void toC(){
-        activite = new Activite("Act001", 6, 3);
+        activite = new Activite("Act001", 6, 3, 2);
+        guichet = new Guichet("Gct001", 1);
+        sasEntree = new SasEntree(0);
+        sasSortie = new SasSortie(3);
 
 
         String act = activite.toC();
         String gcht = guichet.toC();
+        String entre = sasEntree.toC();
+        String sortie = sasSortie.toC();
 
-        assertEquals("delai(6, 3);\ntransfert(0, 1);\n", act);
-        //assertEquals("", gcht);
+        assertEquals("delai(6, 3);\ntransfert(2, 3);\n", act);
+        assertEquals("P(ids,1);\ntransfert(1, 2);\ndelai(3, 1);\ntransfert(2, 3);\nV(ids, 1);\n", gcht);
+        assertEquals("entrer(0);\ntransfert(0, 1);\n", entre);
+        assertEquals("", sortie);
+
     }
 
 

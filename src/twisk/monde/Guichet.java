@@ -28,9 +28,12 @@ public class Guichet extends Etape{
     }
 
     public String toC(){
+        int suivant = this.getNumEtape() + 1;
+        int suivant2 = suivant +1 ;
         return "P(ids,"+this.getNumEtape()+");\n"
-                + "transfert(" + this.getNumEtape() + ", " + this.getNumEtape() + 1 + ");\n"
-                + "delai(3, 1)\n"
+                + "transfert(" + this.getNumEtape()+ ", " + suivant +");\n" +
+                "delai(3, 1);\n"
+                + "transfert(" + suivant + ", " + suivant2 + ");\n"
                 + "V(ids, " + this.getNumEtape() +");\n";
     }
 

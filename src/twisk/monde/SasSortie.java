@@ -11,8 +11,7 @@ public class SasSortie extends Activite {
     }
 
     public String toC(){
-        return "delai(3, 1);\n"
-                + "transfert(" + (this.getNumEtape() - 1) + ", " + this.getNumEtape() + ");\n";
+        return "";
     }
 
     @Override
