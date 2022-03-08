@@ -43,7 +43,11 @@ public class Monde implements Iterable<Etape>{
     }
 
     public String toC(){
-        return entree.toC();
+        return "void simulation(int ids){\n"+ entree.toC() + "}";
+    }
+
+    public void setNumSortie(int numSortie){
+        sortie.setNumEtape(numSortie);
     }
 
     public int nbGuichets(){//Marche pas ________

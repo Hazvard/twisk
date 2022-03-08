@@ -15,15 +15,15 @@ public class Guichet extends Etape{
         nbjetons = 1 ;
     }
 
-    public Guichet(String nom, int nb, int numSemaphore){
+    public Guichet(String nom, int nbJetons, int numSemaphore){
         super(nom);
-        nbjetons = nb;
+        this.nbjetons = nbJetons;
         this.numSemaphore = numSemaphore ;
     }
 
-    public Guichet(String nom, int nb,int num, int numSemaphore){
+    public Guichet(String nom, int nbJetons,int num, int numSemaphore){
         super(nom, num);
-        nbjetons = nb;
+        this.nbjetons = nbJetons;
         this.numSemaphore = numSemaphore ;
     }
 
@@ -31,11 +31,12 @@ public class Guichet extends Etape{
         StringBuilder c = new StringBuilder();
         int suivant = this.getNumEtape() + 1;
         int suivant2 = suivant +1 ;
-        c.append("P(ids," + this.numSemaphore + ");\n");
-        c.append("transfert(" + this.getNumEtape() + ", " + this.gstsuccesseurs.getSuccesseur().getNumEtape() + ");\n");
-        c.append("delai(3,1);\n");
-        c.append("transfert(" + suivant + ", " + suivant2 + ");\n");
-        c.append("V(ids, " + this.getNumEtape() +");\n");
+        c.append("  P(ids," + this.numSemaphore + ");\n");
+        c.append("  transfert(" + this.getNumEtape() + ", " + this.gstsuccesseurs.getSuccesseur().getNumEtape() + ");\n");
+        c.append("  delai(3,1);\n");
+        c.append("  transfert(" + suivant + ", " + suivant2 + ");\n");
+        c.append("  V(ids, " + this.numSemaphore +");\n\n");
+        c.append(this.gstsuccesseurs.getSuccesseur().toC());
         return c.toString();
         //int suivant = this.getNumEtape() + 1;
         //int suivant2 = suivant +1 ;

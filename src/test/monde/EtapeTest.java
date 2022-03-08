@@ -66,21 +66,38 @@ public class EtapeTest {
 
     @Test
     void toC(){
-        activite = new Activite("Act001", 6, 3, 2);
-        guichet = new Guichet("Gct001", 1);
+        activite = new Activite("Act001", 6, 3, 1);
+        activiteRestreinte = new ActiviteRestreinte("Actres", 6, 3, 3);
+        guichet = new Guichet("Gct001", 2, 2, 13);
         sasEntree = new SasEntree(0);
-        sasSortie = new SasSortie(3);
+        sasSortie = new SasSortie(4);
 
 
-        String act = activite.toC();
-        String gcht = guichet.toC();
+        sasEntree.ajouterSuccesseur(activite);
+        activite.ajouterSuccesseur(guichet);
+        guichet.ajouterSuccesseur(activiteRestreinte);
+        activiteRestreinte.ajouterSuccesseur(sasSortie);
+
         String entre = sasEntree.toC();
-        String sortie = sasSortie.toC();
 
-        assertEquals("delai(6, 3);\ntransfert(2, 3);\n", act);
-        assertEquals("P(ids,1);\ntransfert(1, 2);\ndelai(3, 1);\ntransfert(2, 3);\nV(ids, 1);\n", gcht);
-        assertEquals("entrer(0);\ntransfert(0, 1);\n", entre);
-        assertEquals("", sortie);
+        assertEquals("\n" +
+                "  entrer(0);\n" +
+                "  transfert(0, 1);// L'entrée transfere à la première act\n" +
+                "\n" +
+                "  delai(6, 3);\n" +
+                "  transfert(1, 2);\n" +
+                "\n" +
+                "  P(ids,13);\n" +
+                "  transfert(2, 3);\n" +
+                "  delai(3,1);\n" +
+                "  transfert(3, 4);\n" +
+                "  V(ids, 13);\n" +
+                "\n" +
+                "  delai(6, 3);\n" +
+                "  transfert(3, 4);\n" +
+                "\n" +
+                "    //Sortie\n", entre);
+
 
     }
 

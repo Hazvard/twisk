@@ -75,6 +75,10 @@ public abstract class Etape implements Iterable {
         this.nom = nom;
     }
 
+    public void setNumEtape(int numEtape){
+        this.numEtape = numEtape;
+    }
+
     // Fonctions de controles
 
 
