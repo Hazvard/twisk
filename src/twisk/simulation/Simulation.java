@@ -18,6 +18,8 @@ public class Simulation{
 
         world.ajouter(new Activite("Promenade"), new Guichet("Attente manège"), new Activite("Manège"));
 
+        //world.toC();
+
         System.out.println(world);
     }
 
