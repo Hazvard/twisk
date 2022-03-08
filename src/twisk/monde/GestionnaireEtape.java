@@ -21,6 +21,15 @@ public class GestionnaireEtape implements Iterable{
     }
 
 
+    public String toC(){
+        StringBuilder retour = new StringBuilder(listeEtape.size());
+        for (Etape etape: listeEtape
+             ) {
+            retour.append(etape.toC());
+        }
+        return retour.toString();
+    }
+
     @Override
     public Iterator<Etape> iterator() {
         return listeEtape.iterator();
