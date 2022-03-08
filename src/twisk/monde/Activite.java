@@ -27,7 +27,7 @@ public class Activite extends Etape {
 
     public String toC(){
         return "transfert("+this.getNumEtape()+", " + this.getNumEtape() + 1 + ");\n"
-                +"delai("+this.temps + ", " + this.ecartTemps + ");";
+                +"delai("+this.temps + ", " + this.ecartTemps + ");\n";
     }
 
     @Override
