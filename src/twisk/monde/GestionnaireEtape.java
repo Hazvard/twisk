@@ -23,8 +23,7 @@ public class GestionnaireEtape implements Iterable{
 
     public String toC(){
         StringBuilder retour = new StringBuilder(listeEtape.size());
-        for (Etape etape: listeEtape
-             ) {
+        for (Etape etape: listeEtape) {
             retour.append(etape.toC());
         }
         return retour.toString();

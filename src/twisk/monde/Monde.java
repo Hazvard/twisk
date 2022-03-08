@@ -10,7 +10,7 @@ public class Monde implements Iterable<Etape>{
 
     public Monde(){
         lesEtapes = new GestionnaireEtape();
-        entree = new SasEntree();
+        entree = new SasEntree(0);
         sortie = new SasSortie();
     }
 
@@ -43,10 +43,10 @@ public class Monde implements Iterable<Etape>{
     }
 
     public String toC(){
-        return entree.toC() + lesEtapes.toC() + sortie.toC();
+        return "void simulation(int ids){\n" + entree.toC() + lesEtapes.toC() + sortie.toC() + "\n}";
     }
 
-    public int nbGuichets(){//Marche pas ________
+    public int nbGuichets(){
         int n = 0;
         if (lesEtapes.nbEtapes() > 0){
             Iterator<Etape> iterator = iterator() ;

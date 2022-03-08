@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class MondeTest {
+public class  MondeTest {
 
     static private Monde monde ;
     static private Etape sasSortie ;
@@ -76,4 +75,13 @@ public class MondeTest {
         assertFalse(iter.hasNext());
 
     }
+
+    @Test
+    void toC(){
+        monde.toC();
+        assertEquals("void simulation(int ids){\nentrer(0);\ntransfert(0, 1);\n\n}", monde.toC());
+    }
+
+
+
 }
