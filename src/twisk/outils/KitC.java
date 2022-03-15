@@ -24,4 +24,10 @@ public class KitC {
             e.printStackTrace();
         }
     }
+
+    void creerFichier(String codeC){
+
+
+
+    }
 }
