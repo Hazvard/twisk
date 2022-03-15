@@ -94,7 +94,7 @@ public class  MondeTest {
 
 
 
-        assertEquals("void simulation(int ids){\n" +
+        assertEquals("#include \"def.h\"\n\nvoid simulation(int ids){\n" +
                 "\n" +
                 "  entrer(0);\n" +
                 "  transfert(0, 1);// L'entrée transfere à la première act\n" +
