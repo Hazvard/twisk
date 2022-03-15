@@ -109,9 +109,6 @@ public class  MondeTest {
                 "  V(ids, 4);\n" +
                 "\n" +
                 "  delai(6, 3);\n" +
-                "  transfert(3, 4);\n" +
-                "\n" +
-                "  delai(6, 3);\n" +
                 "  transfert(4, 5);\n" +
                 "\n" +
                 "    //Sortie\n" +

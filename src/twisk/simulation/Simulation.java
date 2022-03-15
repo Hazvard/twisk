@@ -8,19 +8,32 @@ public class Simulation{
     }
 
     public void simuler(Monde world){
-        SasEntree sasEnter = new SasEntree();
-        sasEnter.ajouterSuccesseur(new Activite("EntrerDuPark"));
-        world.aCommeEntree(sasEnter);
 
-        SasSortie sasExit = new SasSortie();
-        sasExit.ajouterSuccesseur(new Activite("SortieDuPark"));
-        world.aCommeSortie(sasExit);
+        //Les activités
+        Etape act1 = new Activite("Début du parc");
+        Etape guich = new Guichet("Achat des tickets");
+        Etape actRes = new ActiviteRestreinte("Visite du parc");
+        Etape act2 = new Activite("fin du parc");
+        Etape act3 = new Activite("fin du parc2");
 
-        world.ajouter(new Activite("Promenade"), new Guichet("Attente manège"), new Activite("Manège"));
 
-        //world.toC();
 
-        System.out.println(world);
+
+        //entrée
+        world.aCommeEntree(act1);
+
+        // La suite d'activités
+        act1.ajouterSuccesseur(guich);
+        guich.ajouterSuccesseur(actRes);
+        actRes.ajouterSuccesseur(act2);
+        act2.ajouterSuccesseur(act3);
+
+        //Sortie
+        world.aCommeSortie(act3);
+
+        String Cworld = world.toC();
+
+        System.out.println(Cworld);
     }
 
     public static void main(String[] args) {
