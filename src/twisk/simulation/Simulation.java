@@ -1,10 +1,12 @@
 package twisk.simulation;
+import test.outils.KitC;
 import twisk.monde.*;
 
 public class Simulation{
+    private KitC kitC;
 
     public Simulation(){
-        //Constructeur vide
+        kitC = new KitC();
     }
 
     public void simuler(Monde world){
