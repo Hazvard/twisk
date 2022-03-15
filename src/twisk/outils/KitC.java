@@ -1,8 +1,6 @@
 package twisk.outils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,10 +29,27 @@ public class KitC {
         }
     }
 
-    void creerFichier(String codeC){
-
-
-
+    void creerFichier(String codeC) throws IOException {
+        File fichier = new File("tmp/twisk/client.c");
+        try {
+            if (fichier.createNewFile()) {
+                System.out.println("Fichier créé : " + fichier.getName());
+            } else {
+                System.out.println("Impossible de créé le fichier");
+            }
+        } catch (IOException e) {
+            System.out.println("Erreur dans la lecture.");
+            e.printStackTrace();
+        }
+        try {
+            FileWriter texte = new FileWriter("tmp/twisk/client.c");
+            texte.write(codeC);
+            texte.close();
+            System.out.println("Ecrit dans client.c completed !");
+        } catch (IOException e) {
+            System.out.println("Erreur dans l'écriture");
+            e.printStackTrace();
+        }
     }
 
 
