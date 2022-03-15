@@ -78,7 +78,5 @@ public class KitC {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }
