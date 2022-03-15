@@ -43,7 +43,7 @@ public class Monde implements Iterable<Etape>{
     }
 
     public String toC(){
-        return "void simulation(int ids){\n"+ entree.toC() + "}";
+        return "#include \"def.h\"\n\nvoid simulation(int ids){\n"+ entree.toC() + "}";
     }
 
     public void setNumSortie(int numSortie){
