@@ -9,7 +9,11 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class KitC {
 
-    void creerEnvironnement(){
+    public KitC(){
+
+    }
+
+    public void creerEnvironnement(){
         try {
 // création du répertoire twisk sous /tmp. Ne déclenche pas d’erreur si le répertoire existe déjà
             Path directories = Files.createDirectories(Paths.get("/tmp/twisk"));
