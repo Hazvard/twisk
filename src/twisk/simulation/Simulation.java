@@ -1,5 +1,6 @@
 package twisk.simulation;
 import twisk.monde.*;
+import twisk.outils.KitC;
 
 public class Simulation{
     private KitC kitC;
