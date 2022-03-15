@@ -29,8 +29,8 @@ public class KitC {
         }
     }
 
-    void creerFichier(String codeC){
-        File fichier = new File("tmp/twisk/client.c");
+    public void creerFichier(String codeC){
+        File fichier = new File("/tmp/twisk/client.c");
         try {
             if (fichier.createNewFile()) {
                 System.out.println("Fichier créé : " + fichier.getName());
@@ -42,7 +42,7 @@ public class KitC {
             e.printStackTrace();
         }
         try {
-            FileWriter texte = new FileWriter("tmp/twisk/client.c");
+            FileWriter texte = new FileWriter("/tmp/twisk/client.c");
             texte.write(codeC);
             texte.close();
             System.out.println("Ecrit dans client.c completed !");
@@ -78,7 +78,5 @@ public class KitC {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }
