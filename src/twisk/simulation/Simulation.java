@@ -1,5 +1,4 @@
 package twisk.simulation;
-import test.outils.KitC;
 import twisk.monde.*;
 
 public class Simulation{
