@@ -29,7 +29,7 @@ public class KitC {
         }
     }
 
-    void creerFichier(String codeC) throws IOException {
+    void creerFichier(String codeC){
         File fichier = new File("tmp/twisk/client.c");
         try {
             if (fichier.createNewFile()) {
