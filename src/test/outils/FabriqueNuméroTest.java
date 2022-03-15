@@ -1,4 +1,4 @@
-package test.outils;
+package outils;
 
 import twisk.monde.*;
 import org.junit.jupiter.api.BeforeEach;

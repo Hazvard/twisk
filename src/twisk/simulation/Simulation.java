@@ -7,8 +7,8 @@ public class Simulation{
 
     public Simulation(){
         kitC = new KitC();
-        kitC.creerEnvironnement();
-        kitC.compiler();
+        //kitC.creerEnvironnement();
+        //kitC.compiler();
     }
 
     public void simuler(Monde world){
