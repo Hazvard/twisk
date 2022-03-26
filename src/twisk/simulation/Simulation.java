@@ -8,6 +8,7 @@ public class Simulation{
     public Simulation(){
         kitC = new KitC();
         kitC.creerEnvironnement();
+
     }
 
     public void simuler(Monde world){
@@ -45,5 +46,6 @@ public class Simulation{
         sim.simuler(world);
         sim.kitC.creerFichier(world.toC());
         sim.kitC.compiler();
+        sim.kitC.construireLaLibrairie();
     }
 }

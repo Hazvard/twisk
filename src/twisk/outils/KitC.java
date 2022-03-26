@@ -15,9 +15,9 @@ public class KitC {
 
     public void creerEnvironnement(){
         try {
-// création du répertoire twisk sous /tmp. Ne déclenche pas d’erreur si le répertoire existe déjà
+            // création du répertoire twisk sous /tmp. Ne déclenche pas d’erreur si le répertoire existe déjà
             Path directories = Files.createDirectories(Paths.get("/tmp/twisk"));
-// copie des deux fichiers programmeC.o et def.h depuis le projet sous /tmp/twisk
+            // copie des deux fichiers programmeC.o et def.h depuis le projet sous /tmp/twisk
             String[] liste = {"programmeC.o", "def.h"};
             for (String nom : liste) {
                 Path source = Paths.get(getClass().getResource("/codeC/" + nom).getPath());
@@ -32,6 +32,9 @@ public class KitC {
     public void creerFichier(String codeC){
         File fichier = new File("/tmp/twisk/client.c");
         try {
+            if(fichier.exists()){
+                fichier.delete();
+            }
             if (fichier.createNewFile()) {
                 System.out.println("Fichier créé : " + fichier.getName());
             } else {
@@ -82,11 +85,16 @@ public class KitC {
 
     public void construireLaLibrairie(){
         Runtime runtime = Runtime.getRuntime();
+
         try{
             //Ligne à faire executée par le programme java pour la création de la librairie
             Process p = runtime.exec("gcc -shared /tmp/twisk/programmeC.o /tmp/twisk/client.o -o /tmp/twisk/libTwisk.so");
+            BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader error = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             //On attend que la commande se termine avant de passer à la suite
             p.waitFor();
+
+            System.out.println("");
 
         } catch (IOException e) {
             //Catch pour runtime.exec
