@@ -59,31 +59,43 @@ public class Monde implements Iterable<Etape> {
     public String constantePourC() {
         int n = 0;
         ArrayList<Etape> sortie = new ArrayList<>();
+        ArrayList<Etape> entree = new ArrayList<>();
+        ArrayList<Etape> etapesNormales = new ArrayList<>();
         if (lesEtapes.nbEtapes() > 0){
             Iterator<Etape> iterator = iterator() ;
             while(iterator.hasNext()) {
                 Etape etapeTempo = iterator.next();
-                if(etapeTempo.isEtapeEntree()){
+                if (etapeTempo.isEtapeEntree()) {
                     //Cas Entrée
-                    constante.put(n, etapeTempo.getNom());
-                    n++;
-                }
-                else if(!etapeTempo.isEtapeSortie()){
+                    sortie.add(etapeTempo);
+                } else if (!etapeTempo.isEtapeSortie()) {
                     //Cas NON Sortie
-                    constante.put(n, etapeTempo.getNom());
-                    n++;
-                }
-                else{
+                    etapesNormales.add(etapeTempo);
+                } else {
                     //Cas Sortie
                     sortie.add(etapeTempo);
                 }
             }
+            //On ajoute en 1er les entrées
+            for (Etape et: entree) {
+                constante.put(n, et.getNom());
+                n++;
+            }//Puis les étapes intermédiaires
+            for (Etape et: etapesNormales) {
+                constante.put(n, et.getNom());
+                n++;
+            }//Et enfin les sorties
             for (Etape et: sortie) {
                 constante.put(n, et.getNom());
                 n++;
             }
         }
         return constante.toString();
+    }
+
+    // renvoie #define nom num
+    public String definetoC(){
+        return "define " + "nom_de_l'act" + "num de l'act";
     }
 
     public String toC(){
