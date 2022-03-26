@@ -1,4 +1,4 @@
-package monde;
+package test.monde;
 
 import twisk.monde.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -74,6 +74,13 @@ public class  MondeTest {
         }
         assertFalse(iter.hasNext());
 
+    }
+
+    @Test
+    void includePourToC() {
+        monde.ajouter(activite, actRestreinte, guichet);
+        monde.aCommeEntree(new Activite("Entree",1));
+        System.out.println(monde.constantePourC());
     }
 
     @Test
