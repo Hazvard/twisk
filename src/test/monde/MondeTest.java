@@ -78,8 +78,9 @@ public class  MondeTest {
 
     @Test
     void includePourToC() {
-        monde.ajouter(activite, actRestreinte, guichet);
-        monde.aCommeEntree(new Activite("Entree",1));
+        monde.aCommeEntree(activite);
+        monde.aCommeSortie(new Activite("Mabite"));
+        monde.ajouter(actRestreinte);
         System.out.println(monde.constantePourC());
     }
 
