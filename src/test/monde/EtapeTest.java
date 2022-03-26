@@ -93,9 +93,6 @@ public class EtapeTest {
                 "  transfert(3, 4);\n" +
                 "  V(ids, 13);\n" +
                 "\n" +
-                "  delai(6, 3);\n" +
-                "  transfert(3, 4);\n" +
-                "\n" +
                 "    //Sortie\n", entre);
 
 
