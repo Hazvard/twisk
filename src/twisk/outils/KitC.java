@@ -79,4 +79,21 @@ public class KitC {
             e.printStackTrace();
         }
     }
+
+    public void construireLaLibrairie(){
+        Runtime runtime = Runtime.getRuntime();
+        try{
+            //Ligne à faire executée par le programme java pour la création de la librairie
+            Process p = runtime.exec("gcc -shared /tmp/twisk/programmeC.o /tmp/twisk/client.o -o /tmp/twisk/libTwisk.so");
+            //On attend que la commande se termine avant de passer à la suite
+            p.waitFor();
+
+        } catch (IOException e) {
+            //Catch pour runtime.exec
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            //Catch pour waitFor
+            e.printStackTrace();
+        }
+    }
 }
