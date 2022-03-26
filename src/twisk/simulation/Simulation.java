@@ -42,6 +42,8 @@ public class Simulation{
         String Cworld = world.toC();
 
         System.out.println(Cworld);
+        System.load("/tmp/twisk/libTwisk.so") ; // Ajout séance 6
+
     }
 
     public static void main(String[] args) {
