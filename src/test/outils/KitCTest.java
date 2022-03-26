@@ -22,6 +22,12 @@ class KitCTest {
         kitC.creerEnvironnement();
         File f = new File("/tmp/twisk");
         assertTrue(f.exists() && f.isDirectory());
+        f = new File("/tmp/twisk/programmeC.o");
+        assertTrue(f.exists() && !f.isDirectory());
+        f = new File("/tmp/twisk/def.h");
+        assertTrue(f.exists() && !f.isDirectory());
+        f = new File("/tmp/twisk/codeNatif.o");
+        assertTrue(f.exists() && !f.isDirectory());
 
     }
 
