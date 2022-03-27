@@ -18,11 +18,12 @@ public class Simulation{
     public void simuler(Monde world){
 
         //Les activités
-        Etape act1 = new Activite("Début_du_parc");
-        Etape guich = new Guichet("Achat_des_tickets");
-        Etape actRes = new ActiviteRestreinte("Visite_du_parc");
-        Etape act2 = new Activite("fin_du_parc");
-        Etape act3 = new Activite("fin_du_parc2");
+        Etape act1 = new Activite("Début du parc");
+        Etape guich = new Guichet("Achat des tickets");
+        Etape actRes = new ActiviteRestreinte("Visite du parc");
+        Etape act2 = new Activite("fin du parc");
+        Etape act3 = new Activite("fin du parc2");
+
 
 
 
@@ -43,7 +44,60 @@ public class Simulation{
         System.out.println(Cworld);
         System.load("/tmp/twisk/libTwisk.so") ; // Ajout séance 6
 
+        int nbEtape = world.nbEtapes();
+        int nbClient = 4;
+        int nbGuichet = world.nbGuichets();
+        int[] tabJetonGuichet = {2};
+        boolean flag = true;
+
+        int[] tabSimu = start_simulation(nbEtape, nbGuichet, nbClient, tabJetonGuichet);
+        System.out.println("Les Clients : " + tabSimu[0]  + " " +  tabSimu[1]  +" " + tabSimu[2]  +  " " + tabSimu[3]  + " ");
+
+        while (flag){
+
+            int i = 0;
+            int[] tabClient = ou_sont_les_clients(nbEtape, nbClient);
+            for(Etape etape: world){
+                if(etape.isEtapeEntree()){
+                    System.out.println("Entrée : " + tabClient[i * (nbClient+1)]);
+                }else if(etape.isEtapeSortie()){
+                    System.out.println("Sortie : " + tabClient[i * (nbClient+1)]);
+                }else if(etape.estUnGuichet()){
+                    System.out.println("Guichet : " + tabClient[i * (nbClient+1)]);
+                }else if(etape.estUneActivite()){
+                    System.out.println("Activité : " + tabClient[i * (nbClient+1)]);
+                }
+                i++;
+
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(nbClient == tabClient[ (nbEtape-1) * (nbClient +1)]);
+                flag = false ;
+        }
+        nettoyage();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
 
     public static void main(String[] args) {
         Monde world = new Monde();
