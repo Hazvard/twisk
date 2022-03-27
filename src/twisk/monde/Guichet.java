@@ -38,13 +38,6 @@ public class Guichet extends Etape{
         c.append("  V(ids, " + this.numSemaphore +");\n\n");
         c.append(this.gstsuccesseurs.getSuccesseur().toC());
         return c.toString();
-        //int suivant = this.getNumEtape() + 1;
-        //int suivant2 = suivant +1 ;
-        //return "P(ids,"+this.getNumEtape()+");\n"
-        //        + "transfert(" + this.getNumEtape()+ ", " + suivant +");\n" +
-        //        "delai(3, 1);\n"
-        //        + "transfert(" + suivant + ", " + suivant2 + ");\n"
-        //        + "V(ids, " + this.getNumEtape() +");\n";
     }
 
     @Override

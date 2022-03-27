@@ -50,13 +50,13 @@ public class Simulation{
         System.load("/tmp/twisk/libTwisk.so") ; // Ajout séance 6
 
         int nbEtape = world.nbEtapes();
-        int nbClient = 4;
+        int nbClient = 1;
         int nbGuichet = world.nbGuichets();
         int[] tabJetonGuichet = {2};
         boolean flag = true;
 
         int[] tabSimu = start_simulation(nbEtape, nbGuichet, nbClient, tabJetonGuichet);
-        System.out.println("Les Clients : " + tabSimu[0]  + " " +  tabSimu[1]  +" " + tabSimu[2]  +  " " + tabSimu[3]  + " ");
+        //System.out.println("Les Clients : " + tabSimu[0]  + " " +  tabSimu[1]  +" " + tabSimu[2]  +  " " + tabSimu[3]  + " ");
 
         while (flag){
 
@@ -76,7 +76,7 @@ public class Simulation{
 
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
