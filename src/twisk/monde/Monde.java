@@ -10,12 +10,14 @@ public class Monde implements Iterable<Etape> {
     protected SasEntree entree;
     protected SasSortie sortie;
     protected HashMap<Integer, String> constante;
+    protected int n;    //Sert à mettre les constantes dans la hashmap
 
     public Monde() {
         lesEtapes = new GestionnaireEtape();
         entree = new SasEntree();
         sortie = new SasSortie();
         constante = new HashMap<>();
+        n = 0;
     }
 
     @Override
@@ -33,6 +35,8 @@ public class Monde implements Iterable<Etape> {
     public void aCommeEntree(Etape... etapes) {
         for (Etape etape : etapes) {
             etape.setEtapeEntree(true);
+            //constante.put(n, etape.getNom());
+            //n++;
         }
         entree.ajouterSuccesseur(etapes);
         ajouter(etapes);
@@ -40,8 +44,10 @@ public class Monde implements Iterable<Etape> {
 
     public void aCommeSortie(Etape... etapes) {
         for (Etape etape : etapes) {
+            //constante.put(n, etape.getNom());
             etape.ajouterSuccesseur(sortie);
             etape.setEtapeSortie(true);
+            //n++;
         }
         ajouter(etapes);
     }
@@ -94,7 +100,6 @@ public class Monde implements Iterable<Etape> {
 
     // renvoie #define nom num
     public String definetoC(){
-        this.constantePourC();
         StringBuilder renvoi = new StringBuilder();
         for(int i = 0; i < constante.size(); i++){
             renvoi.append("#define ");
@@ -105,7 +110,7 @@ public class Monde implements Iterable<Etape> {
     }
 
     public String toC(){
-        return ("#include \"def.h\"\n\n" + this.definetoC() + "\nvoid simulation(int ids){\n"+ entree.toC() + "}");
+        return ("#include \"def.h\"\n\n \nvoid simulation(int ids){\n"+ entree.toC() + "}");
     }
 
     public void setNumSortie(int numSortie){
