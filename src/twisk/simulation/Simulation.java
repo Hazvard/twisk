@@ -19,7 +19,7 @@ public class Simulation{
 
         //Les activités
         Etape act1 = new Activite("Début du parc", 5, 3);
-        Etape guich = new Guichet("Achat des tickets");
+        Etape guich = new Guichet("Achat des tickets", 3);
         Etape actRes = new ActiviteRestreinte("Visite du parc", 5, 3);
         Etape act2 = new Activite("fin du parc", 5, 3);
         Etape act3 = new Activite("fin du parc2", 5, 3);
@@ -50,9 +50,19 @@ public class Simulation{
         System.load("/tmp/twisk/libTwisk.so") ; // Ajout séance 6
 
         int nbEtape = world.nbEtapes();
-        int nbClient = 1;
+        int nbClient = 7;
         int nbGuichet = world.nbGuichets();
-        int[] tabJetonGuichet = {2};
+        int[] tabJetonGuichet = new int[nbGuichet];
+
+        int i = 0;
+        for(Etape etape: world){
+            if(etape.estUnGuichet()){
+                Guichet guichetTemp = (Guichet) etape;
+                tabJetonGuichet[i] = guichetTemp.getNbjetons();
+                i++;
+            }
+        }
+
         boolean flag = true;
 
         int[] tabSimu = start_simulation(nbEtape, nbGuichet, nbClient, tabJetonGuichet);
@@ -60,20 +70,25 @@ public class Simulation{
 
         while (flag){
 
-            int i = 0;
+            i = 0;
             int[] tabClient = ou_sont_les_clients(nbEtape, nbClient);
             for(Etape etape: world){
                 if(etape.isEtapeEntree()){
-                    System.out.println("Entrée : " + tabClient[i * (nbClient+1)]);
+                    System.out.println("Entrée : "+ etape.getNom() + " ===>  " + tabClient[i * (nbClient+1)]);
                 }else if(etape.isEtapeSortie()){
-                    System.out.println("Sortie : " + tabClient[i * (nbClient+1)]);
+                    System.out.println("Sortie : "+etape.getNom() +" ===>  " + tabClient[i * (nbClient+1)]);
                 }else if(etape.estUnGuichet()){
-                    System.out.println("Guichet : " + tabClient[i * (nbClient+1)]);
+                    System.out.println("Guichet : "+ etape.getNom() +" ===>  " + tabClient[i * (nbClient+1)]);
                 }else if(etape.estUneActivite()){
-                    System.out.println("Activité : " + tabClient[i * (nbClient+1)]);
+                    System.out.println("Activité : "+etape.getNom() + " ===>  " + tabClient[i * (nbClient+1)]);
                 }
+                System.out.print("      Clients : ");
+                for(int j = 0; j < nbClient; j++){
+                    if(tabClient[j + (nbClient * i)+ i + 1] != 0)
+                        System.out.print("   " + tabClient[j + (nbClient * i)+ i + 1]);
+                }
+                System.out.println("\n");
                 i++;
-
             }
             try {
                 Thread.sleep(500);

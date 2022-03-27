@@ -117,7 +117,7 @@ public class Monde implements Iterable<Etape> {
         sortie.setNumEtape(numSortie);
     }
 
-    public int nbGuichets(){//Marche pas ________
+    public int nbGuichets(){
         int n = 0;
         if (lesEtapes.nbEtapes() > 0){
             Iterator<Etape> iterator = iterator() ;

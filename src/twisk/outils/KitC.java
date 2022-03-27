@@ -20,13 +20,30 @@ public class KitC {
             // copie des deux fichiers programmeC.o et def.h depuis le projet sous /tmp/twisk
             String[] liste = {"programmeC.o", "def.h", "codeNatif.o"};
             for (String nom : liste) {
-                Path source = Paths.get(getClass().getResource("/codeC/" + nom).getPath());
-                Path newdir = Paths.get("/tmp/twisk/");
-                Files.copy(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
+                InputStream source = getClass().getResource("/codeC/" + nom).openStream();
+                File destination = new File("/tmp/twisk/" + nom);
+                copier(source, destination);
+                //Path source = Paths.get(getClass().getResource("/codeC/" + nom).getPath());
+                //Path newdir = Paths.get("/tmp/twisk/");
+                //Files.copy(source, newdir.resolve(source.getFileName()), REPLACE_EXISTING);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void copier(InputStream source, File desti) throws IOException{
+        InputStream sourceFile = source;
+        OutputStream destinationFile = new FileOutputStream(desti);
+
+        //Lect par segement de 0.5 Mo
+        byte buffer[] = new byte[512*1024];
+        int nbLecture;
+        while((nbLecture = sourceFile.read(buffer)) != -1){
+            destinationFile.write(buffer, 0, nbLecture);
+        }
+        destinationFile.close();
+        sourceFile.close();
     }
 
     public void creerFichier(String codeC){
@@ -93,7 +110,13 @@ public class KitC {
             BufferedReader error = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             //On attend que la commande se termine avant de passer à la suite
             p.waitFor();
-
+            String ligne;
+            while((ligne = output.readLine()) != null){
+                System.out.println(ligne);
+            }
+            while (((ligne = error.readLine())!= null)){
+                System.out.println(ligne);
+            }
             System.out.println("");
 
         } catch (IOException e) {
