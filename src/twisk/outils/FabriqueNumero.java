@@ -6,7 +6,6 @@ public class FabriqueNumero {
 
     private int cptEtape;
     private int cptSemaphore;
-    private FabriqueNumero fabriqueNumero ;
 
     private static FabriqueNumero instance = new FabriqueNumero();
 

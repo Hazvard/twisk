@@ -18,11 +18,11 @@ public class Simulation{
     public void simuler(Monde world){
 
         //Les activités
-        Etape act1 = new Activite("Début du parc");
+        Etape act1 = new Activite("Début du parc", 5, 3);
         Etape guich = new Guichet("Achat des tickets");
-        Etape actRes = new ActiviteRestreinte("Visite du parc");
-        Etape act2 = new Activite("fin du parc");
-        Etape act3 = new Activite("fin du parc2");
+        Etape actRes = new ActiviteRestreinte("Visite du parc", 5, 3);
+        Etape act2 = new Activite("fin du parc", 5, 3);
+        Etape act3 = new Activite("fin du parc2", 5, 3);
 
 
 
@@ -39,9 +39,14 @@ public class Simulation{
         //Sortie
         world.aCommeSortie(act3);
 
+        world.ajouter(act1, guich, actRes, act2, act3);
+
         String Cworld = world.toC();
 
-        System.out.println(Cworld);
+        kitC.creerFichier(Cworld);
+        kitC.compiler();
+        kitC.construireLaLibrairie();
+
         System.load("/tmp/twisk/libTwisk.so") ; // Ajout séance 6
 
         int nbEtape = world.nbEtapes();
@@ -75,8 +80,10 @@ public class Simulation{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(nbClient == tabClient[ (nbEtape-1) * (nbClient +1)]);
+            if(nbClient == tabClient[nbClient+1])
                 flag = false ;
+
+            System.out.println();
         }
         nettoyage();
 
@@ -102,9 +109,6 @@ public class Simulation{
     public static void main(String[] args) {
         Monde world = new Monde();
         Simulation sim = new Simulation();
-        sim.kitC.construireLaLibrairie();
         sim.simuler(world);
-        sim.kitC.creerFichier(world.toC());
-        sim.kitC.compiler();
     }
 }
