@@ -66,7 +66,7 @@ public class Simulation{
         boolean flag = true;
 
         int[] tabSimu = start_simulation(nbEtape, nbGuichet, nbClient, tabJetonGuichet);
-        //System.out.println("Les Clients : " + tabSimu[0]  + " " +  tabSimu[1]  +" " + tabSimu[2]  +  " " + tabSimu[3]  + " ");
+        System.out.println("Les Clients : " + tabSimu[0]  + " " +  tabSimu[1]  +" " + tabSimu[2]  +  " " + tabSimu[3]  + " ");
 
         while (flag){
 
@@ -82,7 +82,7 @@ public class Simulation{
                 }else if(etape.estUneActivite()){
                     System.out.println("Activité : "+etape.getNom() + " ===>  " + tabClient[i * (nbClient+1)]);
                 }
-                System.out.print("      Clients : ");
+                System.out.print("      Clients : " + " :     ");
                 for(int j = 0; j < nbClient; j++){
                     if(tabClient[j + (nbClient * i)+ i + 1] != 0)
                         System.out.print("   " + tabClient[j + (nbClient * i)+ i + 1]);
