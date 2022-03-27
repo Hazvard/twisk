@@ -1,4 +1,4 @@
-package test.monde;
+package monde;
 
 import twisk.monde.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -85,37 +85,34 @@ public class  MondeTest {
     @Test
     void toC(){
 
-        monde.setNumSortie(5);
+        //monde.setNumSortie(5);
 
-        Activite activite1 = new Activite("Act01", 6, 3, 1);
-        Guichet guichet1 = new Guichet("Guichet",3,2, 4 );
-        ActiviteRestreinte activiteRestreinte = new ActiviteRestreinte("ActRest", 6, 3, 3 );
-        Activite activite2 = new Activite("Act02", 6, 3, 4);
-        activite1.ajouterSuccesseur(guichet1);
-        guichet1.ajouterSuccesseur(activiteRestreinte);
-        activiteRestreinte.ajouterSuccesseur(activite2);
-        monde.aCommeEntree(activite1);
-        monde.aCommeSortie(activite2);
+
+        activite.ajouterSuccesseur(guichet);
+        guichet.ajouterSuccesseur(actRestreinte);
+
+        monde.aCommeEntree(activite);
+        monde.aCommeSortie(actRestreinte);
         monde.toC();
 
 
 
-        assertEquals("#include \"def.h\"\n\nvoid simulation(int ids){\n" +
+        assertEquals("#include \"def.h\"\n" +
+                "\n" +
+                "\n" +
+                "void simulation(int ids){\n" +
                 "\n" +
                 "  entrer(0);\n" +
-                "  transfert(0, 1);// L'entrée transfere à la première act\n" +
+                "  transfert(0, 6);// L'entrée transfere à la première act\n" +
                 "\n" +
-                "  delai(6, 3);\n" +
-                "  transfert(1, 2);\n" +
+                "  delai(0, 0);\n" +
+                "  transfert(6, 5);\n" +
                 "\n" +
-                "  P(ids,4);\n" +
-                "  transfert(2, 3);\n" +
-                "  delai(3,1);\n" +
-                "  transfert(3, 4);\n" +
-                "  V(ids, 4);\n" +
-                "\n" +
-                "  delai(6, 3);\n" +
-                "  transfert(4, 5);\n" +
+                "  P(ids,1);\n" +
+                "  transfert(5, 4);\n" +
+                "  delai(0, 0);\n" +
+                "  transfert(4, 1);\n" +
+                "  V(ids, 1);\n" +
                 "\n" +
                 "    //Sortie\n" +
                 "}", monde.toC());

@@ -35,8 +35,6 @@ public class Monde implements Iterable<Etape> {
     public void aCommeEntree(Etape... etapes) {
         for (Etape etape : etapes) {
             etape.setEtapeEntree(true);
-            //constante.put(n, etape.getNom());
-            //n++;
         }
         entree.ajouterSuccesseur(etapes);
         ajouter(etapes);
@@ -110,7 +108,7 @@ public class Monde implements Iterable<Etape> {
     }
 
     public String toC(){
-        return ("#include \"def.h\"\n\n \nvoid simulation(int ids){\n"+ entree.toC() + "}");
+        return ("#include \"def.h\"\n\n\nvoid simulation(int ids){\n"+ entree.toC() + "}");
     }
 
     public void setNumSortie(int numSortie){

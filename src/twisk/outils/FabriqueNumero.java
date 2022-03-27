@@ -19,7 +19,7 @@ public class FabriqueNumero {
 
     public int getCptSemaphore() {
         cptSemaphore++;
-        return cptSemaphore;
+        return cptSemaphore ;
     }
 
     public  void reset(){

@@ -54,6 +54,9 @@ public abstract class Etape implements Iterable {
     public boolean estUneActivite(){
         return false;
     }
+    public boolean estUneActiviteRes(){
+        return false;
+    }
 
     public boolean estUnGuichet(){
         return false;

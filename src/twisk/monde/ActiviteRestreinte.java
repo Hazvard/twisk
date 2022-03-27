@@ -20,8 +20,7 @@ public class ActiviteRestreinte extends Activite{
 
     public String toC(){
         StringBuilder c = new StringBuilder();
-        //c.append("  delai("+ this.getTemps() +", " + this.getEcartTemps() + ");\n");
-        //c.append("  transfert(" + this.getNumEtape() + ", " + this.gstsuccesseurs.getSuccesseur().getNumEtape() + ");\n\n");
+
         c.append(this.gstsuccesseurs.getSuccesseur().toC());
         return c.toString();
     }
@@ -29,5 +28,10 @@ public class ActiviteRestreinte extends Activite{
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public boolean estUneActiviteRes() {
+        return true;
     }
 }

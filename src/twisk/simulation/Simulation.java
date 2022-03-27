@@ -58,12 +58,8 @@ public class Simulation{
                     System.out.println("Activité : "+etape.getNom() + " ===>  " + tabClient[i * (nbClient+1)]);
                 }
                 System.out.print("Clients : " + tabClient[i*(nbClient + 1)]);
-                for(int j = 0; j < nbClient; j++) {
-                    if (tabClient[j + (nbClient * i) + i + 1] != 0) {
+                for(int j = 0; j < tabClient[i*(nbClient + 1)]; j++) {
                         System.out.print("   " + tabClient[j + (nbClient * i) + i + 1]);
-                    } else {
-                        System.out.print("");
-                    }
                 }
                 i++;
                 System.out.println("\n");

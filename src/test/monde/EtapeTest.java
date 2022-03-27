@@ -68,7 +68,7 @@ public class EtapeTest {
     void toC(){
         activite = new Activite("Act001", 6, 3, 1);
         activiteRestreinte = new ActiviteRestreinte("Actres", 6, 3, 3);
-        guichet = new Guichet("Gct001", 2, 2, 13);
+        guichet = new Guichet("Gct001", 2);
         sasEntree = new SasEntree(0);
         sasSortie = new SasSortie(4);
 
@@ -87,11 +87,11 @@ public class EtapeTest {
                 "  delai(6, 3);\n" +
                 "  transfert(1, 2);\n" +
                 "\n" +
-                "  P(ids,13);\n" +
+                "  P(ids,1);\n" +
                 "  transfert(2, 3);\n" +
                 "  delai(3,1);\n" +
                 "  transfert(3, 4);\n" +
-                "  V(ids, 13);\n" +
+                "  V(ids, 1);\n" +
                 "\n" +
                 "    //Sortie\n", entre);
 
