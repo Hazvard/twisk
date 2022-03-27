@@ -16,31 +16,6 @@ public class Simulation{
     public native void nettoyage();
 
     public void simuler(Monde world){
-
-        //Les activités
-        Etape act1 = new Activite("Début du parc", 5, 3);
-        Etape guich = new Guichet("Achat des tickets", 3);
-        Etape actRes = new ActiviteRestreinte("Visite du parc", 5, 3);
-        Etape act2 = new Activite("fin du parc", 5, 3);
-        Etape act3 = new Activite("fin du parc2", 5, 3);
-
-
-
-
-        //entrée
-        world.aCommeEntree(act1);
-
-        // La suite d'activités
-        act1.ajouterSuccesseur(guich);
-        guich.ajouterSuccesseur(actRes);
-        actRes.ajouterSuccesseur(act2);
-        act2.ajouterSuccesseur(act3);
-
-        //Sortie
-        world.aCommeSortie(act3);
-
-        world.ajouter(act1, guich, actRes, act2, act3);
-
         String Cworld = world.toC();
 
         kitC.creerFichier(Cworld);
@@ -82,14 +57,18 @@ public class Simulation{
                 }else if(etape.estUneActivite()){
                     System.out.println("Activité : "+etape.getNom() + " ===>  " + tabClient[i * (nbClient+1)]);
                 }
-                System.out.print("      Clients : " + " :     ");
-                for(int j = 0; j < nbClient; j++){
-                    if(tabClient[j + (nbClient * i)+ i + 1] != 0)
-                        System.out.print("   " + tabClient[j + (nbClient * i)+ i + 1]);
+                System.out.print("Clients : " + tabClient[i*(nbClient + 1)]);
+                for(int j = 0; j < nbClient; j++) {
+                    if (tabClient[j + (nbClient * i) + i + 1] != 0) {
+                        System.out.print("   " + tabClient[j + (nbClient * i) + i + 1]);
+                    } else {
+                        System.out.print("");
+                    }
                 }
-                System.out.println("\n");
                 i++;
+                System.out.println("\n");
             }
+            System.out.println("");
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -101,29 +80,5 @@ public class Simulation{
             System.out.println();
         }
         nettoyage();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-    public static void main(String[] args) {
-        Monde world = new Monde();
-        Simulation sim = new Simulation();
-        sim.simuler(world);
     }
 }
