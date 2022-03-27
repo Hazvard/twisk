@@ -18,12 +18,11 @@ public class Simulation{
     public void simuler(Monde world){
 
         //Les activités
-        Etape act1 = new Activite("Début du parc");
-        Etape guich = new Guichet("Achat des tickets");
-        Etape actRes = new ActiviteRestreinte("Visite du parc");
-        Etape act2 = new Activite("fin du parc");
-        Etape act3 = new Activite("fin du parc2");
-
+        Etape act1 = new Activite("Début_du_parc");
+        Etape guich = new Guichet("Achat_des_tickets");
+        Etape actRes = new ActiviteRestreinte("Visite_du_parc");
+        Etape act2 = new Activite("fin_du_parc");
+        Etape act3 = new Activite("fin_du_parc2");
 
 
 
@@ -49,9 +48,9 @@ public class Simulation{
     public static void main(String[] args) {
         Monde world = new Monde();
         Simulation sim = new Simulation();
+        sim.kitC.construireLaLibrairie();
         sim.simuler(world);
         sim.kitC.creerFichier(world.toC());
         sim.kitC.compiler();
-        sim.kitC.construireLaLibrairie();
     }
 }

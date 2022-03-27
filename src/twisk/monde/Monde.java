@@ -56,7 +56,7 @@ public class Monde implements Iterable<Etape> {
     //Objectif :
         //Renvoie la hashmap et à adapter dans le toC pour remplacer
         //les numeros des étapes par leur nom...
-    public String constantePourC() {
+    public void constantePourC() {
         int n = 0;
         ArrayList<Etape> sortie = new ArrayList<>();
         ArrayList<Etape> entree = new ArrayList<>();
@@ -90,16 +90,22 @@ public class Monde implements Iterable<Etape> {
                 n++;
             }
         }
-        return constante.toString();
     }
 
     // renvoie #define nom num
     public String definetoC(){
-        return "define " + "nom_de_l'act" + "num de l'act";
+        this.constantePourC();
+        StringBuilder renvoi = new StringBuilder();
+        for(int i = 0; i < constante.size(); i++){
+            renvoi.append("#define ");
+            renvoi.append(constante.get(i) + " " + i);
+            renvoi.append("\n");
+        }
+        return renvoi.toString();
     }
 
     public String toC(){
-        return "#include \"def.h\"\n\nvoid simulation(int ids){\n"+ entree.toC() + "}";
+        return ("#include \"def.h\"\n\n" + this.definetoC() + "\nvoid simulation(int ids){\n"+ entree.toC() + "}");
     }
 
     public void setNumSortie(int numSortie){
