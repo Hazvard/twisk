@@ -18,12 +18,11 @@ public class Simulation{
     public void simuler(Monde world){
 
         //Les activités
-        Etape act1 = new Activite("Début du parc");
-        Etape guich = new Guichet("Achat des tickets");
-        Etape actRes = new ActiviteRestreinte("Visite du parc");
-        Etape act2 = new Activite("fin du parc");
-        Etape act3 = new Activite("fin du parc2");
-
+        Etape act1 = new Activite("Début_du_parc");
+        Etape guich = new Guichet("Achat_des_tickets");
+        Etape actRes = new ActiviteRestreinte("Visite_du_parc");
+        Etape act2 = new Activite("fin_du_parc");
+        Etape act3 = new Activite("fin_du_parc2");
 
 
 
@@ -44,67 +43,6 @@ public class Simulation{
         System.out.println(Cworld);
         System.load("/tmp/twisk/libTwisk.so") ; // Ajout séance 6
 
-        int[] tabJetons = {2};
-        boolean flag = true;
-        int nbClients = 4;
-        int nbEtapes = 5;
-
-        start_simulation(nbEtapes, 1, nbClients, tabJetons);
-
-
-
-        int[] tabSimu = ou_sont_les_clients(nbEtapes, nbClients);
-        System.out.println("\nLes clients : " + tabSimu[0] + " " + tabSimu[1] + " " + tabSimu[2] + " " + tabSimu[3] + "\n\n");
-
-
-        while(flag){
-            int[] tabClient = ou_sont_les_clients(nbEtapes, nbClients);
-
-            for(int i = 0; i < 4; i++){
-                System.out.print("Etape " +i + " (");
-
-                switch (i){
-                    case 0 :
-                        System.out.print("Entree");
-                        break;
-
-                    case 4 :
-                        System.out.print("Sortie");
-                        break;
-
-                    default :
-                        System.out.print("Activite");
-                        break;
-
-
-                }
-
-                System.out.println(") "+ tabClient[ i * (4 + 1)] +" client(s) ");
-
-
-                for(int j = 0; j < tabClient[i*(nbClients + 1)]; j++){
-                    System.out.println(" " + tabClient[j + (nbClients * i)+ i + 1]);
-                }
-
-
-                System.out.println("\n");
-
-            }
-
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("\n");
-            if(4 == tabClient[ (nbEtapes-1) * (nbClients + 1)])
-                flag = false ;
-
-
-        }
-        nettoyage();
-
     }
 
     public static void main(String[] args) {
@@ -114,6 +52,5 @@ public class Simulation{
         sim.simuler(world);
         sim.kitC.creerFichier(world.toC());
         sim.kitC.compiler();
-
     }
 }

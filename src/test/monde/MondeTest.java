@@ -50,8 +50,6 @@ public class  MondeTest {
         assertTrue(monde.nbEtapes() == 0);
         monde.ajouter(activite, actRestreinte, guichet);
         assertTrue(monde.nbEtapes() == 3);
-
-
     }
 
     @Test
@@ -81,7 +79,7 @@ public class  MondeTest {
         monde.aCommeEntree(activite);
         monde.aCommeSortie(new Activite("Mabite"));
         monde.ajouter(actRestreinte);
-        System.out.println(monde.constantePourC());
+        System.out.println(monde.definetoC());
     }
 
     @Test
