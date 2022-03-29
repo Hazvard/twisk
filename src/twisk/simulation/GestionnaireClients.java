@@ -33,4 +33,8 @@ public class GestionnaireClients implements Iterable<Client>{
     public Iterator<Client> iterator() {
         return listeClient.values().iterator();
     }
+
+    public HashMap<Integer, Client> getListeClient() {
+        return listeClient;
+    }
 }

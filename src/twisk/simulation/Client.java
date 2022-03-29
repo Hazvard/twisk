@@ -12,7 +12,7 @@ public class Client {
 
     public Client(int numero){
         numClient = numero;
-        rang = 0; // Pas certain de la validité de ça
+        rang = 0;
         etape = null;
     }
 
