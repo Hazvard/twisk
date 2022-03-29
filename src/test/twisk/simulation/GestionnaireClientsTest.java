@@ -2,6 +2,8 @@ package twisk.simulation;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import twisk.monde.Activite;
+import twisk.monde.Etape;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,10 +33,10 @@ class GestionnaireClientsTest {
     @Test
     void setClients() {
         gstClients.setClients(client1.getNumClient(), client2.getNumClient());
-        HashMap<Client> liste = gstClients.getListeClient();
+        HashMap<Integer, Client> liste = gstClients.getListeClient();
 
-        assertEquals( client1.getNumClient() , liste.get(0).getNumClient());
-        assertEquals( client2.getNumClient() , liste.get(1).getNumClient());
+        assertEquals( client1.getNumClient() , liste.get(47).getNumClient());
+        assertEquals( client2.getNumClient() , liste.get(13).getNumClient());
 
     }
 
@@ -43,7 +45,7 @@ class GestionnaireClientsTest {
         gstClients.setClients(client1.getNumClient(), client2.getNumClient());
         gstClients.nettoyer();
 
-        assertEquals(new HashMap<Client>(), gstClients.getListeClient());
+        assertEquals(new HashMap<Integer, Client>(), gstClients.getListeClient());
     }
 
     @Test
@@ -63,6 +65,12 @@ class GestionnaireClientsTest {
     @Test
     void AllerA() {
         gstClients.setClients(client1.getNumClient(), client2.getNumClient());
+        Etape etape = new Activite("Aller_à_la_maison");
+        gstClients.allerA(47, etape, 3);
 
+        HashMap<Integer, Client> liste = gstClients.getListeClient();
+
+        assertEquals("Aller_à_la_maison", liste.get(47).getEtape().getNom());
+        assertEquals(3, liste.get(47).getRang());
     }
 }
