@@ -15,14 +15,12 @@ public class GestionnaireClients implements Iterable<Client>{
     }
 
     public GestionnaireClients(int nbClient){
-        for(int i = 0; i < nbClient; i++){
-            listeClient.add(new Client(i));
-        }
+        this.nbClient = nbClient;
+        listeClient = new ArrayList<>(this.nbClient);
     }
 
     public void setClients(int ... tabClient){
-        for (int num: tabClient
-             ) {
+        for (int num: tabClient) {
             listeClient.add(new Client(num));
         }
     }
