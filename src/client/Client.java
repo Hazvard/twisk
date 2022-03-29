@@ -1,4 +1,4 @@
-package twisk;
+package client;
 
 import twisk.monde.*;
 import twisk.simulation.Simulation;
