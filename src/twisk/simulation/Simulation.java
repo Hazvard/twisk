@@ -4,11 +4,12 @@ import twisk.outils.KitC;
 
 public class Simulation{
     private KitC kitC;
+    private GestionnaireClients gestionnaireClients;
 
     public Simulation(){
         kitC = new KitC();
         kitC.creerEnvironnement();
-
+        gestionnaireClients = new GestionnaireClients();
     }
 
     public native int[] start_simulation(int nbEtapes, int nbGuichets, int nbClients, int[] tabJetonsGuichet);

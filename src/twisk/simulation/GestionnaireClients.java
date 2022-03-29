@@ -14,9 +14,8 @@ public class GestionnaireClients implements Iterable<Client>{
     }
 
     public GestionnaireClients(int nbClient){
-        for(int i = 0; i < nbClient; i++){
-            listeClient.add(new Client(i));
-        }
+        this.nbClient = nbClient;
+        listeClient = new ArrayList<>(this.nbClient);
     }
 
     public void setClients(int ... tabClient){
@@ -30,7 +29,7 @@ public class GestionnaireClients implements Iterable<Client>{
     }
 
     public void allerA(int numeroClient, Etape etape, int rang){
-
+        listeClient.get(numeroClient).allerA(etape, rang);
     }
 
     public void nettoyer(){
