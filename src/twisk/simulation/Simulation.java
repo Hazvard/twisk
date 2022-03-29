@@ -2,7 +2,9 @@ package twisk.simulation;
 import twisk.monde.*;
 import twisk.outils.KitC;
 
-public class Simulation{
+import java.util.Iterator;
+
+public class Simulation implements Iterable<Client>{
     private KitC kitC;
     private GestionnaireClients gestionnaireClients;
     private int nbClient;
@@ -47,9 +49,12 @@ public class Simulation{
         boolean flag = true;
 
         int[] tabSimu = start_simulation(nbEtape, nbGuichet, nbClient, tabJetonGuichet);
-        gestionnaireClients.setClients();
-        System.out.println("Les Clients : " + tabSimu[0]  + " " +  tabSimu[1]  +" " + tabSimu[2]  +  " " + tabSimu[3]  + " ");
-
+        gestionnaireClients.setClients(tabSimu);
+        //System.out.println("Les Clients : " + tabSimu[0]  + " " +  tabSimu[1]  +" " + tabSimu[2]  +  " " + tabSimu[3]  + " ");
+        System.out.print("Les clients : ");
+        for (int j = 0 ; j < nbClient; j++){
+            //System.out.print();  get les clients du gesrtionnaire avec Itereator (boucle pas bonne mais utiliser hasnext
+        }
         while (flag){
 
             i = 0;
@@ -84,5 +89,10 @@ public class Simulation{
         }
         nettoyage();
         gestionnaireClients.nettoyer();
+    }
+
+    @Override
+    public Iterator<Client> iterator() {
+        return null;
     }
 }
