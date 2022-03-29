@@ -17,7 +17,7 @@ class ClientTest {
 
     @Test
     void Constructeur1(){
-        assertTrue(47 == client.getNumClient());
+        assertEquals(47, client.getNumClient());
     }
 
     @Test
@@ -25,7 +25,7 @@ class ClientTest {
         Activite activite = new Activite("Piste_de_dance");
         client.allerA(activite, 13);
 
-        assertTrue(13 == client.getRang());
-        assertTrue("Piste_de_dance".equals(client.getEtape().getNom()));
+        assertEquals(13, client.getRang());
+        assertEquals("Piste_de_dance", client.getEtape().getNom());
     }
 }
