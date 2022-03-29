@@ -8,6 +8,7 @@ import java.util.Iterator;
 public class GestionnaireClients implements Iterable<Client>{
 
     protected ArrayList<Client> listeClient;
+    protected int nbClient;
 
     public GestionnaireClients(){
         listeClient = new ArrayList<>();
@@ -29,7 +30,7 @@ public class GestionnaireClients implements Iterable<Client>{
     }
 
     public void allerA(int numeroClient, Etape etape, int rang){
-        listeClient.get(numeroClient).allerA(etape, rang);
+        listeClient.
     }
 
     public void nettoyer(){

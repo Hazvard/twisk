@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,21 +25,13 @@ class GestionnaireClientsTest {
 
     @Test
     void Constructeur1() {
-        assertEquals(new ArrayList<Client>(), gstClients.getListeClient());
+        assertEquals(new HashMap<>(), gstClients.getListeClient());
     }
-
-    @Test
-    void Constructeur2() {
-        gstClients = new GestionnaireClients(13);
-
-        assertEquals(new ArrayList<Client>(13).size(), gstClients.getListeClient().size() );
-    }
-
 
     @Test
     void setClients() {
         gstClients.setClients(client1.getNumClient(), client2.getNumClient());
-        ArrayList<Client> liste = gstClients.getListeClient();
+        HashMap<Client> liste = gstClients.getListeClient();
 
         assertEquals( client1.getNumClient() , liste.get(0).getNumClient());
         assertEquals( client2.getNumClient() , liste.get(1).getNumClient());
@@ -46,14 +39,30 @@ class GestionnaireClientsTest {
     }
 
     @Test
-    void setNbClient() {
-    }
-
-    @Test
     void nettoyer() {
+        gstClients.setClients(client1.getNumClient(), client2.getNumClient());
+        gstClients.nettoyer();
+
+        assertEquals(new HashMap<Client>(), gstClients.getListeClient());
     }
 
     @Test
     void iterator() {
+
+        int compteur = 0;
+        gstClients.setClients(client1.getNumClient(), client2.getNumClient());
+
+        for(Client client : gstClients){
+            assertEquals(client.getRang(), client.getRang());
+            compteur++;
+        }
+
+        assertEquals(2, compteur);
+    }
+
+    @Test
+    void AllerA() {
+        gstClients.setClients(client1.getNumClient(), client2.getNumClient());
+
     }
 }
