@@ -19,8 +19,6 @@ public class Client {
     public void allerA(Etape etape, int rang){
         this.rang = rang;
         this.etape = etape;
-
-
     }
 
 

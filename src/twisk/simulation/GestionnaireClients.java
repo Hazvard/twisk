@@ -3,42 +3,34 @@ package twisk.simulation;
 import twisk.monde.Etape;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class GestionnaireClients implements Iterable<Client>{
 
-    protected ArrayList<Client> listeClient;
-    private int nbClient;
+    protected HashMap<Integer, Client> listeClient;
 
     public GestionnaireClients(){
-        listeClient = new ArrayList<>();
-    }
-
-    public GestionnaireClients(int nbClient){
-        this.nbClient = nbClient;
-        listeClient = new ArrayList<>(this.nbClient);
+        listeClient = new HashMap<>();
     }
 
     public void setClients(int ... tabClient){
         for (int num: tabClient) {
-            listeClient.add(new Client(num));
+            Client client = new Client(num);
+            listeClient.put(client.getNumClient(), client);
         }
     }
 
-    public void setNbClient(int nbClient){
-        this.nbClient = nbClient;
-    }
-
     public void allerA(int numeroClient, Etape etape, int rang){
-        listeClient.get(numeroClient).allerA(etape, rang);
+        listeClient.get(numeroClient).allerA(etape,rang);
     }
 
     public void nettoyer(){
-        listeClient = new ArrayList<>();
+        listeClient = new HashMap<>();
     }
 
     @Override
     public Iterator<Client> iterator() {
-        return listeClient.iterator();
+        return listeClient.values().iterator();
     }
 }
