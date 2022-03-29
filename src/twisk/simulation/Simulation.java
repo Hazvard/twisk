@@ -5,6 +5,7 @@ import twisk.outils.KitC;
 public class Simulation{
     private KitC kitC;
     private GestionnaireClients gestionnaireClients;
+    private int nbClient;
 
     public Simulation(){
         kitC = new KitC();
@@ -16,6 +17,10 @@ public class Simulation{
     public native int[] ou_sont_les_clients(int nbEtapes, int nbClients);
     public native void nettoyage();
 
+    public void setNbClient(int nb){
+        nbClient = nb;
+    }
+
     public void simuler(Monde world){
         String Cworld = world.toC();
 
@@ -26,7 +31,7 @@ public class Simulation{
         System.load("/tmp/twisk/libTwisk.so") ; // Ajout séance 6
 
         int nbEtape = world.nbEtapes();
-        int nbClient = 7;
+        setNbClient(7);
         int nbGuichet = world.nbGuichets();
         int[] tabJetonGuichet = new int[nbGuichet];
 
@@ -42,6 +47,7 @@ public class Simulation{
         boolean flag = true;
 
         int[] tabSimu = start_simulation(nbEtape, nbGuichet, nbClient, tabJetonGuichet);
+        gestionnaireClients.setClients();
         System.out.println("Les Clients : " + tabSimu[0]  + " " +  tabSimu[1]  +" " + tabSimu[2]  +  " " + tabSimu[3]  + " ");
 
         while (flag){
@@ -77,5 +83,6 @@ public class Simulation{
             System.out.println();
         }
         nettoyage();
+        gestionnaireClients.nettoyer();
     }
 }
