@@ -3,7 +3,7 @@ package twisk.outils;
 public class ClassLoaderPerso extends ClassLoader {
 
     public ClassLoaderPerso(ClassLoader parent){
-
+        super(parent);
     }
 
     @Override
