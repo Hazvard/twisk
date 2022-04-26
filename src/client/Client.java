@@ -36,22 +36,36 @@ public class Client {
 
         world.ajouter(act1, guich, actRes, act2, act3);
 
-        //Simulation sim = new Simulation();
-        //sim.simuler(world);
 
-        //Monde monde2 = new Monde();
-        //Acti
-        //Etape act11 = new Activite("db du prc", 5,3);
-        //Etape guiche = new Guichet("on est la", 2);
-        //Etape actiRest = new ActiviteRestreinte("RestMan", 5, 2);
-        //Etape act22 = new Activite("Fin du parc",5,3);
-        //Etape act33 = new Activite("Fin du parc 2", 5,3);
-        //act11.ajouterSuccesseur(guiche);
-        //guiche.ajouterSuccesseur(actiRest);
-        //actiRest.ajouterSuccesseur(act22);
-        //act22.ajouterSuccesseur(act33);
-        //monde2.aCommeSortie(act22);
-        //monde2.ajouter(act11,guiche,actiRest,act22);
+
+
+
+
+        // Second monde ----------------------------------------------------------------------
+
+        Monde world1 = new Monde();
+        //Les activités
+        Etape act6 = new Activite("Début du ZOO", 5, 3);
+        Etape guich1 = new Guichet("Achat des tickets ZOO", 3);
+        Etape actRes1 = new ActiviteRestreinte("Visite du ZOO", 5, 3);
+        Etape act7 = new Activite("fin du ZOO", 5, 3);
+        Etape act8 = new Activite("fin du ZOO2", 5, 3);
+
+        //entrée
+        world1.aCommeEntree(act6);
+
+        // La suite d'activités
+        act6.ajouterSuccesseur(guich1);
+        guich1.ajouterSuccesseur(actRes1);
+        actRes1.ajouterSuccesseur(act7);
+        act7.ajouterSuccesseur(act8);
+
+        //Sortie
+        world1.aCommeSortie(act8);
+
+        world1.ajouter(act6, guich1, actRes1, act7, act8);
+        // ---------------------------------------------------------------------------------------
+
 
 
         try {
@@ -64,13 +78,14 @@ public class Client {
             Method simulation = laClasse.getMethod("simuler", Monde.class);
             setNbClients.invoke(laSimulation, 4);
             simulation.invoke(laSimulation, world);
+            simulation.invoke(laSimulation, world1);// Ajout second monde
 
-            //simulation.invoke(laSimulation, monde2);
 
 
         }catch(ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e){
             e.printStackTrace();
 
         }
+
     }
 }
