@@ -43,7 +43,7 @@ public class Guichet extends Etape{
         c.append("  transfert(" + this.getNumEtape() + ", " + this.gstsuccesseurs.getSuccesseur().getNumEtape() + ");\n");
         //delai de l'étape d'après et l'écart de l'étape d'après ???
         c.append("  delai("+ etapeNext.getTemps() + ","+  etapeNext.getEcartTemps() + ");\n");
-        c.append("  V(ids, " + this.getNumSemaphore() +");\n\n");
+        c.append("  V(ids, " + this.getNumSemaphore() +");\n\n");   //On rend le jeton avant transfert
         c.append("  transfert(" + etapeNext.getNumEtape() + ", " + etapeNext.getGstsuccesseurs().getSuccesseur().getNumEtape() + ");\n");
         c.append(this.gstsuccesseurs.getSuccesseur().toC());
         return c.toString();
