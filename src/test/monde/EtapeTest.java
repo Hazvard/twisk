@@ -82,16 +82,17 @@ public class EtapeTest {
 
         assertEquals("\n" +
                 "  entrer(0);\n" +
+                "  delai(0, 0);\n" +
                 "  transfert(0, 1);// L'entrée transfere à la première act\n" +
                 "\n" +
                 "  delai(6, 3);\n" +
-                "  transfert(1, 2);\n" +
+                "  transfert(1, 5);\n" +
                 "\n" +
-                "  P(ids,1);\n" +
-                "  transfert(2, 3);\n" +
-                "  delai(3,1);\n" +
+                "  P(ids,2);\n" +
+                "  transfert(5, 3);\n" +
+                "  delai(6,3);\n" +
+                "  V(ids, 2);\n" +
                 "  transfert(3, 4);\n" +
-                "  V(ids, 1);\n" +
                 "\n" +
                 "    //Sortie\n", entre);
 

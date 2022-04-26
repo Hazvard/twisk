@@ -103,16 +103,17 @@ public class  MondeTest {
                 "void simulation(int ids){\n" +
                 "\n" +
                 "  entrer(0);\n" +
+                "  delai(3, 2);\n" +
                 "  transfert(0, 6);// L'entrée transfere à la première act\n" +
                 "\n" +
-                "  delai(0, 0);\n" +
+                "  delai(3, 2);\n" +
                 "  transfert(6, 5);\n" +
                 "\n" +
                 "  P(ids,1);\n" +
                 "  transfert(5, 4);\n" +
-                "  delai(0, 0);\n" +
-                "  transfert(4, 1);\n" +
+                "  delai(3,2);\n" +
                 "  V(ids, 1);\n" +
+                "  transfert(4, 1);\n" +
                 "\n" +
                 "    //Sortie\n" +
                 "}", monde.toC());

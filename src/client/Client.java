@@ -46,7 +46,7 @@ public class Client {
             Class<?> laClasse = classLoaderPerso.loadClass("twisk.simulation.Simulation");
             Constructor<?> leConstructeur = laClasse.getConstructor();
             Object laSimulation = leConstructeur.newInstance();
-            Method setNbClients = laClasse.getMethod("setNbClient");
+            Method setNbClients = laClasse.getMethod("setNbClients");
             Method simulation = laClasse.getMethod("simuler");
             setNbClients.invoke(laSimulation, 4);
             simulation.invoke(laSimulation, world);
