@@ -7,7 +7,7 @@ public class Activite extends Etape {
 
     public Activite(String nom) {
         super(nom);
-        temps = 1;
+        temps = 3;
         ecartTemps = 2;
     }
 
@@ -17,14 +17,18 @@ public class Activite extends Etape {
 
     public Activite(String nom, int t, int e){
         super(nom);
-        temps = t;
-        ecartTemps = e;
+        if(t>e){
+            temps = t;
+            ecartTemps = e;
+        }
     }
 
     public Activite(String nom, int t, int e, int num){
         super(nom, num);
-        temps = t;
-        ecartTemps = e;
+        if(t>e){
+            temps = t;
+            ecartTemps = e;
+        }
     }
 
     public String toC(){
