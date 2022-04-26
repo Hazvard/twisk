@@ -22,7 +22,7 @@ public class Simulation implements Iterable<Client> {
 
     public native void nettoyage();
 
-    public void setNbClient(int nb) {
+    public void setNbClients(int nb) {
         nbClient = nb;
     }
 
@@ -36,7 +36,7 @@ public class Simulation implements Iterable<Client> {
         System.load("/tmp/twisk/libTwisk.so"); // Ajout séance 6
 
         int nbEtape = world.nbEtapes();
-        this.setNbClient(7);
+        this.setNbClients(7);
         int nbGuichet = world.nbGuichets();
         int[] tabJetonGuichet = new int[nbGuichet];
 

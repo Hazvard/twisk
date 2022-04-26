@@ -13,6 +13,7 @@ public class SasEntree extends Activite{
     public String toC(){
         StringBuilder c = new StringBuilder();
         c.append("\n  entrer("+getNumEtape() +");\n");
+        c.append("  delai("+this.temps +", " + this.ecartTemps + ");\n");
         c.append("  transfert("+getNumEtape()+", "+this.gstsuccesseurs.getSuccesseur().getNumEtape()+");// L'entrée transfere à la première act\n\n");
         c.append(this.gstsuccesseurs.getSuccesseur().toC());
         return c.toString();
