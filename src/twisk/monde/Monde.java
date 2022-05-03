@@ -1,5 +1,7 @@
 package twisk.monde;
 
+import twisk.outils.FabriqueNumero;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,6 +13,7 @@ public class Monde implements Iterable<Etape> {
     protected SasSortie sortie;
     protected HashMap<Integer, String> constante;
     protected int n;    //Sert à mettre les constantes dans la hashmap
+    protected int numMonde;
 
     public Monde() {
         lesEtapes = new GestionnaireEtape();
@@ -18,6 +21,8 @@ public class Monde implements Iterable<Etape> {
         sortie = new SasSortie();
         constante = new HashMap<>();
         n = 0;
+        FabriqueNumero fabrique = FabriqueNumero.getInstance();
+        this.numMonde = fabrique.getNumeroEtpe();
     }
 
     @Override
@@ -126,6 +131,10 @@ public class Monde implements Iterable<Etape> {
             }
         }
         return n;
+    }
+
+    public int getNumMonde(){
+        return numMonde;
     }
 
 

@@ -55,8 +55,8 @@ class KitCTest {
         kitC.creerEnvironnement();
         kitC.creerFichier("//Test;");
         kitC.compiler();
-        kitC.construireLaLibrairie();
-        File f = new File("/tmp/twisk/libTwisk.so");
+        kitC.construireLaLibrairie(1);
+        File f = new File("/tmp/twisk/libTwisk1.so");
         assertTrue(f.exists() && !f.isDirectory());
 
     }

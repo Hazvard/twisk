@@ -5,6 +5,7 @@ import java.util.concurrent.Semaphore;
 public class FabriqueNumero {
 
     private int cptEtape;
+    private int cptMonde;
     private int cptSemaphore;
 
     private static FabriqueNumero instance = new FabriqueNumero();
@@ -16,6 +17,9 @@ public class FabriqueNumero {
     public int getNumeroEtpe(){
         return cptEtape ++;
     }
+    public int getNumeroMonde(){
+        return cptMonde ++;
+    }
 
     public int getCptSemaphore() {
         cptSemaphore++;
@@ -24,6 +28,7 @@ public class FabriqueNumero {
 
     public  void reset(){
       cptEtape = 0;
+      cptMonde = 0;
       cptSemaphore = 1;
     }
 }

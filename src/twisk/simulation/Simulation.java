@@ -31,9 +31,9 @@ public class Simulation implements Iterable<Client> {
 
         kitC.creerFichier(Cworld);
         kitC.compiler();
-        kitC.construireLaLibrairie();
+        kitC.construireLaLibrairie(world.getNumMonde());
 
-        System.load("/tmp/twisk/libTwisk.so"); // Ajout séance 6
+        System.load("/tmp/twisk/libTwisk"+ world.getNumMonde() +".so"); // Ajout séance 6
 
         int nbEtape = world.nbEtapes();
         this.setNbClients(7);

@@ -100,12 +100,12 @@ public class KitC {
         }
     }
 
-    public void construireLaLibrairie(){
+    public void construireLaLibrairie(int numMonde){
         Runtime runtime = Runtime.getRuntime();
 
         try{
             //Ligne à faire executée par le programme java pour la création de la librairie
-            Process p = runtime.exec("gcc -shared /tmp/twisk/programmeC.o /tmp/twisk/codeNatif.o /tmp/twisk/client.o -o /tmp/twisk/libTwisk.so");
+            Process p = runtime.exec("gcc -shared /tmp/twisk/programmeC.o /tmp/twisk/codeNatif.o /tmp/twisk/client.o -o /tmp/twisk/libTwisk"+numMonde+".so");
             BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader error = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             //On attend que la commande se termine avant de passer à la suite
