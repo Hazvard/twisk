@@ -134,19 +134,19 @@ public abstract class VueEtapesIG extends VBox implements Observateur {
 
     private void entreSorite(){
         if(this.etapeIG.isEntree() && this.etapeIG.isSortie()){
-            final Image entree = new Image("/entreeSortie.png");
+            final Image entree = new Image("images/entreeSortie.png");
             final ImageView iconE = new ImageView(entree);
             label.setGraphic(iconE);
             label.setContentDisplay(ContentDisplay.RIGHT);
         }
         if(this.etapeIG.isEntree() && !this.etapeIG.isSortie()){
-            final Image entree = new Image("/entree.png");
+            final Image entree = new Image("images/entree.png");
             final ImageView iconE = new ImageView(entree);
             label.setGraphic(iconE);
             label.setContentDisplay(ContentDisplay.RIGHT);
         }
         if(this.etapeIG.isSortie() && !this.etapeIG.isEntree()){
-            final Image sortie = new Image("/sortie.png");
+            final Image sortie = new Image("images/sortie.png");
             final ImageView iconS = new ImageView(sortie);
             label.setGraphic(iconS);
             label.setContentDisplay(ContentDisplay.RIGHT);

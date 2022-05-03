@@ -30,7 +30,7 @@ public class MainTwisk extends Application {
             root.setStyle("-fx-background-color: #606668");
             primaryStage.setScene(new Scene(root, tailleComposants.getLargeurEcran(), tailleComposants.getHauteurEcran()));
             primaryStage.setTitle("Twisk");
-            //primaryStage.getIcons().add(new Image("/twisk.png"));
+            primaryStage.getIcons().add(new Image("images/twisk.png"));
             primaryStage.show();
         }
 
