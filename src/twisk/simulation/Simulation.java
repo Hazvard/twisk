@@ -36,7 +36,6 @@ public class Simulation implements Iterable<Client> {
         System.load("/tmp/twisk/libTwisk"+ world.getNumMonde() +".so"); // Ajout séance 6
 
         int nbEtape = world.nbEtapes();
-        this.setNbClients(7);
         int nbGuichet = world.nbGuichets();
         int[] tabJetonGuichet = new int[nbGuichet];
 
@@ -97,8 +96,10 @@ public class Simulation implements Iterable<Client> {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (nbClient == tabClient[nbClient + 1])
+            if (nbClient == tabClient[(nbClient * nbEtape + nbEtape -nbClient - 1)])
                 flag = false;
+
+
 
             System.out.println();
         }

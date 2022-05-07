@@ -30,14 +30,16 @@ public class  MondeTest {
 
     @Test
     void TestACommeEntree(){
+        monde.ajouter(activite, guichet, actRestreinte);
         monde.aCommeEntree(activite, guichet);
-        assertTrue(monde.nbEtapes() == 2);
+        assertTrue(monde.nbEtapes() == 3);
     }
 
     @Test
     void TestACommeSortie(){
+        monde.ajouter(activite, guichet, actRestreinte);
         monde.aCommeSortie(activite, guichet);
-        assertTrue(monde.nbEtapes() == 2);
+        assertTrue(monde.nbEtapes() == 3);
     }
 
     @Test
@@ -90,6 +92,8 @@ public class  MondeTest {
 
         activite.ajouterSuccesseur(guichet);
         guichet.ajouterSuccesseur(actRestreinte);
+
+        monde.ajouter(activite, guichet, actRestreinte );
 
         monde.aCommeEntree(activite);
         monde.aCommeSortie(actRestreinte);

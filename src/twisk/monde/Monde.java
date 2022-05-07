@@ -18,11 +18,12 @@ public class Monde implements Iterable<Etape> {
     public Monde() {
         lesEtapes = new GestionnaireEtape();
         entree = new SasEntree();
-        sortie = new SasSortie();
+        //sortie = new SasSortie();
+        ajouter(entree);
         constante = new HashMap<>();
         n = 0;
         FabriqueNumero fabrique = FabriqueNumero.getInstance();
-        this.numMonde = fabrique.getNumeroEtpe();
+        this.numMonde = fabrique.getNumeroMonde();
     }
 
     @Override
@@ -38,21 +39,26 @@ public class Monde implements Iterable<Etape> {
     }
 
     public void aCommeEntree(Etape... etapes) {
-        for (Etape etape : etapes) {
-            etape.setEtapeEntree(true);
+        for(Etape etape: lesEtapes){
+            for(Etape entre: etapes){
+                if(etape.getNumEtape() == entre.getNumEtape())
+                    etape.setEtapeEntree(true);
+                    this.entree.ajouterSuccesseur(entre);
+            }
         }
-        entree.ajouterSuccesseur(etapes);
-        ajouter(etapes);
+        //ajouter(entree);
     }
 
     public void aCommeSortie(Etape... etapes) {
-        for (Etape etape : etapes) {
-            //constante.put(n, etape.getNom());
-            etape.ajouterSuccesseur(sortie);
-            etape.setEtapeSortie(true);
-            //n++;
+        sortie = new SasSortie();
+        for(Etape etape: lesEtapes){
+            for(Etape sorties: etapes){
+                if(etape.getNumEtape() == sorties.getNumEtape())
+                    etape.setEtapeSortie(true);
+                sorties.ajouterSuccesseur(this.sortie);
+            }
         }
-        ajouter(etapes);
+        ajouter(sortie);
     }
 
     public int nbEtapes() {
@@ -113,7 +119,11 @@ public class Monde implements Iterable<Etape> {
     }
 
     public String toC(){
-        return ("#include \"def.h\"\n\n\nvoid simulation(int ids){\n"+ entree.toC() + "}");
+        StringBuilder entete = new StringBuilder("#include \"def.h\"\n\n\nvoid simulation(int ids){\n");
+        for(Etape etape: lesEtapes){
+            entete.append("//#define " + etape.getNom() + " " + etape.getNumEtape() + "\n");
+        }
+        return ( entete + entree.toC() + "}");
     }
 
     public void setNumSortie(int numSortie){

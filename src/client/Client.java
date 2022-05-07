@@ -19,51 +19,47 @@ public class Client {
         Etape act1 = new Activite("Début du parc", 5, 3);
         Etape guich = new Guichet("Achat des tickets", 3);
         Etape actRes = new ActiviteRestreinte("Visite du parc", 5, 3);
-        Etape act2 = new Activite("fin du parc", 5, 3);
-        Etape act3 = new Activite("fin du parc2", 5, 3);
-
-        //entrée
-        world.aCommeEntree(act1);
+        Etape act2 = new Activite("fin du parc", 2, 1);
+        //Etape act3 = new Activite("fin du parc2", 1, 0);
 
         // La suite d'activités
         act1.ajouterSuccesseur(guich);
         guich.ajouterSuccesseur(actRes);
         actRes.ajouterSuccesseur(act2);
-        act2.ajouterSuccesseur(act3);
+        //act2.ajouterSuccesseur(act3);
 
-        //Sortie
-        world.aCommeSortie(act3);
+        world.ajouter(act1, guich, actRes, act2);
 
-        world.ajouter(act1, guich, actRes, act2, act3);
+        //entrée
+        world.aCommeEntree(act1);
 
-
-
+        world.aCommeSortie(act2);
 
 
 
         // Second monde ----------------------------------------------------------------------
 
-        Monde world1 = new Monde();
+        //Monde world1 = new Monde();
         //Les activités
-        Etape act6 = new Activite("Début du ZOO", 5, 3);
-        Etape guich1 = new Guichet("Achat des tickets ZOO", 3);
-        Etape actRes1 = new ActiviteRestreinte("Visite du ZOO", 5, 3);
-        Etape act7 = new Activite("fin du ZOO", 5, 3);
-        Etape act8 = new Activite("fin du ZOO2", 5, 3);
-
-        //entrée
-        world1.aCommeEntree(act6);
+        //Etape act6 = new Activite("Début du ZOO", 5, 3);
+       // Etape guich1 = new Guichet("Achat des tickets ZOO", 3);
+        //Etape actRes1 = new ActiviteRestreinte("Visite du ZOO", 5, 3);
+        //Etape act7 = new Activite("fin du ZOO", 2, 1);
+        //Etape act8 = new Activite("fin du ZOO2", 2, 1);
 
         // La suite d'activités
-        act6.ajouterSuccesseur(guich1);
-        guich1.ajouterSuccesseur(actRes1);
-        actRes1.ajouterSuccesseur(act7);
-        act7.ajouterSuccesseur(act8);
+        //act6.ajouterSuccesseur(guich1);
+        //guich1.ajouterSuccesseur(actRes1);
+        //actRes1.ajouterSuccesseur(act7);
+        //act7.ajouterSuccesseur(act8);
 
+
+        //world1.ajouter(act6, guich1, actRes1, act7, act8);
+
+        //entrée
+        //world1.aCommeEntree(act6);
         //Sortie
-        world1.aCommeSortie(act8);
-
-        world1.ajouter(act6, guich1, actRes1, act7, act8);
+        //world1.aCommeSortie(act8);
         // ---------------------------------------------------------------------------------------
 
 
@@ -76,9 +72,9 @@ public class Client {
             Object laSimulation = leConstructeur.newInstance();
             Method setNbClients = laClasse.getMethod("setNbClients",int.class);
             Method simulation = laClasse.getMethod("simuler", Monde.class);
-            setNbClients.invoke(laSimulation, 4);
+            setNbClients.invoke(laSimulation, 7);
             simulation.invoke(laSimulation, world);
-            simulation.invoke(laSimulation, world1);// Ajout second monde
+            //simulation.invoke(laSimulation, world1);// Ajout second monde
 
 
 
