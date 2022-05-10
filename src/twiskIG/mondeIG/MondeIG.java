@@ -46,6 +46,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     }
 
     public void changerJetons(int nbJeton) throws TwiskException {
+        if(idEtapeSelect.size() == 0){
+            throw new TwiskException("Cliquez sur un guicher pour changer son nombre de jetons");
+        }
         for (String id: idEtapeSelect
              ) {
             if(etapeIG.get(id).isUnGuichet()){
@@ -116,7 +119,10 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     }
 
     public void modifDelaiEcart(int delai, int ecart) throws TwiskException{
-        if (delai > ecart) {
+        if(idEtapeSelect.size() == 0){
+            throw new TwiskException("Cliquez sur une activité pour modifier son écart/temps");
+        }
+        else if (delai > ecart) {
             for (String id : idEtapeSelect
             ) {
                 if(etapeIG.get(id).isUnGuichet()){
