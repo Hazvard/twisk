@@ -92,17 +92,25 @@ public abstract class EtapeIG implements Iterable<PointDeControlIG> {
     }
 
     public void repositionnerPDC(){
-        pdc[0].setX(posX + hauteur / 2);
-        pdc[0].setY(posY);
-        //Gauche
-        pdc[1].setX(posX);
-        pdc[1].setY(posY + (largeur / 2));
-        //Bas
-        pdc[2].setX(posX + hauteur / 2);
-        pdc[2].setY(posY + largeur);
-        //Droite
-        pdc[3].setX(posX + hauteur);
-        pdc[3].setY(posY + largeur / 2);
+        if(!this.isUnGuichet()){
+            pdc[0].setX(posX + hauteur / 2);
+            pdc[0].setY(posY);
+            //Gauche
+            pdc[1].setX(posX);
+            pdc[1].setY(posY + (largeur / 2));
+            //Bas
+            pdc[2].setX(posX + hauteur / 2);
+            pdc[2].setY(posY + largeur);
+            //Droite
+            pdc[3].setX(posX + hauteur);
+            pdc[3].setY(posY + largeur / 2);
+        }
+        else{
+            pdc[0].setX(posX);
+            pdc[0].setY(posY + (largeur / 2));
+            pdc[1].setX(posX + hauteur);
+            pdc[1].setY(posY + largeur / 2);
+        }
     }
 
     @Override
