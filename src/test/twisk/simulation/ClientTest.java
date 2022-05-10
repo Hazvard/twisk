@@ -14,7 +14,6 @@ class ClientTest {
     void setUp() {
         client = new Client(47);
     }
-
     @Test
     void Constructeur1(){
         assertEquals(47, client.getNumClient());

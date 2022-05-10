@@ -1,0 +1,14 @@
+#nomEtape {
+    -fx-border-color: #5c79ff; -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-border-width: 3;
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
+}
+
+#VueEtape{
+    -fx-border-color: rgba(11,0,110,0.64);
+    -fx-border-width: 5;
+    -fx-background-color: rgba(168,207,255,0.33);
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
+}
