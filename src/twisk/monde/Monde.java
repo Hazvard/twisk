@@ -51,12 +51,13 @@ public class Monde implements Iterable<Etape> {
 
     public void aCommeSortie(Etape... etapes) {
         sortie = new SasSortie();
-        for(Etape etape: lesEtapes){
-            for(Etape sorties: etapes){
+
+        for(Etape sorties: etapes){
+            for(Etape etape: lesEtapes){
                 if(etape.getNumEtape() == sorties.getNumEtape())
                     etape.setEtapeSortie(true);
-                sorties.ajouterSuccesseur(this.sortie);
             }
+            sorties.ajouterSuccesseur(this.sortie);
         }
         ajouter(sortie);
     }
@@ -119,10 +120,11 @@ public class Monde implements Iterable<Etape> {
     }
 
     public String toC(){
-        StringBuilder entete = new StringBuilder("#include \"def.h\"\n\n\nvoid simulation(int ids){\n");
+        StringBuilder entete = new StringBuilder("#include \"def.h\"\n");
         for(Etape etape: lesEtapes){
             entete.append("//#define " + etape.getNom() + " " + etape.getNumEtape() + "\n");
         }
+        entete.append("\n\n\nvoid simulation(int ids){\n\n  srand(time(NULL));\n");
         return ( entete + entree.toC() + "}");
     }
 

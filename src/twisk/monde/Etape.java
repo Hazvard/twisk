@@ -80,6 +80,10 @@ public abstract class Etape implements Iterable {
         return gstsuccesseurs;
     }
 
+    public int nombreDeSuccesseurs(){
+        return gstsuccesseurs.nbSuccesseurs();
+    }
+
     public String getNom() {
         return nom;
     }

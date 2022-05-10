@@ -16,19 +16,20 @@ public class Client {
 
         Monde world = new Monde();
         //Les activités
-        Etape act1 = new Activite("Début du parc", 5, 3);
+        Etape act1 = new Activite("Début du parc", 2, 1);
         Etape guich = new Guichet("Achat des tickets", 3);
-        Etape actRes = new ActiviteRestreinte("Visite du parc", 5, 3);
+        Etape actRes = new ActiviteRestreinte("Visite du parc", 2, 1);
         Etape act2 = new Activite("fin du parc", 2, 1);
-        //Etape act3 = new Activite("fin du parc2", 1, 0);
+        Etape act3 = new Activite("parcours gratuit", 2, 1);
 
         // La suite d'activités
         act1.ajouterSuccesseur(guich);
         guich.ajouterSuccesseur(actRes);
         actRes.ajouterSuccesseur(act2);
-        //act2.ajouterSuccesseur(act3);
+        act1.ajouterSuccesseur(act3);
+        act3.ajouterSuccesseur(act2);
 
-        world.ajouter(act1, guich, actRes, act2);
+        world.ajouter(act1, guich, actRes, act2, act3);
 
         //entrée
         world.aCommeEntree(act1);

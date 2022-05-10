@@ -32,14 +32,34 @@ public class Activite extends Etape {
     }
 
     public String toC(){
-        StringBuilder c = new StringBuilder();
-        c.append("  delai("+this.temps +", " + this.ecartTemps + ");\n");
-        c.append("  transfert(" + this.getNumEtape() + ", " + this.gstsuccesseurs.getSuccesseur().getNumEtape() + ");\n\n");
+        if(this.nombreDeSuccesseurs() < 2) {
+            StringBuilder c = new StringBuilder();
+            c.append("  delai(" + this.temps + ", " + this.ecartTemps + ");\n");
+            c.append("  transfert(" + this.getNumEtape() + ", " + this.gstsuccesseurs.getSuccesseur().getNumEtape() + ");\n\n");
 
-        c.append(this.gstsuccesseurs.getSuccesseur().toC());
 
-        return c.toString();
-        // return "delai("+this.temps +", " + this.ecartTemps + ");\ntransfert("+this.getNumEtape()+", " + suivant + ");\n";
+            c.append(this.gstsuccesseurs.getSuccesseur().toC());
+
+            return c.toString();
+        }else{
+            StringBuilder c = new StringBuilder();
+
+            c.append("  int aleatoire_etape" + this.getNumEtape() + " = rand() %" + this.nombreDeSuccesseurs() + " ;\n\n");
+            c.append("  delai(" + this.temps + ", " + this.ecartTemps + ");\n\n");
+            c.append("  switch(aleatoire_etape" + this.getNumEtape() + "){\n");
+
+            int compteur = 0;
+            for (Etape etape : gstsuccesseurs) {
+                c.append("      case " + compteur+":\n");
+                c.append("          transfert(" + this.getNumEtape() + ", " + etape.getNumEtape() + ");\n");
+                c.append(etape.toC());
+                c.append("          break;\n\n");
+                compteur++;
+            }
+
+            c.append("  }\n\n");
+            return c.toString();
+        }
     }
 
     public int getTemps() {

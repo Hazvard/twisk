@@ -39,6 +39,12 @@ public class GestionnaireSuccesseurs implements Iterable<Etape>{
             return null;
     }
 
+
+
+    public int nbSuccesseurs(){
+        return listeEtape.size();
+    }
+
     // Setteurs
     public void setListeEtape(ArrayList<Etape> listeEtape) {
         this.listeEtape = listeEtape;
@@ -47,7 +53,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape>{
     @Override
     public String toString() {
         return "GestionnaireSuccesseurs{" +
-                "listeEtape=" + listeEtape +
+                "listeEtape=" + listeEtape.toString() +
                 '}';
     }
 }
