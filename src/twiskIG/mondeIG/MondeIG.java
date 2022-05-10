@@ -1,6 +1,7 @@
 package twiskIG.mondeIG;
 
 import javafx.scene.control.Alert;
+import twiskIG.exceptions.MondeException;
 import twiskIG.exceptions.TwiskException;
 import twiskIG.outils.FabriqueIdentifiant;
 import twiskIG.outils.TailleComposant;
@@ -29,6 +30,14 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         pointTempo = new PointDeControlIG(new ActiviteIG("EtapeTempo","id",1,1));
         idEtapeSelect = new ArrayList<>();
     }
+
+    ////////PARTIE TWISK/////////////
+    public void simuler() throws MondeException {
+
+    }
+
+
+    /////////////////////////////////
 
     public void ajouter(String type){
         if(type == "Activite"){
