@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import twisk.monde.Monde;
 public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     private HashMap<String, EtapeIG> etapeIG;
     private ArrayList<ArcIG> arcIGs;

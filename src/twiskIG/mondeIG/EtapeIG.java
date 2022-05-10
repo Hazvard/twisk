@@ -1,5 +1,7 @@
 package twiskIG.mondeIG;
 
+import twisk.monde.GestionnaireEtape;
+import twisk.monde.GestionnaireSuccesseurs;
 import twiskIG.outils.TailleComposant;
 
 import java.util.Arrays;
@@ -18,6 +20,7 @@ public abstract class EtapeIG implements Iterable<PointDeControlIG> {
     private boolean estSelect;
     private boolean estUneEntre;
     private boolean estUneSortie;
+    protected GestionnaireSuccesseursIG gstSuccesseursIG;
 
 
     public EtapeIG(String nom, String idf, int larg, int haut){
@@ -28,6 +31,7 @@ public abstract class EtapeIG implements Iterable<PointDeControlIG> {
         this.estSelect = false;
         this.estUneEntre = false;
         this.estUneSortie = false;
+        this.gstSuccesseursIG = new GestionnaireSuccesseursIG();
         delai = 4;
         ecart = 2;
         TailleComposant taille = TailleComposant.getInstance();
@@ -64,7 +68,13 @@ public abstract class EtapeIG implements Iterable<PointDeControlIG> {
             pdc[3].setY(posY + largeur / 2);
         }
     }
+    //////FONCTION POUR TWISK//////
+    public void ajouterSuccesseurIG(EtapeIG... et){gstSuccesseursIG.ajouter(et);}
+    public int nbSuccesseurIG(){return  gstSuccesseursIG.nbEtapesIG();}
 
+    public GestionnaireSuccesseursIG getGstSuccesseursIG(){return  gstSuccesseursIG;}
+    
+    ///////////////////////////
     public String getIdentifiant() {
         return identifiant;
     }
