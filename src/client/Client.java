@@ -26,7 +26,7 @@ public class Client {
         act1.ajouterSuccesseur(guich);
         guich.ajouterSuccesseur(actRes);
         actRes.ajouterSuccesseur(act2);
-        act1.ajouterSuccesseur(act3);
+        actRes.ajouterSuccesseur(act3);
         act3.ajouterSuccesseur(act2);
 
         world.ajouter(act1, guich, actRes, act2, act3);

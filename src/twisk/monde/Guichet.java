@@ -35,15 +35,14 @@ public class Guichet extends Etape{
 
     public String toC(){
         StringBuilder c = new StringBuilder();
-        int suivant = this.getNumEtape() + 1;
-        int suivant2 = suivant +1 ;
-        Etape etapeNext = this.getGstsuccesseurs().getSuccesseur();
+        Etape etapeSuivante = this.gstsuccesseurs.getSuccesseur() ;
+
         c.append("  P(ids," + this.getNumSemaphore() + ");\n");
-        c.append("  transfert(" + this.getNumEtape() + ", " + this.gstsuccesseurs.getSuccesseur().getNumEtape() + ");\n");
-        //delai de l'étape d'après et l'écart de l'étape d'après ???
-        c.append("  delai("+ etapeNext.getTemps() + ","+  etapeNext.getEcartTemps() + ");\n");
-        c.append("  V(ids, " + this.getNumSemaphore() +");\n");   //On rend le jeton avant transfert
-        c.append("  transfert(" + etapeNext.getNumEtape() + ", " + etapeNext.getGstsuccesseurs().getSuccesseur().getNumEtape() + ");\n\n");
+        c.append("  transfert(" + this.getNumEtape() + ", " + etapeSuivante.getNumEtape() + ");\n"); // s'il y a un jeton on va dans actRestreinte
+        c.append("  delai("+ etapeSuivante.getTemps() + ","+  etapeSuivante.getEcartTemps() + ");\n"); // délai de l'étape restreinte
+        c.append("  V(ids, " + this.getNumSemaphore() +");\n"); // On rend le jeton avant de partir dans l'autre étape
+
+
         c.append(this.gstsuccesseurs.getSuccesseur().toC());
         return c.toString();
     }
