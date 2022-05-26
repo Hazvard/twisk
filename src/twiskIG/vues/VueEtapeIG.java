@@ -52,14 +52,14 @@ public abstract class VueEtapeIG extends VBox implements Observateur{
         }
         if(etape.isUneEntree()){
             this.setStyle("-fx-border-color: rgb(0,255,20)");
-            Image entree = new Image("/entree.png",50,50,true,true);
+            Image entree = new Image("/images/entree.png",50,50,true,true);
             ImageView smallEntree = new ImageView(entree);
             lab.setGraphic(smallEntree);
             lab.setContentDisplay(ContentDisplay.LEFT);
         }
         if(etape.isUneSortie()){
             this.setStyle("-fx-border-color: rgb(234,105,0)");
-            Image entree = new Image("/sortie.png",50,50,true,true);
+            Image entree = new Image("/images/sortie.png",50,50,true,true);
             ImageView smallSortie = new ImageView(entree);
             lab.setGraphic(smallSortie);
             lab.setContentDisplay(ContentDisplay.RIGHT);

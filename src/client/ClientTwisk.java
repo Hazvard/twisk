@@ -2,15 +2,14 @@ package client;
 
 import twisk.monde.*;
 import twisk.outils.ClassLoaderPerso;
-import twisk.simulation.Simulation;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class Client {
+public class ClientTwisk {
 
-    public Client(){}
+    public ClientTwisk(){}
 
     public static void main(String[] args) {
 
@@ -66,7 +65,7 @@ public class Client {
 
 
         try {
-            Client leClient = new Client();
+            ClientTwisk leClient = new ClientTwisk();
             ClassLoaderPerso classLoaderPerso = new ClassLoaderPerso(leClient.getClass().getClassLoader());
             Class<?> laClasse = classLoaderPerso.loadClass("twisk.simulation.Simulation");
             Constructor<?> leConstructeur = laClasse.getConstructor();

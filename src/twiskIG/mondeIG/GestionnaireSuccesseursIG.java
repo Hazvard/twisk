@@ -16,13 +16,6 @@ public class GestionnaireSuccesseursIG implements Iterable<EtapeIG>{
     @Override
     public Iterator<EtapeIG> iterator(){return  listeEtapeIG.iterator();}
 
-    public EtapeIG getSuccesseur(){
-        if(listeEtapeIG.iterator().hasNext()){
-            return listeEtapeIG.iterator().next();
-        }
-        else return null;
-    }
-
     @Override
     public String toString(){
         return "GestionnaireSuccesseurIG{" +

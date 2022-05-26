@@ -1,16 +1,21 @@
 package twiskIG.mondeIG;
 
+import client.ClientTwisk;
 import javafx.scene.control.Alert;
+import twisk.monde.*;
+import twisk.outils.ClassLoaderPerso;
 import twiskIG.exceptions.MondeException;
 import twiskIG.exceptions.TwiskException;
 import twiskIG.outils.FabriqueIdentifiant;
 import twiskIG.outils.TailleComposant;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import twisk.monde.Monde;
 public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     private HashMap<String, EtapeIG> etapeIG;
     private ArrayList<ArcIG> arcIGs;
@@ -20,13 +25,14 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     private ArrayList<ArcIG> arcSelect;
     private ArrayList<EtapeIG> entrees;
     private ArrayList<EtapeIG> sorties;
+    private CorrespondanceEtapes correspondanceEtapes;
 
     public MondeIG(){
         arcSelect = new ArrayList<>();
         arcIGs = new ArrayList<>();
         entrees = new ArrayList<>();
         sorties = new ArrayList<>();
-        etapeIG = new HashMap<String, EtapeIG>();
+        etapeIG = new HashMap<>();
         balisePdc = 0;
         pointTempo = new PointDeControlIG(new ActiviteIG("EtapeTempo","id",1,1));
         idEtapeSelect = new ArrayList<>();
@@ -34,9 +40,116 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
 
     ////////PARTIE TWISK/////////////
     public void simuler() throws MondeException {
+        verifierMondeIG();
+        Monde monde = creerMonde();
+
+        try {
+            ClientTwisk leClient = new ClientTwisk();
+            ClassLoaderPerso classLoaderPerso = new ClassLoaderPerso(leClient.getClass().getClassLoader());
+            Class<?> laClasse = classLoaderPerso.loadClass("twisk.simulation.Simulation");
+            Constructor<?> leConstructeur = laClasse.getConstructor();
+            Object laSimulation = leConstructeur.newInstance();
+            Method setNbClients = laClasse.getMethod("setNbClients",int.class);
+            Method simulation = laClasse.getMethod("simuler", Monde.class);
+            setNbClients.invoke(laSimulation, 7);
+            simulation.invoke(laSimulation, monde);
+
+
+
+        }catch(ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e){
+            e.printStackTrace();
+
+        }
+    }
+
+
+
+    private void verifierMondeIG() throws MondeException {
+
+        // Dans le meilleur des cas on vérifie que tous les chemins dispoants d'une entrée dispose aussi d'une sortie
+        // ici on compte juste qu'il existe au moins une entrée et une sortie
+
+        boolean entree = false;
+        boolean sortie = false;
+
+
+        for(ArcIG arcIG : arcIGs){
+            arcIG.getP1().getEtape().ajouterSuccesseurIG(arcIG.getP2().getEtape());
+        }
+
+        // On évite deux guichets d'affilée
+        for(EtapeIG etapeIG : this){
+
+            if(etapeIG.isUnGuichet()){
+                // Un guichet ne peut pas ne pas avoir de successeur
+                if(etapeIG.nbSuccesseurIG() < 1)
+                    throw new MondeException();
+
+
+                for ( EtapeIG successeur : etapeIG.gstSuccesseursIG){
+                    if(successeur.isUnGuichet()){
+                        throw new MondeException();
+                    }else{
+                        // On ajoute une atc res après un guichet
+                        getEtape(successeur.getIdentifiant()).setRestreinte();
+                    }
+                }
+            }
+
+            if(etapeIG.isUneEntree())
+                entree = true;
+            if(etapeIG.isUneSortie())
+                sortie = true;
+
+
+
+
+        }
+
+        if(!entree || !sortie)
+            throw new MondeException();
 
     }
 
+    private Monde creerMonde(){
+
+        // Variables
+        ArrayList<Etape> entrees = new ArrayList<>();
+        ArrayList<Etape> sorties = new ArrayList<>();
+
+        // Création du monde
+        Monde monde = new Monde();
+
+        // Création des étapes
+        for(EtapeIG etapeIG : this){
+            if(etapeIG.estUneActivite()){
+                correspondanceEtapes.ajouter(etapeIG, new Activite(etapeIG.getNom(), etapeIG.getDelai(), etapeIG.getEcart()));
+            }else if(etapeIG.isUnGuichet()){
+                correspondanceEtapes.ajouter(etapeIG, new Guichet(etapeIG.getNom(), etapeIG.getNbJetons()));
+            }else if(etapeIG.estUneActiviteRestreinte()){
+                correspondanceEtapes.ajouter(etapeIG, new ActiviteRestreinte(etapeIG.getNom(), etapeIG.getDelai(), etapeIG.getEcart()));
+            }
+            monde.ajouter(correspondanceEtapes.get(etapeIG));
+
+            // On se souvient des entrées et sorties
+            if(etapeIG.isUneEntree())
+                entrees.add(correspondanceEtapes.get(etapeIG));
+
+            if(etapeIG.isUneSortie())
+                sorties.add(correspondanceEtapes.get(etapeIG));
+
+        }
+        // On créer les succeseurs des étapes en fonction des arcs de l'interface graphique.
+        for (ArcIG arc : arcIGs) {
+            correspondanceEtapes.get(getEtape(arc.getIdentifiantDebut())).ajouterSuccesseur(correspondanceEtapes.get(getEtape(arc.getIdentifiantFin())));
+        }
+
+        //entrées/sorties
+        monde.aCommeEntree(entrees.toArray(new Etape[entrees.size()]));
+        monde.aCommeSortie(sorties.toArray(new Etape[sorties.size()]));
+
+        return monde;
+    }
 
     /////////////////////////////////
 
@@ -111,7 +224,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
 
     public void ajouter(PointDeControlIG p1, PointDeControlIG p2){
         arcIGs.add(new ArcIG(p1, p2));
-        //System.out.println("Ajout d'un arc...");
     }
 
     public EtapeIG getEtape(String id){
@@ -220,12 +332,11 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     public void supprSelection(){
         ArrayList<ArcIG> arcASuppr = new ArrayList<>();
         //Enlève tout les arcs
-        for (ArcIG arc: arcIGs
-             ) {
-            for (EtapeIG etape: this
-                 ) {
+        for (ArcIG arc: arcIGs ) {
+            for (EtapeIG etape: this ) {
                 if(etape.estSelectionnee()){
-                    arcASuppr.add(arc);
+                    if(etape.getIdentifiant() == arc.getIdentifiantDebut() || etape.getIdentifiant() == arc.getIdentifiantFin())
+                        arcASuppr.add(arc);
                 }
             }
            }

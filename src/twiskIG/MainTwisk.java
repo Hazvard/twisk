@@ -3,6 +3,7 @@ package twiskIG;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -26,10 +27,11 @@ public class MainTwisk extends Application {
         root.setCenter(vueMonde);
         root.setTop(new VueMenu(monde, vueMonde));
         stage.setTitle("Twisk");
+        stage.getIcons().add(new Image("/images/twisk.png"));
         TailleComposant taille = TailleComposant.getInstance();
         root.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         Scene scene = new Scene(root, taille.getX(), taille.getY());
-        scene.getStylesheets().add("/style.css");
+        scene.getStylesheets().add("/styles/style.css");
         stage.setScene(scene);
         stage.show();
     }

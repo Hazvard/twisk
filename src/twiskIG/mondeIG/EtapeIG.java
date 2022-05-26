@@ -196,4 +196,18 @@ public abstract class EtapeIG implements Iterable<PointDeControlIG> {
         System.out.println("Voici mon nouveau nom : " + newNom);
     }
 
+    public boolean estUnguichet(){
+        return false;
+    }
+
+    public boolean estUneActivite(){
+        return false;
+    }
+
+    public boolean estUneActiviteRestreinte(){
+        return false;
+    }
+
+    public void setRestreinte(){}
+
 }

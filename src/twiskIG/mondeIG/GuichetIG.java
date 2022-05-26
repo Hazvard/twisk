@@ -38,4 +38,9 @@ public class GuichetIG extends EtapeIG {
     public Iterator<PointDeControlIG> iterator() {
         return null;
     }
+
+    @Override
+    public boolean estUnguichet(){
+        return true;
+    }
 }
