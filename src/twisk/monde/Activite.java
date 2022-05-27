@@ -7,8 +7,8 @@ public class Activite extends Etape {
 
     public Activite(String nom) {
         super(nom);
-        temps = 3;
-        ecartTemps = 2;
+        temps = 2;
+        ecartTemps = 1;
     }
 
     public Activite(String nom, int num) {

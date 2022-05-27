@@ -191,9 +191,9 @@ public abstract class EtapeIG implements Iterable<PointDeControlIG> {
     public int getNbJetons(){return 0;}
 
     public void renommerEtapeIG(String newNom){
-        System.out.println("Avant j'étais : " + this.nom);
+        //System.out.println("Avant j'étais : " + this.nom);
         this.nom = newNom;
-        System.out.println("Voici mon nouveau nom : " + newNom);
+        //System.out.println("Voici mon nouveau nom : " + newNom);
     }
 
     public boolean estUnguichet(){

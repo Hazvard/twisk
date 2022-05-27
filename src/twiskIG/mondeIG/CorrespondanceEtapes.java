@@ -20,6 +20,14 @@ public class CorrespondanceEtapes {
         etape.put(etig.getIdentifiant(), et);
     }
 
+    public int tailleIG(){
+        return etapeIG.size();
+    }
+
+    public int taille(){
+        return etape.size();
+    }
+
     public Etape get(EtapeIG e){
         return etape.get(e.getIdentifiant());
     }

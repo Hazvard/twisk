@@ -4,6 +4,7 @@ import client.ClientTwisk;
 import javafx.scene.control.Alert;
 import twisk.monde.*;
 import twisk.outils.ClassLoaderPerso;
+import twisk.outils.FabriqueNumero;
 import twiskIG.exceptions.MondeException;
 import twiskIG.exceptions.TwiskException;
 import twiskIG.outils.FabriqueIdentifiant;
@@ -36,6 +37,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         balisePdc = 0;
         pointTempo = new PointDeControlIG(new ActiviteIG("EtapeTempo","id",1,1));
         idEtapeSelect = new ArrayList<>();
+        correspondanceEtapes = new CorrespondanceEtapes();
     }
 
     ////////PARTIE TWISK/////////////
@@ -83,12 +85,12 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             if(etapeIG.isUnGuichet()){
                 // Un guichet ne peut pas ne pas avoir de successeur
                 if(etapeIG.nbSuccesseurIG() < 1)
-                    throw new MondeException();
+                    throw new MondeException("Un guichet doit avoir un successeur");
 
 
                 for ( EtapeIG successeur : etapeIG.gstSuccesseursIG){
                     if(successeur.isUnGuichet()){
-                        throw new MondeException();
+                        throw new MondeException("Un guichet ne peut pas suivre un guichet");
                     }else{
                         // On ajoute une atc res après un guichet
                         getEtape(successeur.getIdentifiant()).setRestreinte();
@@ -107,7 +109,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         }
 
         if(!entree || !sortie)
-            throw new MondeException();
+            throw new MondeException("Le monde doit avoir une entrée et une sortie");
 
     }
 
@@ -117,11 +119,16 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         ArrayList<Etape> entrees = new ArrayList<>();
         ArrayList<Etape> sorties = new ArrayList<>();
 
+        // On reset pour pouvoir lancer à nouveau la simulation
+        FabriqueNumero fabrique = FabriqueNumero.getInstance();
+        fabrique.reset();
+
         // Création du monde
         Monde monde = new Monde();
 
         // Création des étapes
         for(EtapeIG etapeIG : this){
+
             if(etapeIG.estUneActivite()){
                 correspondanceEtapes.ajouter(etapeIG, new Activite(etapeIG.getNom(), etapeIG.getDelai(), etapeIG.getEcart()));
             }else if(etapeIG.isUnGuichet()){

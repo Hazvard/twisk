@@ -1,11 +1,11 @@
 package twiskIG.vues;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
+import twiskIG.exceptions.MondeException;
 import twiskIG.mondeIG.EtapeIG;
 import twiskIG.mondeIG.MondeIG;
 
@@ -13,6 +13,7 @@ public class VueOutils extends TilePane implements Observateur{
     private MondeIG monde;
     private Button addActi;
     private Button addGuichet;
+    private Button simulation;
 
     public VueOutils(MondeIG world){
         this.monde = world;
@@ -40,7 +41,29 @@ public class VueOutils extends TilePane implements Observateur{
             monde.notifierObservateur();
         });
 
-        this.getChildren().addAll(addActi, addGuichet);
+        simulation = new Button();
+        simulation.setStyle("-fx-border-color: BLACK");
+        simulation.setStyle("-fx-background-color: rgba(3,84,176,0.07)");
+        simulation.setMaxSize(300,300);
+        Image img = new Image("/images/play.png") ;
+        ImageView view = new ImageView(img);
+        view.setFitHeight(25);
+        view.setPreserveRatio(true);
+        simulation.setGraphic(view);
+        simulation.setOnAction(actionEvent -> {
+            try{
+                monde.simuler();
+            }catch(MondeException e){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("ATTENTION");
+                alert.setHeaderText("Impossible ");
+                alert.setContentText(e.getText());
+                alert.showAndWait();
+            }
+
+        });
+
+        this.getChildren().addAll(simulation, addActi, addGuichet);
     }
 
 

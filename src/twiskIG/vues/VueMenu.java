@@ -133,7 +133,7 @@ public class VueMenu extends MenuBar implements Observateur {
             grid.add(ecart,1,2);
             grid.add(ecartField,2,2);
             dialog.getDialogPane().setContent(grid);
-                //Cration du bouton
+                //Creation du bouton
             ButtonType validerType = new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE);
             dialog.getDialogPane().getButtonTypes().add(validerType);
             dialog.setResultConverter(new Callback<ButtonType, Valider>() {
@@ -144,7 +144,7 @@ public class VueMenu extends MenuBar implements Observateur {
             });
             Optional<Valider> resultat = dialog.showAndWait();
             if(resultat.isPresent()){
-                System.out.println("Resultat = " + resultat.get());
+                //System.out.println("Resultat = " + resultat.get());
                 try {
                     int delaiConv = Integer.parseInt(resultat.get().getDelai());
                     int ecartConv = Integer.parseInt(resultat.get().getEcart());
