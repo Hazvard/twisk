@@ -22,8 +22,7 @@ public class Monde implements Iterable<Etape> {
         ajouter(entree);
         constante = new HashMap<>();
         n = 0;
-        FabriqueNumero fabrique = FabriqueNumero.getInstance();
-        this.numMonde = fabrique.getNumeroMonde();
+        this.numMonde = FabriqueNumero.getInstance().getNumeroMonde();
     }
 
     @Override

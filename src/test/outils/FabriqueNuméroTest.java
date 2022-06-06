@@ -23,6 +23,15 @@ public class FabriqueNuméroTest {
     }
 
     @Test
+    void testGetNumeroMonde(){
+        assertTrue(fabriqueNumero.getNumeroMonde() == 0);
+        assertTrue(fabriqueNumero.getNumeroMonde() == 1);
+        assertTrue(fabriqueNumero.getNumeroMonde() == 2);
+        assertTrue(fabriqueNumero.getNumeroMonde() == 3);
+    }
+
+
+    @Test
     void testGetCptSemaphore(){
         assertTrue(fabriqueNumero.getCptSemaphore() == 1);
         assertTrue(fabriqueNumero.getCptSemaphore() == 2);

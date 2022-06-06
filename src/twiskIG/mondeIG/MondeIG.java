@@ -44,24 +44,8 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     public void simuler() throws MondeException {
         verifierMondeIG();
         Monde monde = creerMonde();
-
-        try {
-            ClientTwisk leClient = new ClientTwisk();
-            ClassLoaderPerso classLoaderPerso = new ClassLoaderPerso(leClient.getClass().getClassLoader());
-            Class<?> laClasse = classLoaderPerso.loadClass("twisk.simulation.Simulation");
-            Constructor<?> leConstructeur = laClasse.getConstructor();
-            Object laSimulation = leConstructeur.newInstance();
-            Method setNbClients = laClasse.getMethod("setNbClients",int.class);
-            Method simulation = laClasse.getMethod("simuler", Monde.class);
-            setNbClients.invoke(laSimulation, 7);
-            simulation.invoke(laSimulation, monde);
-
-
-
-        }catch(ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e){
-            e.printStackTrace();
-
-        }
+        ClientTwisk t = new ClientTwisk();
+        t.test(monde);
     }
 
 

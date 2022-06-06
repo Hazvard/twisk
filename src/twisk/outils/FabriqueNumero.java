@@ -28,7 +28,7 @@ public class FabriqueNumero {
 
     public  void reset(){
       cptEtape = 0;
-      cptMonde = 0;
+      //cptMonde = 0;
       cptSemaphore = 1;
     }
 }
