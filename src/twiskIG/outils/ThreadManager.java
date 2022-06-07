@@ -23,10 +23,8 @@ public class ThreadManager {
     }
 
     public void detruireTout(){
-        for (Thread thr: lesThreads
-             ) {
-            thr.interrupt();
+        for (Thread thr: lesThreads) {
+            thr.stop();
         }
-        lesThreads = new ArrayList<>();
     }
 }

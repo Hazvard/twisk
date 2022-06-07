@@ -17,11 +17,11 @@ import twiskIG.mondeIG.CorrespondanceEtapes;
 import twiskIG.mondeIG.EtapeIG;
 import twiskIG.mondeIG.MondeIG;
 
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 public class VueMondeIG extends Pane implements Observateur {
     private MondeIG monde;
+    private HashMap<Client,EtapeIG> hashMap;
 
     public VueMondeIG(MondeIG world) {
         this.monde = world;
@@ -51,8 +51,8 @@ public class VueMondeIG extends Pane implements Observateur {
 
     @Override
     public void reagir() {
-        System.out.println("ouais genre là");
         this.getChildren().clear();
+        this.hashMap = new HashMap<>();
         Iterator<ArcIG> it = monde.arcIGIterator();
         ArcIG arc;
         while (it.hasNext()) {
@@ -79,20 +79,30 @@ public class VueMondeIG extends Pane implements Observateur {
         //sur l'activité...
         GestionnaireClients gestionnaireClients = monde.getGestionnaireClients();
         if (gestionnaireClients != null) {
-            System.out.println(gestionnaireClients.toString());
             Iterator<Client> itClient = gestionnaireClients.iterator();
             CorrespondanceEtapes correspondanceEtapes = monde.getCorrespondanceEtapes();
             while (itClient.hasNext()) {
                 Client clientTempo = itClient.next();
                 Circle circle = new Circle();
+                circle.setFill(javafx.scene.paint.Color.RED);
                 Etape etapeTempo = clientTempo.getEtape();
+                System.out.println(etapeTempo);
                 EtapeIG etapeIG = correspondanceEtapes.getEtapeIG(etapeTempo);
+                System.out.println(etapeIG);
                 circle.setRadius(10);
-                circle.setCenterX(etapeIG.getPosX());
-                circle.setCenterY(etapeIG.getPosY());
-                this.getChildren().add(circle);
-                System.out.println(circle.getCenterX() + " " + circle.getCenterY());
-                System.out.println(etapeIG.getPosX() + " " + etapeIG.getPosY());
+                if(etapeIG != null){
+                    int posX = etapeIG.getPosX() + 20;
+                    int posY = etapeIG.getPosY() + 80;
+                    for(Map.Entry<Client,EtapeIG> entry:hashMap.entrySet()){
+                        if(Objects.equals(etapeIG, entry.getValue())){
+                            posX += 35;
+                        }
+                    }
+                    hashMap.put(clientTempo, etapeIG);
+                    circle.setCenterX(posX);
+                    circle.setCenterY(posY);
+                    this.getChildren().add(circle);
+                }
             }
         }
     }
