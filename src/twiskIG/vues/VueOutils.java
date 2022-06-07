@@ -23,7 +23,12 @@ public class VueOutils extends TilePane implements Observateur{
         this.monde = world;
         monde.ajouterObservateur(this);
 
-        addActi = new Button("Ajouter Activité");
+        addActi = new Button();
+        Image act = new Image("/images/act.png") ;
+        ImageView viewact = new ImageView(act);
+        viewact.setFitHeight(25);
+        viewact.setPreserveRatio(true);
+        addActi.setGraphic(viewact);
         addActi.setStyle("-fx-border-color: BLACK");
         addActi.setStyle("-fx-background-color: rgba(3,84,176,0.07)");
         addActi.setMaxSize(275,300);
@@ -34,7 +39,12 @@ public class VueOutils extends TilePane implements Observateur{
             monde.notifierObservateur();
         });
 
-        addGuichet = new Button("Ajouter Guichet");
+        addGuichet = new Button();
+        Image gch = new Image("/images/gch.png") ;
+        ImageView viewgch = new ImageView(gch);
+        viewgch.setFitHeight(25);
+        viewgch.setPreserveRatio(true);
+        addGuichet.setGraphic(viewgch);
         addGuichet.setStyle("-fx-border-color: BLACK");
         addGuichet.setStyle("-fx-background-color: rgba(3,84,176,0.07)");
         addGuichet.setMaxSize(275,300);
