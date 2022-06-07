@@ -1,5 +1,6 @@
 package twiskIG.vues;
 
+import javafx.application.Platform;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -21,11 +22,9 @@ import java.util.Iterator;
 
 public class VueMondeIG extends Pane implements Observateur {
     private MondeIG monde;
-    private GestionnaireClients gestionnaireClients;
 
     public VueMondeIG(MondeIG world) {
         this.monde = world;
-        gestionnaireClients = monde.getGestionnaireClients();
         monde.ajouterObservateur(this);
         this.setOnDragOver(event -> {
             event.acceptTransferModes(TransferMode.MOVE);
@@ -52,8 +51,8 @@ public class VueMondeIG extends Pane implements Observateur {
 
     @Override
     public void reagir() {
+        System.out.println("ouais genre là");
         this.getChildren().clear();
-
         Iterator<ArcIG> it = monde.arcIGIterator();
         ArcIG arc;
         while (it.hasNext()) {
@@ -78,7 +77,9 @@ public class VueMondeIG extends Pane implements Observateur {
         //3) Trouver les coordonnée de l'étape en quesiton  En cours
         //4) Placer les cerles et les déplacer en concéquence si un cercle est déjà présent
         //sur l'activité...
-        if(gestionnaireClients != null){
+        GestionnaireClients gestionnaireClients = monde.getGestionnaireClients();
+        if (gestionnaireClients != null) {
+            System.out.println(gestionnaireClients.toString());
             Iterator<Client> itClient = gestionnaireClients.iterator();
             CorrespondanceEtapes correspondanceEtapes = monde.getCorrespondanceEtapes();
             while (itClient.hasNext()) {
@@ -92,8 +93,7 @@ public class VueMondeIG extends Pane implements Observateur {
                 this.getChildren().add(circle);
                 System.out.println(circle.getCenterX() + " " + circle.getCenterY());
                 System.out.println(etapeIG.getPosX() + " " + etapeIG.getPosY());
-        }
-
+            }
         }
     }
 }

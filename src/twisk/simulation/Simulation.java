@@ -19,6 +19,7 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
         kitC.creerEnvironnement();
         gestionnaireClients = new GestionnaireClients();
         flag = false;
+        this.ajouterObservateur(mondeIG);
         mondeIG.setGestionnaireClients(gestionnaireClients);
     }
 
@@ -102,6 +103,7 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
                 System.out.println("\n");
             }
             System.out.println("");
+            notifierObservateur();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {

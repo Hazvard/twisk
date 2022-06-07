@@ -1,6 +1,7 @@
 package twiskIG.mondeIG;
 
 import client.ClientTwisk;
+import javafx.application.Platform;
 import twisk.monde.*;
 import twisk.outils.FabriqueNumero;
 import twisk.simulation.GestionnaireClients;
@@ -8,12 +9,13 @@ import twiskIG.exceptions.MondeException;
 import twiskIG.exceptions.TwiskException;
 import twiskIG.outils.FabriqueIdentifiant;
 import twiskIG.outils.TailleComposant;
+import twiskIG.vues.Observateur;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
+public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observateur {
     private HashMap<String, EtapeIG> etapeIG;
     private ArrayList<ArcIG> arcIGs;
     private int balisePdc;
@@ -388,6 +390,18 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
 
     @Override
     public void reagir(){
-        this.notifierObservateur();
+        MondeIG mondeIG= this;
+        Runnable command = new Runnable() {
+            @Override
+            public void run() {
+                mondeIG.notifierObservateur();
+                System.out.println("oui");
+            }
+        };
+        if(Platform.isFxApplicationThread()){
+            command.run();
+        }else{
+            Platform.runLater(command);
+        }
     }
 }

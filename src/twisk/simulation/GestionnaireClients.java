@@ -40,4 +40,11 @@ public class GestionnaireClients implements Iterable<Client>{
     public HashMap<Integer, Client> getListeClient() {
         return listeClient;
     }
+
+    @Override
+    public String toString() {
+        return "GestionnaireClients{" +
+                "listeClient=" + listeClient +
+                '}';
+    }
 }
