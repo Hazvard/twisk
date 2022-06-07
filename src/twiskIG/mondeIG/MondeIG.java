@@ -7,6 +7,7 @@ import twisk.outils.FabriqueNumero;
 import twisk.simulation.GestionnaireClients;
 import twiskIG.exceptions.MondeException;
 import twiskIG.exceptions.TwiskException;
+import twiskIG.outils.CorrespondanceEtapes;
 import twiskIG.outils.FabriqueIdentifiant;
 import twiskIG.outils.TailleComposant;
 import twiskIG.vues.Observateur;

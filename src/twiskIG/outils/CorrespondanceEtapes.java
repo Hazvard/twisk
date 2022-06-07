@@ -1,7 +1,8 @@
-package twiskIG.mondeIG;
+package twiskIG.outils;
 
 
 import twisk.monde.Etape;
+import twiskIG.mondeIG.EtapeIG;
 
 import java.util.HashMap;
 import java.util.Map;

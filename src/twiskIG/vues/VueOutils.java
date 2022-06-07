@@ -90,6 +90,30 @@ public class VueOutils extends TilePane implements Observateur{
 
 
         this.getChildren().addAll(simulation, arreterSimulation, addActi, addGuichet);
+
+        Tooltip tooltip = new Tooltip();
+        tooltip.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        Label label = new Label("Ajouter une activité");
+        tooltip.setGraphic(label);
+        addActi.setTooltip(tooltip);
+
+        Tooltip tooltip1 = new Tooltip();
+        tooltip.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        Label label1 = new Label("Ajouter un Guichet");
+        tooltip1.setGraphic(label1);
+        addGuichet.setTooltip(tooltip1);
+
+        Tooltip tooltip2 = new Tooltip();
+        tooltip.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        Label label2 = new Label("Stoper la simulation");
+        tooltip2.setGraphic(label2);
+        arreterSimulation.setTooltip(tooltip2);
+
+        Tooltip tooltip3 = new Tooltip();
+        tooltip.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        Label label3 = new Label("Jouer la simulation");
+        tooltip3.setGraphic(label3);
+        simulation.setTooltip(tooltip3);
     }
 
     /**
@@ -120,18 +144,6 @@ public class VueOutils extends TilePane implements Observateur{
      */
     @Override
     public void reagir() {
-        Tooltip tooltip = new Tooltip();
-        StringBuilder acts = new StringBuilder();
-        for (EtapeIG etape: monde
-             ) {
-            acts.append(etape);
-            acts.append("\n");
-        }
-        //System.out.println(monde.toString());
-        tooltip.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-        Label label = new Label(acts.toString());
-        tooltip.setGraphic(label);
-        addActi.setTooltip(tooltip);
 
 
     }

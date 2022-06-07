@@ -1,19 +1,14 @@
 package twiskIG.vues;
 
-import javafx.application.Platform;
-import javafx.scene.image.WritableImage;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import twisk.monde.Etape;
-import twisk.monde.GestionnaireEtape;
 import twisk.simulation.Client;
 import twisk.simulation.GestionnaireClients;
 import twiskIG.mondeIG.ArcIG;
-import twiskIG.mondeIG.CorrespondanceEtapes;
+import twiskIG.outils.CorrespondanceEtapes;
 import twiskIG.mondeIG.EtapeIG;
 import twiskIG.mondeIG.MondeIG;
 
