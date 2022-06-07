@@ -12,10 +12,18 @@ public class VueActiviteIG extends VueEtapeIG implements Observateur{
     private EtapeIG etape;
     private Label lab;
 
+    /**
+     * Constructeur
+     * @param world
+     * @param etape
+     */
     public VueActiviteIG(MondeIG world, EtapeIG etape) {
         super(world, etape);
     }
 
+    /**
+     * Permet de mettre à jour les vues
+     */
     @Override
     public void reagir() {
         this.getChildren().clear();

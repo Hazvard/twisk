@@ -7,11 +7,18 @@ import twiskIG.mondeIG.MondeIG;
 
 public class VueGuichetIG extends VueEtapeIG implements Observateur{
 
-
+    /**
+     * Constructeur
+     * @param world
+     * @param etape
+     */
     public VueGuichetIG(MondeIG world, EtapeIG etape) {
         super(world, etape);
     }
 
+    /**
+     * Permet de mettre à jour les vues
+     */
     @Override
     public void reagir(){
         this.getChildren().clear();

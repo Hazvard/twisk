@@ -17,6 +17,12 @@ public class VuePointDeControleIG extends Circle implements Observateur{
     private EtapeIG etape;
     private PointDeControlIG pdc;
 
+    /**
+     * Constructeur
+     * @param world
+     * @param et
+     * @param pdc
+     */
     public VuePointDeControleIG(MondeIG world, EtapeIG et, PointDeControlIG pdc){
         this.monde = world;
         this.etape = et;
@@ -45,6 +51,9 @@ public class VuePointDeControleIG extends Circle implements Observateur{
         this.setFill(couleur);
     }
 
+    /**
+     * Permet de mettre à jour les vues
+     */
     @Override
     public void reagir() {
         if(this.pdc.isEstSelec()){

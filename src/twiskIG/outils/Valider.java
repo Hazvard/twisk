@@ -4,6 +4,11 @@ public class Valider {
     private String delai;
     private String ecart;
 
+    /**
+     * Constructeur
+     * @param del
+     * @param ecart
+     */
     public Valider(String del, String ecart){
         this.delai = del;
         this.ecart = ecart;

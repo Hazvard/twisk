@@ -9,7 +9,10 @@ public class PointDeControlIG {
     private EtapeIG etape;
     private boolean estSelec;
 
-
+    /**
+     * Constructeur
+     * @param et
+     */
     public PointDeControlIG(EtapeIG et) {
         this.etape = et;
         FabriqueIdentifiant fab = FabriqueIdentifiant.getInstance();
@@ -17,6 +20,11 @@ public class PointDeControlIG {
         estSelec = false;
     }
 
+    /**
+     * identifie l'origine du point de controle
+     * @param etape
+     * @return
+     */
     public boolean estDeLaMemeEtape(EtapeIG etape){
         if(this.etape == etape){
             return true;

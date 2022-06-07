@@ -6,7 +6,10 @@ public class FabriqueIdentifiant {
     private static FabriqueIdentifiant instance = new FabriqueIdentifiant();
     private int noGuichet;
 
-
+    /**
+     * Renvoie l'instance de la fabrique
+     * @return
+     */
     static public FabriqueIdentifiant getInstance(){
         return instance;
     }

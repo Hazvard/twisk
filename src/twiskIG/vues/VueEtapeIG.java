@@ -25,6 +25,12 @@ public abstract class VueEtapeIG extends VBox implements Observateur{
     private EtapeIG etape;
     private Label lab;
 
+
+    /**
+     * Constructeur
+     * @param world
+     * @param etape
+     */
     public VueEtapeIG(MondeIG world, EtapeIG etape){
         this.monde = world;
         this.etape = etape;
@@ -91,6 +97,9 @@ public abstract class VueEtapeIG extends VBox implements Observateur{
         });
     }
 
+    /**
+     * Permet de mettre à jour les vues
+     */
     @Override
     public void reagir(){
         lab.setText(this.etape.getNom());

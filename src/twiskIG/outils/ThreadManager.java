@@ -12,6 +12,10 @@ public class ThreadManager {
         lesThreads = new ArrayList<>();
     }
 
+    /**
+     * Renvoie l'instance de la fabrique
+     * @return
+     */
     public static ThreadManager getInstance(){
         return instance;
     }

@@ -6,6 +6,9 @@ import java.util.ArrayList;
 public abstract class SujetObserve {
     private ArrayList<Observateur> obs;
 
+    /**
+     * Constructeur
+     */
     public SujetObserve(){
         obs = new ArrayList<>(10);
     }

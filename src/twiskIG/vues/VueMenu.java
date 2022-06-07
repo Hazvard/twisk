@@ -35,6 +35,11 @@ public class VueMenu extends MenuBar implements Observateur {
     private MenuItem changerEcart;
     private MenuItem changerJetons;
 
+    /**
+     * Constructeur
+     * @param world
+     * @param vuvue
+     */
     public VueMenu(MondeIG world, VueMondeIG vuvue){
         this.monde = world;
         this.vueMondeIG = vuvue;

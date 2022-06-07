@@ -3,6 +3,10 @@ package twiskIG.outils;
 public class ValiderJeton extends Valider {
     private String jetons;
 
+    /**
+     * Constructeur
+     * @param jeton
+     */
     public ValiderJeton(String jeton){
         super("rien","rien");
         this.jetons = jeton;

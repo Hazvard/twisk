@@ -19,6 +19,10 @@ public class VueOutils extends TilePane implements Observateur{
     private Button simulation;
     private Button arreterSimulation;
 
+    /**
+     * Constructeur
+     * @param world
+     */
     public VueOutils(MondeIG world){
         this.monde = world;
         monde.ajouterObservateur(this);
@@ -88,7 +92,9 @@ public class VueOutils extends TilePane implements Observateur{
         this.getChildren().addAll(simulation, arreterSimulation, addActi, addGuichet);
     }
 
-
+    /**
+     * Simulation en thread
+     */
     public void simuEnThread(){
         Task<Void> task = new Task<Void>() {
             @Override
@@ -109,6 +115,9 @@ public class VueOutils extends TilePane implements Observateur{
         ThreadManager threadManager = ThreadManager.getInstance();
         threadManager.lancer(task);
     }
+    /**
+     * Permet de mettre à jour les vues
+     */
     @Override
     public void reagir() {
         Tooltip tooltip = new Tooltip();

@@ -9,7 +9,9 @@ public class TailleComposant {
 
     private static TailleComposant instance = new TailleComposant();
 
-
+/**
+ * renvoie l'instance de la fabrique
+ */
     static public TailleComposant getInstance(){
         return instance;
     }

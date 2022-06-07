@@ -13,6 +13,11 @@ public class VueArcIG extends Group implements Observateur{
     private Line ligne;
     private ArcIG arc;
 
+    /**
+     * Constructeur
+     * @param world
+     * @param arc
+     */
     public VueArcIG(MondeIG world, ArcIG arc){
         this.monde = world;
         ligne = new Line();
@@ -65,6 +70,9 @@ public class VueArcIG extends Group implements Observateur{
     }
 
 
+    /**
+     * Permet de mettre à jour les vues
+     */
     @Override
     public void reagir() {
         //Vide

@@ -23,6 +23,10 @@ public class VueMondeIG extends Pane implements Observateur {
     private MondeIG monde;
     private HashMap<Client,EtapeIG> hashMap;
 
+    /**
+     * Constructeur
+     * @param world
+     */
     public VueMondeIG(MondeIG world) {
         this.monde = world;
         monde.ajouterObservateur(this);
@@ -48,7 +52,9 @@ public class VueMondeIG extends Pane implements Observateur {
         });
     }
 
-
+    /**
+     * Permet de mettre à jour les vues
+     */
     @Override
     public void reagir() {
         this.getChildren().clear();
