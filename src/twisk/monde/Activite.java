@@ -5,16 +5,31 @@ public class Activite extends Etape {
     protected int temps;
     protected int ecartTemps;
 
+    /**
+     * Constructeur
+     * @param nom
+     */
     public Activite(String nom) {
         super(nom);
         temps = 2;
         ecartTemps = 1;
     }
 
+    /**
+     * constructeur
+     * @param nom nom de l'activité
+     * @param num numéros de l'activité
+     */
     public Activite(String nom, int num) {
         super(nom, num);
     }
 
+    /**
+     * constructeur
+     * @param nom
+     * @param t temps que dure l'activité
+     * @param e écart que peut plus ou moins prendre un client
+     */
     public Activite(String nom, int t, int e){
         super(nom);
         if(t>e){
@@ -23,6 +38,13 @@ public class Activite extends Etape {
         }
     }
 
+    /**
+     * Constructeur
+     * @param nom nom de l'activité
+     * @param t temps que dure l'activité
+     * @param e écart que peut plus ou moins prendre un client
+     * @param num numéros de l'activité
+     */
     public Activite(String nom, int t, int e, int num){
         super(nom, num);
         if(t>e){
@@ -31,6 +53,10 @@ public class Activite extends Etape {
         }
     }
 
+    /**
+     * Fonction qui renvoie le code C le l'activitée
+     * @return le code en C
+     */
     public String toC(){
         if(this.nombreDeSuccesseurs() < 2) {
             StringBuilder c = new StringBuilder();
@@ -70,8 +96,16 @@ public class Activite extends Etape {
         return ecartTemps;
     }
 
+    /**
+     * Permet de savoir si l'activité est une sortie ou non
+     * @return
+     */
     public boolean estUneSortie(){return false;}
 
+    /**
+     * Permet de savoir si l'activité est une activite ou non
+     * @return
+     */
     @Override
     public boolean estUneActivite() {
         return true;

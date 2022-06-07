@@ -43,15 +43,23 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     }
 
     ////////PARTIE TWISK/////////////
+
+    /**
+     * permet de lancer la simulation de l'interface grapgique
+     * @throws MondeException
+     */
     public void simuler() throws MondeException {
         verifierMondeIG();
         Monde monde = creerMonde();
         ClientTwisk t = new ClientTwisk();
-        t.test(monde, this);
+        t.load(monde, this);
     }
 
 
-
+    /**
+     * Vérifie que le monde est correctement construit et est simulable
+     * @throws MondeException
+     */
     private void verifierMondeIG() throws MondeException {
 
         // Dans le meilleur des cas on vérifie que tous les chemins dispoants d'une entrée dispose aussi d'une sortie
@@ -99,6 +107,10 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
 
     }
 
+    /**
+     * Créer un monde à partir du mondeIG
+     * @return
+     */
     private Monde creerMonde(){
 
         // Variables
@@ -146,6 +158,10 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
 
     /////////////////////////////////
 
+    /**
+     * Ajoute un act
+     * @param type
+     */
     public void ajouter(String type){
         if(type == "Activite"){
             FabriqueIdentifiant fab = FabriqueIdentifiant.getInstance();
@@ -161,6 +177,11 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         }
     }
 
+    /**
+     * Change les nombre de jetons des guichets
+     * @param nbJeton
+     * @throws TwiskException
+     */
     public void changerJetons(int nbJeton) throws TwiskException {
         if(idEtapeSelect.size() == 0){
             throw new TwiskException("Cliquez sur un guicher pour changer son nombre de jetons");
@@ -174,6 +195,10 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         }
     }
 
+    /**
+     * met des etapes en entrées
+     * @throws TwiskException
+     */
     public void ajouterEntrees() throws TwiskException{
         for (String id: idEtapeSelect
              ) {
@@ -191,6 +216,10 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         }
     }
 
+    /**
+     * Met des etapes en sorties
+     * @throws TwiskException
+     */
     public void ajouterSortie() throws TwiskException{
         for (String id: idEtapeSelect
         ) {
@@ -215,6 +244,11 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         return arcIGs.size();
     }
 
+    /**
+     * Ajoute un arc à partir de deux point de controle
+     * @param p1
+     * @param p2
+     */
     public void ajouter(PointDeControlIG p1, PointDeControlIG p2){
         arcIGs.add(new ArcIG(p1, p2));
     }
@@ -223,6 +257,12 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         return etapeIG.get(id);
     }
 
+    /**
+     * Modifie les coordonnée d'une act quand elle est déplacée
+     * @param etape
+     * @param newX
+     * @param newY
+     */
     public void modifCoordAct(String etape, int newX, int newY){
         EtapeIG etapeTempo = etapeIG.get(etape);
         etapeTempo.setPosX(newX);
@@ -233,6 +273,12 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         this.reagir();
     }
 
+    /**
+     * modifie les information numérique d'une étape
+     * @param delai
+     * @param ecart
+     * @throws TwiskException
+     */
     public void modifDelaiEcart(int delai, int ecart) throws TwiskException{
         if(idEtapeSelect.size() == 0){
             throw new TwiskException("Cliquez sur une activité pour modifier son écart/temps");
@@ -251,6 +297,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         }
     }
 
+    /**
+     * remet la selection à zéro
+     */
     public void deselectionnerTout(){
         for (ArcIG arc: arcSelect
              ) {
@@ -264,6 +313,11 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         idEtapeSelect = new ArrayList<>();
     }
 
+    /**
+     * réagi à un point de controle cliqué
+     * @param point
+     * @throws TwiskException
+     */
     public void pointDeControleCliquer(PointDeControlIG point) throws TwiskException {
 
         if(balisePdc == 1 && pointTempo.getEtape().getIdentifiant() != point.getEtape().getIdentifiant()){
@@ -290,6 +344,10 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         balisePdc = 0;
     }
 
+    /**
+     * Réagi à une étape cliquée
+     * @param et
+     */
     public void selectEt(EtapeIG et){
         if(!et.estSelectionnee()){
             et.selectionnerEtape();
@@ -303,6 +361,10 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         //System.out.println("Liste des etapes selec : " + idEtapeSelect.toString());
     }
 
+    /**
+     * Réagi à un arc cliqué
+     * @param arcIG
+     */
     public void selectArc(ArcIG arcIG){
         if(!arcIG.isSelectionner()){
             arcIG.selectionnerArc();
@@ -322,6 +384,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         return etapeIG.values().toString() + "\n Arcs : " + arcIGs.toString();
     }
 
+    /**
+     * Supprime les élément séléctionné
+     */
     public void supprSelection(){
         ArrayList<ArcIG> arcASuppr = new ArrayList<>();
         //Enlève tout les arcs
@@ -370,6 +435,11 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         return idEtapeSelect.iterator();
     }
 
+    /**
+     * permet de rennomer une act
+     * @param newNom
+     * @throws TwiskException
+     */
     public void renommerActivite(String newNom) throws TwiskException{
         if(idEtapeSelect.size() > 1){
             throw new TwiskException("On ne peut renommer qu'une seule activité à la fois !!");
@@ -390,6 +460,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         return correspondanceEtapes;
     }
 
+    /**
+     * notifie les observateur
+     */
     @Override
     public void reagir(){
         MondeIG mondeIG= this;
@@ -406,6 +479,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
             Platform.runLater(command);
         }
     }
+
 
     public int getNombreClient() {
         return nombreClient;

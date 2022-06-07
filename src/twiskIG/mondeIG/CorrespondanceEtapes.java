@@ -13,12 +13,20 @@ public class CorrespondanceEtapes {
     private HashMap<String, Etape> etape;
     private HashMap<EtapeIG, Etape> bonneHashMap;
 
+    /**
+     * Constructeur
+     */
     public CorrespondanceEtapes(){
         etapeIG = new HashMap<>();
         etape = new HashMap<>();
         bonneHashMap = new HashMap<>();
     }
 
+    /**
+     * Ajoute une étape de chaque dans les map
+     * @param etig
+     * @param et
+     */
     public void ajouter(EtapeIG etig, Etape et){
         etapeIG.put(etig.getIdentifiant(), etig);
         etape.put(etig.getIdentifiant(), et);

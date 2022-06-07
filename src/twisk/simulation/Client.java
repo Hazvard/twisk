@@ -9,13 +9,21 @@ public class Client {
     private int rang;
     private Etape etape;
 
-
+    /**
+     * Constructeur
+     * @param numero
+     */
     public Client(int numero){
         numClient = numero;
         rang = 0;
         etape = null;
     }
 
+    /**
+     * déplace le client
+     * @param etape
+     * @param rang
+     */
     public void allerA(Etape etape, int rang){
         this.rang = rang;
         this.etape = etape;

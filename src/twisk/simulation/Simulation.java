@@ -14,6 +14,10 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
     private int nbClient;
     private boolean flag;
 
+    /**
+     * Constructeur
+     * @param mondeIG
+     */
     public Simulation(MondeIG mondeIG) {
         kitC = new KitC();
         kitC.creerEnvironnement();
@@ -23,11 +27,29 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
         mondeIG.setGestionnaireClients(gestionnaireClients);
     }
 
+    /**
+     * Permet de lancer la simulation
+     * @param nbEtapes
+     * @param nbGuichets
+     * @param nbClients
+     * @param tabJetonsGuichet
+     * @return
+     */
     public native int[] start_simulation(int nbEtapes, int nbGuichets, int nbClients, int[] tabJetonsGuichet);
 
+    /**
+     * Permet de voir où sont les clients
+     * @param nbEtapes
+     * @param nbClients
+     * @return
+     */
     public native int[] ou_sont_les_clients(int nbEtapes, int nbClients);
 
+    /**
+     * nettoyoie la sim
+     */
     public native void nettoyage();
+
 
     public void setNbClients(int nb) {
         nbClient = nb;
@@ -37,6 +59,10 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
         flag = false;
     }
 
+    /**
+     * Simule le monde entré en paramètre
+     * @param world
+     */
     public void simuler(Monde world) {
         String Cworld = world.toC();
 
@@ -121,6 +147,9 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
     }
 
 
+    /**
+     * oui
+     */
     @Override
     public void reagir() {
 

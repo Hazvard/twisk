@@ -8,20 +8,40 @@ public class GestionnaireSuccesseurs implements Iterable<Etape>{
 
     private ArrayList<Etape> listeEtape ;
 
-
+    /**
+     * Constructeur
+     */
     public GestionnaireSuccesseurs() {
         this.listeEtape = new ArrayList<>();
     }
 
-
+    /**
+     * Ajoute un liste de successeurs
+     * @param etapes
+     */
     public void ajouter(Etape... etapes){
         listeEtape.addAll(Arrays.asList(etapes)) ;
     }
 
+    /**
+     * renvoie la nombre de successeurs
+     * @return taille de listeEtape
+     */
     public int nbEtapes(){
         return listeEtape.size();
     }
 
+    /**
+     * renvoie la nombre de successeurs
+     * @return taille de listeEtape
+     */
+    public int nbSuccesseurs(){
+        return listeEtape.size();
+    }
+    /**
+     * rend la class iterable
+     * @return
+     */
     public Iterator<Etape> iterator(){
         return listeEtape.iterator();
     }
@@ -41,9 +61,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape>{
 
 
 
-    public int nbSuccesseurs(){
-        return listeEtape.size();
-    }
+
 
     // Setteurs
     public void setListeEtape(ArrayList<Etape> listeEtape) {

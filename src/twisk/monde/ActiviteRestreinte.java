@@ -2,22 +2,48 @@ package twisk.monde;
 
 public class ActiviteRestreinte extends Activite{
 
+    /**
+     * Constructeur
+     * @param nom nom de l'act
+     */
     public  ActiviteRestreinte(String nom) {
         super(nom);
     }
 
+    /**
+     *  Constructeur
+     * @param nom nom nom de l'act
+     * @param num numéros nom de l'act
+     */
     public  ActiviteRestreinte(String nom, int num) {
         super(nom, num);
     }
 
+    /**
+     *
+     * @param nom nom nom de l'act
+     * @param t durée de l'activité en temps normal
+     * @param e écart de temps que prend plus ou moins le client à faire
+     */
     public ActiviteRestreinte(String nom, int t, int e) {
         super(nom, t, e);
     }
 
+    /**
+     *
+     * @param nom nom nom de l'act
+     * @param t durée de l'activité en temps normal
+     * @param e écart de temps que prend plus ou moins le client à faire
+     * @param num numéros nom de l'act
+     */
     public ActiviteRestreinte(String nom, int t, int e, int num) {
         super(nom, t, e, num);
     }
 
+    /**
+     * Fonction qui renvoie le code C le l'activitée
+     * @return le code C
+     */
     public String toC(){
         StringBuilder c = new StringBuilder();
 

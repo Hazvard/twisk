@@ -15,6 +15,9 @@ public class Monde implements Iterable<Etape> {
     protected int n;    //Sert à mettre les constantes dans la hashmap
     protected int numMonde;
 
+    /**
+     * Constructeur de monde
+     */
     public Monde() {
         lesEtapes = new GestionnaireEtape();
         entree = new SasEntree();
@@ -33,10 +36,18 @@ public class Monde implements Iterable<Etape> {
                 "sortie = " + sortie.toString() + " ;\n";
     }
 
+    /**
+     * Ajoute une liste d'étapes au monde
+     * @param etapes liste d'étapes à ajouter au monde
+     */
     public void ajouter(Etape... etapes) {
         lesEtapes.ajouter(etapes);
     }
 
+    /**
+     * Défine des étapes comme entrées du monde, et les ajoutes au monde
+     * @param etapes liste d'étapes entrées
+     */
     public void aCommeEntree(Etape... etapes) {
         for(Etape etape: lesEtapes){
             for(Etape entre: etapes){
@@ -45,9 +56,12 @@ public class Monde implements Iterable<Etape> {
                     this.entree.ajouterSuccesseur(entre);
             }
         }
-        //ajouter(entree);
     }
 
+    /**
+     * Définie des étapes comme sorties du monde et les ajoute à celui-ci
+     * @param etapes liste d'étapes sorties
+     */
     public void aCommeSortie(Etape... etapes) {
         sortie = new SasSortie();
 
@@ -61,10 +75,83 @@ public class Monde implements Iterable<Etape> {
         ajouter(sortie);
     }
 
+    /**
+     * Renvoie le nombre d'étapes que contient le monde
+     * @return la taille de lesEtapes
+     */
     public int nbEtapes() {
         return lesEtapes.nbEtapes();
     }
 
+
+
+    // renvoie #define nom num
+
+    /**
+     * Créer les defines du monde pour la fonction toC
+     * @return renvoie le code C des difine pour le monde
+     */
+    public String definetoC(){
+        StringBuilder renvoi = new StringBuilder();
+        for(int i = 0; i < constante.size(); i++){
+            renvoi.append("#define ");
+            renvoi.append(constante.get(i) + " " + i);
+            renvoi.append("\n");
+        }
+        return renvoi.toString();
+    }
+
+    /**
+     * Fonction qui renvoie le code C le l'activitée
+     * @return le code C
+     */
+    public String toC(){
+        StringBuilder entete = new StringBuilder("#include \"def.h\"\n");
+        for(Etape etape: lesEtapes){
+            entete.append("//#define " + etape.getNom() + " " + etape.getNumEtape() + "\n");
+        }
+        entete.append("\n\n\nvoid simulation(int ids){\n\n  srand(time(NULL));\n");
+        return ( entete + entree.toC() + "}");
+    }
+
+
+
+    /**
+     * Fonction qui compte le nombre de guichet et le retourne
+     * @return nombre de guichet
+     */
+    public int nbGuichets(){
+        int n = 0;
+        if (lesEtapes.nbEtapes() > 0){
+            Iterator<Etape> iterator = iterator() ;
+            while(iterator.hasNext()) {
+                Etape etape = iterator.next();
+                if(etape.estUnGuichet())
+                    n++  ;
+            }
+        }
+        return n;
+    }
+
+    public int getNumMonde(){
+        return numMonde;
+    }
+
+    public void setNumSortie(int numSortie){
+        sortie.setNumEtape(numSortie);
+    }
+
+    /**
+     * Rend iterable la classe
+     * @return
+     */
+    @Override
+    public Iterator<Etape> iterator() {
+        return lesEtapes.iterator();
+    }
+}
+
+/* Fonction non utilisée
 
     //POUR L'INSTANT :
         //Renvoie en String le contenu de l'hashmap constante
@@ -107,52 +194,4 @@ public class Monde implements Iterable<Etape> {
         }
     }
 
-    // renvoie #define nom num
-    public String definetoC(){
-        StringBuilder renvoi = new StringBuilder();
-        for(int i = 0; i < constante.size(); i++){
-            renvoi.append("#define ");
-            renvoi.append(constante.get(i) + " " + i);
-            renvoi.append("\n");
-        }
-        return renvoi.toString();
-    }
-
-    public String toC(){
-        StringBuilder entete = new StringBuilder("#include \"def.h\"\n");
-        for(Etape etape: lesEtapes){
-            entete.append("//#define " + etape.getNom() + " " + etape.getNumEtape() + "\n");
-        }
-        entete.append("\n\n\nvoid simulation(int ids){\n\n  srand(time(NULL));\n");
-        return ( entete + entree.toC() + "}");
-    }
-
-    public void setNumSortie(int numSortie){
-        sortie.setNumEtape(numSortie);
-    }
-
-    public int nbGuichets(){
-        int n = 0;
-        if (lesEtapes.nbEtapes() > 0){
-            Iterator<Etape> iterator = iterator() ;
-            while(iterator.hasNext()) {
-                Etape etape = iterator.next();
-                if(etape.estUnGuichet())
-                    n++  ;
-            }
-        }
-        return n;
-    }
-
-    public int getNumMonde(){
-        return numMonde;
-    }
-
-
-
-
-    @Override
-    public Iterator<Etape> iterator() {
-        return lesEtapes.iterator();
-    }
-}
+ */

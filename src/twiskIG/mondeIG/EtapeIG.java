@@ -22,7 +22,13 @@ public abstract class EtapeIG implements Iterable<PointDeControlIG> {
     private boolean estUneSortie;
     protected GestionnaireSuccesseursIG gstSuccesseursIG;
 
-
+    /**
+     * Constructeur
+     * @param nom
+     * @param idf
+     * @param larg
+     * @param haut
+     */
     public EtapeIG(String nom, String idf, int larg, int haut){
         this.nom = nom;
         this.identifiant = idf;
@@ -69,6 +75,11 @@ public abstract class EtapeIG implements Iterable<PointDeControlIG> {
         }
     }
     //////FONCTION POUR TWISK//////
+
+    /**
+     * Ajoute des successeurs pour créer un monde
+     * @param et
+     */
     public void ajouterSuccesseurIG(EtapeIG... et){gstSuccesseursIG.ajouter(et);}
     public int nbSuccesseurIG(){return  gstSuccesseursIG.nbEtapesIG();}
 
@@ -101,6 +112,9 @@ public abstract class EtapeIG implements Iterable<PointDeControlIG> {
         estUneSortie = bool;
     }
 
+    /**
+     * place les points de controles
+     */
     public void repositionnerPDC(){
         if(!this.isUnGuichet()){
             pdc[0].setX(posX + hauteur / 2);

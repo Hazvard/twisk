@@ -12,6 +12,12 @@ public abstract class Etape implements Iterable {
     private boolean etapeEntree;
     private boolean etapeSortie;
 
+
+    /**
+     * Constructeur
+     * @param nom nom de étape
+     * @param num numéros d'une étape
+     */
     public Etape(String nom, int num) {
         this.nom = nom;
         this.gstsuccesseurs = new GestionnaireSuccesseurs();
@@ -20,13 +26,32 @@ public abstract class Etape implements Iterable {
         this.etapeSortie = false;
     }
 
+    /**
+     * Constructeur
+     * @param nom nom de étape
+     */
+    public Etape(String nom) {
+        this.nom = nom;
+        this.gstsuccesseurs = new GestionnaireSuccesseurs();
+        FabriqueNumero fabrique = FabriqueNumero.getInstance();
+        this.numEtape = fabrique.getNumeroEtpe();
+    }
+    /**
+     * Renvoie le booléen qui indique s'il sagit d'une activité ou non
+     * @return
+     */
     public boolean isEtapeEntree() {
         return etapeEntree;
     }
 
+    /**
+     * Renvoie le booléen qui indique s'il sagit d'une sortie ou non
+     * @return
+     */
     public boolean isEtapeSortie() {
         return etapeSortie;
     }
+
 
     public void setEtapeEntree(boolean etapeEntree) {
         this.etapeEntree = etapeEntree;
@@ -36,36 +61,59 @@ public abstract class Etape implements Iterable {
         this.etapeSortie = etapeSortie;
     }
 
-    public Etape(String nom) {
-        this.nom = nom;
-        this.gstsuccesseurs = new GestionnaireSuccesseurs();
-        FabriqueNumero fabrique = FabriqueNumero.getInstance();
-        this.numEtape = fabrique.getNumeroEtpe();
-    }
 
+    /**
+     * Permet d'ajouter une liste de successeurs à une étape
+     * @param e liste d'étape successeurs
+     */
     public void ajouterSuccesseur(Etape ... e) {
         gstsuccesseurs.ajouter(e);
     }
 
+    /**
+     * Renvoie le nombre de successeurs
+     * @return nombre de successeurs
+     */
     public int nbSuccesseurs(){
         return gstsuccesseurs.nbEtapes();
     }
 
+    /**
+     * Permet de savoir s'il s'agit d'une activité
+     * @return true si oui false sinon
+     */
     public boolean estUneActivite(){
         return false;
     }
+
+    /**
+     * Permet de savoir s'il s'agit d'une activité Restreinte
+     * @return true si oui false sinon
+     */
     public boolean estUneActiviteRes(){
         return false;
     }
 
+    /**
+     * Permet de savoir s'il s'agit d'un guichet
+     * @return true si oui false sinon
+     */
     public boolean estUnGuichet(){
         return false;
     }
 
+    /**
+     * renvoi un Iterator afin de récupérer les successeurs
+     * @return iterateur des successeurs
+     */
     public Iterator<Etape> iterator(){
         return gstsuccesseurs.iterator();
     }
 
+    /**
+     * Fonction qui renvoie le code C le l'activitée
+     * @return le code C
+     */
     public String toC(){return "";}
 
 

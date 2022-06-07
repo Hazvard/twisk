@@ -51,7 +51,9 @@ public class VueMondeIG extends Pane implements Observateur {
 
     @Override
     public void reagir() {
+        /*
         System.out.println("ouais genre là");
+         */
         this.getChildren().clear();
         Iterator<ArcIG> it = monde.arcIGIterator();
         ArcIG arc;
@@ -79,7 +81,9 @@ public class VueMondeIG extends Pane implements Observateur {
         //sur l'activité...
         GestionnaireClients gestionnaireClients = monde.getGestionnaireClients();
         if (gestionnaireClients != null) {
+            /*
             System.out.println(gestionnaireClients.toString());
+             */
             Iterator<Client> itClient = gestionnaireClients.iterator();
             CorrespondanceEtapes correspondanceEtapes = monde.getCorrespondanceEtapes();
             while (itClient.hasNext()) {
@@ -91,8 +95,11 @@ public class VueMondeIG extends Pane implements Observateur {
                 circle.setCenterX(etapeIG.getPosX());
                 circle.setCenterY(etapeIG.getPosY());
                 this.getChildren().add(circle);
+                /*
                 System.out.println(circle.getCenterX() + " " + circle.getCenterY());
                 System.out.println(etapeIG.getPosX() + " " + etapeIG.getPosY());
+
+                 */
             }
         }
     }

@@ -12,7 +12,14 @@ public class ClientTwisk {
 
     public ClientTwisk(){}
 
-    public void test(Monde monde, MondeIG mondeIG){
+
+    /**
+     * La fonction permet de charger une simulation
+     * @param monde
+     *
+     * @param mondeIG
+     */
+    public void load(Monde monde, MondeIG mondeIG){
 
         try {
             ClassLoaderPerso classLoaderPerso = new ClassLoaderPerso(this.getClass().getClassLoader());
@@ -32,8 +39,8 @@ public class ClientTwisk {
 
         }
     }
-
-    /*public static void main(String[] args) {
+/*
+    public static void main(String[] args) {
 
         Monde world = new Monde();
         //Les activités
@@ -68,10 +75,6 @@ public class ClientTwisk {
             Method simulation = laClasse.getMethod("simuler", Monde.class);
             setNbClients.invoke(laSimulation, 7);
             simulation.invoke(laSimulation, world);
-            //simulation.invoke(laSimulation, world1);// Ajout second monde
-
-
-
         }catch(ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e){
             e.printStackTrace();
 
@@ -82,24 +85,21 @@ public class ClientTwisk {
         Monde world1 = new Monde();
         //Les activités
         Etape act6 = new Activite("Début du ZOO", 5, 3);
-        Etape guich1 = new Guichet("Achat des tickets ZOO", 3);
-        Etape actRes1 = new ActiviteRestreinte("Visite du ZOO", 5, 3);
-        Etape act7 = new Activite("fin du ZOO", 2, 1);
-        Etape act8 = new Activite("fin du ZOO2", 2, 1);
 
         // La suite d'activités
-        act6.ajouterSuccesseur(guich1);
-        guich1.ajouterSuccesseur(actRes1);
-        actRes1.ajouterSuccesseur(act7);
-        act7.ajouterSuccesseur(act8);
+        act1.ajouterSuccesseur(guich);
+        guich.ajouterSuccesseur(actRes);
+        actRes.ajouterSuccesseur(act2);
+        actRes.ajouterSuccesseur(act3);
+        act3.ajouterSuccesseur(act6);
 
 
-        world1.ajouter(act6, guich1, actRes1, act7, act8);
+        world.ajouter(act1, guich, actRes, act2, act3);
 
         //entrée
-        world1.aCommeEntree(act6);
+        world1.aCommeEntree(act1);
         //Sortie
-        world1.aCommeSortie(act8);
+        world1.aCommeSortie(act2, act6);
         // ---------------------------------------------------------------------------------------
 
 
@@ -111,7 +111,7 @@ public class ClientTwisk {
             Object laSimulation = leConstructeur.newInstance();
             Method setNbClients = laClasse.getMethod("setNbClients",int.class);
             Method simulation = laClasse.getMethod("simuler", Monde.class);
-            setNbClients.invoke(laSimulation, 7);
+            setNbClients.invoke(laSimulation, 8);
             simulation.invoke(laSimulation, world1);// Ajout second monde
 
 
@@ -122,5 +122,7 @@ public class ClientTwisk {
         }
     }
 
-     */
+
+ */
+
 }

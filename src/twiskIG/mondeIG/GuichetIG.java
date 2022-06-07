@@ -18,6 +18,14 @@ public class GuichetIG extends EtapeIG {
 
     private int nbJetons;
 
+    /**
+     * Constructeur
+     * @param nom
+     * @param idf
+     * @param larg
+     * @param haut
+     * @param jetons
+     */
     public GuichetIG(String nom, String idf, int larg, int haut, int jetons) {
         super(nom, idf, larg, haut);
         nbJetons = jetons;

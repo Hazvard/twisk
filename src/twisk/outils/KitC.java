@@ -9,10 +9,14 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class KitC {
 
-    public KitC(){
+    /**
+     * Constructeur
+     */
+    public KitC(){}
 
-    }
-
+    /**
+     * Va créer les dossiers ou vont être créer les fichier néccessaires pour le C
+     */
     public void creerEnvironnement(){
         try {
             // création du répertoire twisk sous /tmp. Ne déclenche pas d’erreur si le répertoire existe déjà
@@ -32,6 +36,12 @@ public class KitC {
         }
     }
 
+    /**
+     * Copie le premier paramètre dans le second
+     * @param source
+     * @param desti
+     * @throws IOException
+     */
     private void copier(InputStream source, File desti) throws IOException{
         InputStream sourceFile = source;
         OutputStream destinationFile = new FileOutputStream(desti);
@@ -46,6 +56,10 @@ public class KitC {
         sourceFile.close();
     }
 
+    /**
+     * Créer le fichier en C
+     * @param codeC
+     */
     public void creerFichier(String codeC){
         File fichier = new File("/tmp/twisk/client.c");
         try {
@@ -73,7 +87,9 @@ public class KitC {
     }
 
 
-
+    /**
+     * Compile le fichier C
+     */
     public void compiler() {
         Runtime runtime = Runtime.getRuntime();
         try {
@@ -100,6 +116,10 @@ public class KitC {
         }
     }
 
+    /**
+     * Construit la lib en fonction du C et du numéro du monde
+     * @param numMonde
+     */
     public void construireLaLibrairie(int numMonde){
         Runtime runtime = Runtime.getRuntime();
 

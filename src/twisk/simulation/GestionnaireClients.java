@@ -9,6 +9,9 @@ public class GestionnaireClients implements Iterable<Client>{
 
     protected HashMap<Integer, Client> listeClient;
 
+    /**
+     * Constructeur
+     */
     public GestionnaireClients(){
         listeClient = new HashMap<>();
     }
@@ -24,14 +27,27 @@ public class GestionnaireClients implements Iterable<Client>{
         return listeClient.size();
     }
 
+    /**
+     * Déplace un client
+     * @param numeroClient
+     * @param etape
+     * @param rang
+     */
     public void allerA(int numeroClient, Etape etape, int rang){
         listeClient.get(numeroClient).allerA(etape,rang);
     }
 
+    /**
+     * Supprime la hasmap des client
+     */
     public void nettoyer(){
         listeClient = new HashMap<>();
     }
 
+    /**
+     * rend la class iterable
+     * @return
+     */
     @Override
     public Iterator<Client> iterator() {
         return listeClient.values().iterator();

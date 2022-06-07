@@ -8,8 +8,11 @@ public class ArcIG {
     private boolean estSelectionner;
 
 
-
-
+    /**
+     * Constructeur
+     * @param point1
+     * @param point2
+     */
     public ArcIG(PointDeControlIG point1, PointDeControlIG point2){
         p1 = point1;
         p2 = point2;
@@ -18,14 +21,24 @@ public class ArcIG {
         estSelectionner = false;
     }
 
+    /**
+     * savoir si l'arc est séléectionné
+     * @return
+     */
     public boolean isSelectionner() {
         return estSelectionner;
     }
 
+    /**
+     * selection = true
+     */
     public void selectionnerArc(){
         estSelectionner = true;
     }
 
+    /**
+     * selection = false
+     */
     public void deselectionnerArc(){
         estSelectionner = false;
     }
