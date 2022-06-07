@@ -2,7 +2,6 @@ package twisk.simulation;
 
 import twisk.monde.Etape;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -19,6 +18,10 @@ public class GestionnaireClients implements Iterable<Client>{
             Client client = new Client(num);
             listeClient.put(client.getNumClient(), client);
         }
+    }
+
+    public int getNbClient(){
+        return listeClient.size();
     }
 
     public void allerA(int numeroClient, Etape etape, int rang){

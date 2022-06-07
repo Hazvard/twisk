@@ -1,19 +1,25 @@
 package twisk.simulation;
 
+import javafx.concurrent.Task;
 import twisk.monde.*;
 import twisk.outils.KitC;
+import twiskIG.mondeIG.MondeIG;
+import twiskIG.mondeIG.SujetObserve;
 
 import java.util.Iterator;
 
-public class Simulation implements Iterable<Client> {
+public class Simulation extends SujetObserve implements Iterable<Client> {
     private KitC kitC;
     private GestionnaireClients gestionnaireClients;
     private int nbClient;
+    private boolean flag;
 
-    public Simulation() {
+    public Simulation(MondeIG mondeIG) {
         kitC = new KitC();
         kitC.creerEnvironnement();
         gestionnaireClients = new GestionnaireClients();
+        flag = false;
+        mondeIG.setGestionnaireClients(gestionnaireClients);
     }
 
     public native int[] start_simulation(int nbEtapes, int nbGuichets, int nbClients, int[] tabJetonsGuichet);
@@ -24,6 +30,10 @@ public class Simulation implements Iterable<Client> {
 
     public void setNbClients(int nb) {
         nbClient = nb;
+    }
+
+    private void arreterSimulation(){
+        flag = false;
     }
 
     public void simuler(Monde world) {
@@ -49,7 +59,7 @@ public class Simulation implements Iterable<Client> {
             }
         }
 
-        boolean flag = true;
+        flag = true;
 
 
 
@@ -106,6 +116,12 @@ public class Simulation implements Iterable<Client> {
         }
         nettoyage();
         gestionnaireClients.nettoyer();
+    }
+
+
+    @Override
+    public void reagir() {
+
     }
 
     @Override

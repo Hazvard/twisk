@@ -2,6 +2,7 @@ package client;
 
 import twisk.monde.*;
 import twisk.outils.ClassLoaderPerso;
+import twiskIG.mondeIG.MondeIG;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -11,13 +12,13 @@ public class ClientTwisk {
 
     public ClientTwisk(){}
 
-    public void test(Monde monde){
+    public void test(Monde monde, MondeIG mondeIG){
 
         try {
             ClassLoaderPerso classLoaderPerso = new ClassLoaderPerso(this.getClass().getClassLoader());
             Class<?> laClasse = classLoaderPerso.loadClass("twisk.simulation.Simulation");
-            Constructor<?> leConstructeur = laClasse.getConstructor();
-            Object laSimulation = leConstructeur.newInstance();
+            Constructor<?> leConstructeur = laClasse.getConstructor(MondeIG.class);
+            Object laSimulation = leConstructeur.newInstance(mondeIG);
             Method setNbClients = laClasse.getMethod("setNbClients",int.class);
             Method simulation = laClasse.getMethod("simuler", Monde.class);
             setNbClients.invoke(laSimulation, 7);

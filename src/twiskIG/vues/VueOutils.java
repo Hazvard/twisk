@@ -1,5 +1,7 @@
 package twiskIG.vues;
 
+import javafx.concurrent.Task;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,12 +10,14 @@ import javafx.scene.text.Font;
 import twiskIG.exceptions.MondeException;
 import twiskIG.mondeIG.EtapeIG;
 import twiskIG.mondeIG.MondeIG;
+import twiskIG.outils.ThreadManager;
 
 public class VueOutils extends TilePane implements Observateur{
     private MondeIG monde;
     private Button addActi;
     private Button addGuichet;
     private Button simulation;
+    private Button arreterSimulation;
 
     public VueOutils(MondeIG world){
         this.monde = world;
@@ -22,8 +26,8 @@ public class VueOutils extends TilePane implements Observateur{
         addActi = new Button("Ajouter Activité");
         addActi.setStyle("-fx-border-color: BLACK");
         addActi.setStyle("-fx-background-color: rgba(3,84,176,0.07)");
-        addActi.setMaxSize(300,300);
-        addActi.setFont(new Font(30));
+        addActi.setMaxSize(275,300);
+        addActi.setFont(new Font(27));
         addActi.setOnAction(actionEvent -> {
             monde.ajouter("Activite");
             monde.deselectionnerTout();
@@ -33,8 +37,8 @@ public class VueOutils extends TilePane implements Observateur{
         addGuichet = new Button("Ajouter Guichet");
         addGuichet.setStyle("-fx-border-color: BLACK");
         addGuichet.setStyle("-fx-background-color: rgba(3,84,176,0.07)");
-        addGuichet.setMaxSize(300,300);
-        addGuichet.setFont(new Font(30));
+        addGuichet.setMaxSize(275,300);
+        addGuichet.setFont(new Font(27));
         addGuichet.setOnAction(actionEvent -> {
             monde.ajouter("Guichet");
             monde.deselectionnerTout();
@@ -44,29 +48,56 @@ public class VueOutils extends TilePane implements Observateur{
         simulation = new Button();
         simulation.setStyle("-fx-border-color: BLACK");
         simulation.setStyle("-fx-background-color: rgba(3,84,176,0.07)");
-        simulation.setMaxSize(300,300);
+        simulation.setMaxSize(275,300);
         Image img = new Image("/images/play.png") ;
         ImageView view = new ImageView(img);
         view.setFitHeight(25);
         view.setPreserveRatio(true);
         simulation.setGraphic(view);
         simulation.setOnAction(actionEvent -> {
-            try{
-                monde.simuler();
-            }catch(MondeException e){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("ATTENTION");
-                alert.setHeaderText("Impossible ");
-                alert.setContentText(e.getText());
-                alert.showAndWait();
-            }
-
+            this.simuEnThread();
         });
 
-        this.getChildren().addAll(simulation, addActi, addGuichet);
+        arreterSimulation = new Button();
+        arreterSimulation.setStyle("-fx-border-color: BLACK");
+        arreterSimulation.setStyle("-fx-background-color: rgba(3,84,176,0.07)");
+        arreterSimulation.setMaxSize(275,300);
+        Image imgStop = new Image("/images/stop.png");
+        ImageView viewStop = new ImageView(imgStop);
+        viewStop.setFitHeight(25);
+        viewStop.setPreserveRatio(true);
+        arreterSimulation.setGraphic(viewStop);
+        arreterSimulation.setOnAction(actionEvent -> {
+            System.out.println("STOP");
+        });
+
+
+
+
+        this.getChildren().addAll(simulation, arreterSimulation, addActi, addGuichet);
     }
 
 
+    public void simuEnThread(){
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try{
+                    monde.simuler();
+                } catch (MondeException e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("ATTENTION");
+                    alert.setHeaderText("Impossible ");
+                    alert.setContentText(e.getText());
+                    alert.showAndWait();
+                    throw new RuntimeException(e);
+                }
+                return null;
+            }
+        };
+        ThreadManager threadManager = ThreadManager.getInstance();
+        threadManager.lancer(task);
+    }
 
     @Override
     public void reagir() {

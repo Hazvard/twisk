@@ -1,18 +1,14 @@
 package twiskIG.mondeIG;
 
 import client.ClientTwisk;
-import javafx.scene.control.Alert;
 import twisk.monde.*;
-import twisk.outils.ClassLoaderPerso;
 import twisk.outils.FabriqueNumero;
+import twisk.simulation.GestionnaireClients;
 import twiskIG.exceptions.MondeException;
 import twiskIG.exceptions.TwiskException;
 import twiskIG.outils.FabriqueIdentifiant;
 import twiskIG.outils.TailleComposant;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,6 +23,8 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
     private ArrayList<EtapeIG> entrees;
     private ArrayList<EtapeIG> sorties;
     private CorrespondanceEtapes correspondanceEtapes;
+    private GestionnaireClients gestionnaireClients;
+
 
     public MondeIG(){
         arcSelect = new ArrayList<>();
@@ -45,7 +43,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         verifierMondeIG();
         Monde monde = creerMonde();
         ClientTwisk t = new ClientTwisk();
-        t.test(monde);
+        t.test(monde, this);
     }
 
 
@@ -120,19 +118,19 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
             }else if(etapeIG.estUneActiviteRestreinte()){
                 correspondanceEtapes.ajouter(etapeIG, new ActiviteRestreinte(etapeIG.getNom(), etapeIG.getDelai(), etapeIG.getEcart()));
             }
-            monde.ajouter(correspondanceEtapes.get(etapeIG));
+            monde.ajouter(correspondanceEtapes.getEtape(etapeIG));
 
             // On se souvient des entrées et sorties
             if(etapeIG.isUneEntree())
-                entrees.add(correspondanceEtapes.get(etapeIG));
+                entrees.add(correspondanceEtapes.getEtape(etapeIG));
 
             if(etapeIG.isUneSortie())
-                sorties.add(correspondanceEtapes.get(etapeIG));
+                sorties.add(correspondanceEtapes.getEtape(etapeIG));
 
         }
         // On créer les succeseurs des étapes en fonction des arcs de l'interface graphique.
         for (ArcIG arc : arcIGs) {
-            correspondanceEtapes.get(getEtape(arc.getIdentifiantDebut())).ajouterSuccesseur(correspondanceEtapes.get(getEtape(arc.getIdentifiantFin())));
+            correspondanceEtapes.getEtape(getEtape(arc.getIdentifiantDebut())).ajouterSuccesseur(correspondanceEtapes.getEtape(getEtape(arc.getIdentifiantFin())));
         }
 
         //entrées/sorties
@@ -228,7 +226,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         etapeTempo.repositionnerPDC();
         etapeIG.remove(etape);
         etapeIG.put(etapeTempo.getIdentifiant(),etapeTempo);
-        this.notifierObservateur();
+        this.reagir();
     }
 
     public void modifDelaiEcart(int delai, int ecart) throws TwiskException{
@@ -351,6 +349,10 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         return idEtapeSelect.size();
     }
 
+    public void setGestionnaireClients(GestionnaireClients gestionnaireClients) {
+        this.gestionnaireClients = gestionnaireClients;
+    }
+
     @Override
     public Iterator<EtapeIG> iterator() {
         return etapeIG.values().iterator();
@@ -374,5 +376,18 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>{
         else {
             etapeIG.get(idEtapeSelect.get(0)).renommerEtapeIG(newNom);
         }
+    }
+
+    public GestionnaireClients getGestionnaireClients() {
+        return gestionnaireClients;
+    }
+
+    public CorrespondanceEtapes getCorrespondanceEtapes() {
+        return correspondanceEtapes;
+    }
+
+    @Override
+    public void reagir(){
+        this.notifierObservateur();
     }
 }

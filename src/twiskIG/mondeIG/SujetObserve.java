@@ -3,7 +3,7 @@ package twiskIG.mondeIG;
 import twiskIG.vues.Observateur;
 import java.util.ArrayList;
 
-public class SujetObserve {
+public abstract class SujetObserve {
     private ArrayList<Observateur> obs;
 
     public SujetObserve(){
@@ -21,4 +21,5 @@ public class SujetObserve {
         }
     }
 
+    public abstract void reagir();
 }
