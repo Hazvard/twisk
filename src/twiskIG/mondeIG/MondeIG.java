@@ -26,6 +26,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     private ArrayList<EtapeIG> sorties;
     private CorrespondanceEtapes correspondanceEtapes;
     private GestionnaireClients gestionnaireClients;
+    private int nombreClient;
 
 
     public MondeIG(){
@@ -38,6 +39,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         pointTempo = new PointDeControlIG(new ActiviteIG("EtapeTempo","id",1,1));
         idEtapeSelect = new ArrayList<>();
         correspondanceEtapes = new CorrespondanceEtapes();
+        nombreClient  = 7 ;
     }
 
     ////////PARTIE TWISK/////////////
@@ -403,5 +405,13 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         }else{
             Platform.runLater(command);
         }
+    }
+
+    public int getNombreClient() {
+        return nombreClient;
+    }
+
+    public void setNombreClient(int nombreClient) {
+        this.nombreClient = nombreClient;
     }
 }

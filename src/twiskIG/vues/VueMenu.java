@@ -27,6 +27,7 @@ public class VueMenu extends MenuBar implements Observateur {
     private MenuItem deselectionner;
 
     private Menu mondeMenu;
+    private MenuItem nbClient;
     private MenuItem entree;
     private MenuItem sortie;
 
@@ -80,6 +81,62 @@ public class VueMenu extends MenuBar implements Observateur {
         edition.getItems().addAll(suprSelec,rename,deselectionner);
 
         mondeMenu = new Menu("Monde");
+
+
+
+
+
+
+
+        nbClient = new MenuItem("Nombre de Client");
+        nbClient.setOnAction(event ->{
+            //Creation du dialogue
+            Dialog<Valider> dialog = new Dialog<>();
+            dialog.setTitle("Modifier le nombre de clients");
+            //Creation de ses composants
+            //Creation des infos
+            dialog.setHeaderText("Saisissez la nouvelle valeur :");
+            Label jetons = new Label("Nombre de clients : ");
+            TextField champnbclient = new TextField(String.valueOf(monde.getNombreClient()));
+            GridPane grid = new GridPane();
+            grid.add(jetons,1,1);
+            grid.add(champnbclient,1,2);
+            dialog.getDialogPane().setContent(grid);
+            //Cration du bouton
+            ButtonType validerType = new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().add(validerType);
+            dialog.setResultConverter(new Callback<ButtonType, Valider>() {
+                @Override
+                public ValiderJeton call(ButtonType buttonType) {
+                    return new ValiderJeton(champnbclient.getText());
+                }
+            });
+            Optional<Valider> resultat = dialog.showAndWait();
+            if(resultat.isPresent()){
+                try {
+                    int nbClient = Integer.parseInt(resultat.get().getJetonValide());
+                    monde.setNombreClient(nbClient);
+                } catch (NumberFormatException e){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("ATTENTION");
+                    alert.setHeaderText("Impossible de modifier le nombre de Clients");
+                    alert.setContentText("Nombre saisi incorrect !!");
+                    alert.showAndWait();
+                }
+                monde.deselectionnerTout();
+                monde.notifierObservateur();
+            }
+        });
+
+
+
+
+
+
+
+
+
+
         entree = new MenuItem("Entrée");
         entree.setOnAction(event ->{
             try {
@@ -112,7 +169,7 @@ public class VueMenu extends MenuBar implements Observateur {
                 alert.showAndWait();
             }
         });
-        mondeMenu.getItems().addAll(entree,sortie);
+        mondeMenu.getItems().addAll(nbClient,entree,sortie);
 
         parametre = new Menu("Parametres");
         changerEcart = new MenuItem("Changer Ecart/Délai");

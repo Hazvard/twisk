@@ -21,7 +21,7 @@ public class ClientTwisk {
             Object laSimulation = leConstructeur.newInstance(mondeIG);
             Method setNbClients = laClasse.getMethod("setNbClients",int.class);
             Method simulation = laClasse.getMethod("simuler", Monde.class);
-            setNbClients.invoke(laSimulation, 7);
+            setNbClients.invoke(laSimulation, mondeIG.getNombreClient());
             simulation.invoke(laSimulation, monde);
             classLoaderPerso.finalize();
 
