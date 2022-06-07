@@ -32,7 +32,7 @@ public abstract class VueEtapeIG extends VBox implements Observateur{
         this.setMinSize(etape.getHauteur(),etape.getLargeur());
         this.setMaxSize(etape.getHauteur(),etape.getLargeur());
         HBox hBox = new HBox();
-        Label dsBoite = new Label("POUF");
+        Label dsBoite = new Label("");
         dsBoite.setFont(new Font(25));
         dsBoite.setAlignment(Pos.CENTER);
         hBox.setAlignment(Pos.CENTER);

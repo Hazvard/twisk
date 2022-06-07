@@ -42,7 +42,7 @@ public class ClassLoaderPerso extends ClassLoader {
 
             Class<?> c = defineClass(name, byteArr, 0, byteArr.length);
             resolveClass(c);
-            System.out.println("la classe retournée : " + c);
+            //System.out.println("la classe retournée : " + c);
             return c;
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,7 +69,7 @@ public class ClassLoaderPerso extends ClassLoader {
     }
 
     public void finalize() {
-        System.out.println("..................................................................................................ClassLoaderPerso : A garbage collected");
+        //System.out.println("..................................................................................................ClassLoaderPerso : A garbage collected");
     }
 
 }

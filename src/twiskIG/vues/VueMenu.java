@@ -192,7 +192,7 @@ public class VueMenu extends MenuBar implements Observateur {
             });
             Optional<Valider> resultat = dialog.showAndWait();
             if(resultat.isPresent()){
-                System.out.println("Resultat = " + resultat.get());
+                //System.out.println("Resultat = " + resultat.get());
                 try {
                     int newJetons = Integer.parseInt(resultat.get().getJetonValide());
                     monde.changerJetons(newJetons);

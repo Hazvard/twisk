@@ -40,7 +40,7 @@ public class VueMondeIG extends Pane implements Observateur {
                         (int) event.getY() - etapeADrag.getHauteur() / 2);
                 success = true;
             } catch (Exception e) {
-                System.out.println(e.toString());
+                //System.out.println(e.toString());
             } finally {
                 event.setDropCompleted(success);
                 event.consume();
@@ -71,24 +71,17 @@ public class VueMondeIG extends Pane implements Observateur {
                 }
             }
         }
-        //LesClients
-        //1) Trouver Nb clients OUI
-        //2) Trouver le nom de l'étape dans laquelles ils sont OUI
-        //3) Trouver les coordonnée de l'étape en quesiton  En cours
-        //4) Placer les cerles et les déplacer en concéquence si un cercle est déjà présent
-        //sur l'activité...
+        //LesClients//
         GestionnaireClients gestionnaireClients = monde.getGestionnaireClients();
         if (gestionnaireClients != null) {
-            Iterator<Client> itClient = gestionnaireClients.iterator();
             CorrespondanceEtapes correspondanceEtapes = monde.getCorrespondanceEtapes();
-            while (itClient.hasNext()) {
-                Client clientTempo = itClient.next();
+            for(Iterator<Client> ite = gestionnaireClients.iterator(); ite.hasNext();){
+                Client clientTempo = ite.next();
+                //System.out.println(clientTempo);
                 Circle circle = new Circle();
                 circle.setFill(javafx.scene.paint.Color.RED);
-                Etape etapeTempo = clientTempo.getEtape();
-                System.out.println(etapeTempo);
+                Etape etapeTempo = clientTempo.getEtape(); //TJRS LA MEME ETAPE DONNEE POUR TOUT LE MONDE EN MEME TEMPS
                 EtapeIG etapeIG = correspondanceEtapes.getEtapeIG(etapeTempo);
-                System.out.println(etapeIG);
                 circle.setRadius(10);
                 if(etapeIG != null){
                     int posX = etapeIG.getPosX() + 20;
