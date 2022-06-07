@@ -17,11 +17,11 @@ import twiskIG.mondeIG.CorrespondanceEtapes;
 import twiskIG.mondeIG.EtapeIG;
 import twiskIG.mondeIG.MondeIG;
 
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 public class VueMondeIG extends Pane implements Observateur {
     private MondeIG monde;
+    private HashMap<Client,EtapeIG> hashMap;
 
     public VueMondeIG(MondeIG world) {
         this.monde = world;
@@ -40,7 +40,7 @@ public class VueMondeIG extends Pane implements Observateur {
                         (int) event.getY() - etapeADrag.getHauteur() / 2);
                 success = true;
             } catch (Exception e) {
-                System.out.println(e.toString());
+                //System.out.println(e.toString());
             } finally {
                 event.setDropCompleted(success);
                 event.consume();
@@ -51,10 +51,8 @@ public class VueMondeIG extends Pane implements Observateur {
 
     @Override
     public void reagir() {
-        /*
-        System.out.println("ouais genre là");
-         */
         this.getChildren().clear();
+        this.hashMap = new HashMap<>();
         Iterator<ArcIG> it = monde.arcIGIterator();
         ArcIG arc;
         while (it.hasNext()) {
@@ -73,33 +71,31 @@ public class VueMondeIG extends Pane implements Observateur {
                 }
             }
         }
-        //LesClients
-        //1) Trouver Nb clients OUI
-        //2) Trouver le nom de l'étape dans laquelles ils sont OUI
-        //3) Trouver les coordonnée de l'étape en quesiton  En cours
-        //4) Placer les cerles et les déplacer en concéquence si un cercle est déjà présent
-        //sur l'activité...
+        //LesClients//
         GestionnaireClients gestionnaireClients = monde.getGestionnaireClients();
         if (gestionnaireClients != null) {
-            /*
-            System.out.println(gestionnaireClients.toString());
-             */
-            Iterator<Client> itClient = gestionnaireClients.iterator();
             CorrespondanceEtapes correspondanceEtapes = monde.getCorrespondanceEtapes();
-            while (itClient.hasNext()) {
-                Client clientTempo = itClient.next();
+            for(Iterator<Client> ite = gestionnaireClients.iterator(); ite.hasNext();){
+                Client clientTempo = ite.next();
+                //System.out.println(clientTempo);
                 Circle circle = new Circle();
-                Etape etapeTempo = clientTempo.getEtape();
+                circle.setFill(javafx.scene.paint.Color.RED);
+                Etape etapeTempo = clientTempo.getEtape(); //TJRS LA MEME ETAPE DONNEE POUR TOUT LE MONDE EN MEME TEMPS
                 EtapeIG etapeIG = correspondanceEtapes.getEtapeIG(etapeTempo);
                 circle.setRadius(10);
-                circle.setCenterX(etapeIG.getPosX());
-                circle.setCenterY(etapeIG.getPosY());
-                this.getChildren().add(circle);
-                /*
-                System.out.println(circle.getCenterX() + " " + circle.getCenterY());
-                System.out.println(etapeIG.getPosX() + " " + etapeIG.getPosY());
-
-                 */
+                if(etapeIG != null){
+                    int posX = etapeIG.getPosX() + 20;
+                    int posY = etapeIG.getPosY() + 80;
+                    for(Map.Entry<Client,EtapeIG> entry:hashMap.entrySet()){
+                        if(Objects.equals(etapeIG, entry.getValue())){
+                            posX += 35;
+                        }
+                    }
+                    hashMap.put(clientTempo, etapeIG);
+                    circle.setCenterX(posX);
+                    circle.setCenterY(posY);
+                    this.getChildren().add(circle);
+                }
             }
         }
     }

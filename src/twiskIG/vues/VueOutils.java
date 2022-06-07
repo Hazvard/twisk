@@ -78,7 +78,8 @@ public class VueOutils extends TilePane implements Observateur{
         viewStop.setPreserveRatio(true);
         arreterSimulation.setGraphic(viewStop);
         arreterSimulation.setOnAction(actionEvent -> {
-            System.out.println("STOP");
+            //ThreadManager threadManager = ThreadManager.getInstance();
+            //threadManager.detruireTout();
         });
 
 
@@ -108,7 +109,6 @@ public class VueOutils extends TilePane implements Observateur{
         ThreadManager threadManager = ThreadManager.getInstance();
         threadManager.lancer(task);
     }
-
     @Override
     public void reagir() {
         Tooltip tooltip = new Tooltip();

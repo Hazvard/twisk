@@ -67,21 +67,21 @@ public class KitC {
                 fichier.delete();
             }
             if (fichier.createNewFile()) {
-                System.out.println("Fichier créé : " + fichier.getName());
+                //System.out.println("Fichier créé : " + fichier.getName());
             } else {
-                System.out.println("Impossible de créé le fichier");
+                //System.out.println("Impossible de créé le fichier");
             }
         } catch (IOException e) {
-            System.out.println("Erreur dans la lecture.");
+            //System.out.println("Erreur dans la lecture.");
             e.printStackTrace();
         }
         try {
             FileWriter texte = new FileWriter("/tmp/twisk/client.c");
             texte.write(codeC);
             texte.close();
-            System.out.println("Ecrit dans client.c completed !");
+            //System.out.println("Ecrit dans client.c completed !");
         } catch (IOException e) {
-            System.out.println("Erreur dans l'écriture");
+            //System.out.println("Erreur dans l'écriture");
             e.printStackTrace();
         }
     }
@@ -105,11 +105,11 @@ public class KitC {
 
             String ligne ;
 
-            while ((ligne = output.readLine()) != null)
-                System.out.println(ligne);
+            while ((ligne = output.readLine()) != null);
+                //System.out.println(ligne);
 
-            while ((ligne = error.readLine()) != null)
-                System.out.println(ligne);
+            while ((ligne = error.readLine()) != null);
+                //System.out.println(ligne);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -132,12 +132,12 @@ public class KitC {
             p.waitFor();
             String ligne;
             while((ligne = output.readLine()) != null){
-                System.out.println(ligne);
+                //System.out.println(ligne);
             }
             while (((ligne = error.readLine())!= null)){
-                System.out.println(ligne);
+                //System.out.println(ligne);
             }
-            System.out.println("");
+            //System.out.println("");
 
         } catch (IOException e) {
             //Catch pour runtime.exec

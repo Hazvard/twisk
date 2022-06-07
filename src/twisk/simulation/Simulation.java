@@ -98,7 +98,7 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
         for (Client client: gestionnaireClients) {
             System.out.print(client.getNumClient() + "    ");
         }
-        System.out.println("");
+        //System.out.println("");
 
         while (flag) {
 
@@ -106,29 +106,29 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
             int[] tabClient = ou_sont_les_clients(nbEtape, nbClient);
             for (Etape etape : world) {
                 if (etape.isEtapeEntree()) {
-                    System.out.println("Entrée : " + etape.getNom() + " ===>  " + tabClient[i * (nbClient + 1)]);
+                    //System.out.println("Entrée : " + etape.getNom() + " ===>  " + tabClient[i * (nbClient + 1)]);
                 } else if (etape.isEtapeSortie()) {
-                    System.out.println("Sortie : " + etape.getNom() + " ===>  " + tabClient[i * (nbClient + 1)]);
+                    //System.out.println("Sortie : " + etape.getNom() + " ===>  " + tabClient[i * (nbClient + 1)]);
                 } else if (etape.estUnGuichet()) {
-                    System.out.println("Guichet : " + etape.getNom() + " ===>  " + tabClient[i * (nbClient + 1)]);
+                    //System.out.println("Guichet : " + etape.getNom() + " ===>  " + tabClient[i * (nbClient + 1)]);
                 } else if (etape.estUneActivite()) {
-                    System.out.println("Activité : " + etape.getNom() + " ===>  " + tabClient[i * (nbClient + 1)]);
+                    //System.out.println("Activité : " + etape.getNom() + " ===>  " + tabClient[i * (nbClient + 1)]);
                 }
-                System.out.print("Clients (" + tabClient[i * (nbClient + 1)] + ") :");
+                //System.out.print("Clients (" + tabClient[i * (nbClient + 1)] + ") :");
                 //for (Client clients: gestionnaireClients
                 //     ) {
                 //    System.out.print(clients.getNumClient() + "    ");
                 //}
                 for(int j = 0; j < tabClient[i*(nbClient + 1)]; j++) {
-                    System.out.print("   " + tabClient[j + (nbClient * i) + i + 1]);
+                    //System.out.print("   " + tabClient[j + (nbClient * i) + i + 1]);
                     gestionnaireClients.allerA(tabClient[j + (nbClient * i) + i + 1],etape, i + 1);
                 }
-                System.out.println("");
+                //System.out.println("");
 
                 i++;
-                System.out.println("\n");
+                //System.out.println("\n");
             }
-            System.out.println("");
+            //System.out.println("");
             notifierObservateur();
             try {
                 Thread.sleep(500);
@@ -140,7 +140,7 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
 
 
 
-            System.out.println();
+            //System.out.println();
         }
         nettoyage();
         gestionnaireClients.nettoyer();

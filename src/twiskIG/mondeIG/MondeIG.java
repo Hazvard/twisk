@@ -470,7 +470,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
             @Override
             public void run() {
                 mondeIG.notifierObservateur();
-                System.out.println("oui");
             }
         };
         if(Platform.isFxApplicationThread()){

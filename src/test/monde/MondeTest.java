@@ -1,4 +1,4 @@
-package monde;
+package test.monde;
 
 import twisk.monde.*;
 import org.junit.jupiter.api.BeforeEach;

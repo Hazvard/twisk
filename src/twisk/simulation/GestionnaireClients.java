@@ -35,6 +35,7 @@ public class GestionnaireClients implements Iterable<Client>{
      */
     public void allerA(int numeroClient, Etape etape, int rang){
         listeClient.get(numeroClient).allerA(etape,rang);
+        listeClient.get(numeroClient).setEtape(etape);
     }
 
     /**
