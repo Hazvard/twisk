@@ -94,10 +94,7 @@ public class Simulation extends SujetObserve implements Iterable<Client> {
         gestionnaireClients.setClients(tabSimu);
         //System.out.println("Les Clients : " + tabSimu[0]  + " " +  tabSimu[1]  +" " + tabSimu[2]  +  " " + tabSimu[3]  + " ");
 
-        System.out.print("Les clients : ");
-        for (Client client: gestionnaireClients) {
-            System.out.print(client.getNumClient() + "    ");
-        }
+
         //System.out.println("");
 
         while (flag) {
